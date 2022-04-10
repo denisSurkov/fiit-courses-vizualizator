@@ -1,5 +1,6 @@
 import Update from "./Update.js";
 
+//TODO: async for setValue???
 export default class Storage {
     constructor() {
         this.valueByKey = {}
