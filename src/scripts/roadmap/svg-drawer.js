@@ -25,6 +25,62 @@ export class SVGDrawer {
     }
 
 
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle
+     * @param {number} cx
+     * @param {number} cy
+     * @param {number} r
+     * @param {SVGElement?} parent
+     */
+    drawCircle(cx, cy, r, options, parent) {
+        parent = parent ?? this.svgRoot;
+
+        return createSVGElement('rect', {
+            cx: cx,
+            cy: cy,
+            r: r,
+            ...options,
+        }, parent);
+    }
+
+
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/SVG/Element/path
+     * @param {string} d
+     * @param options
+     * @param {SVGElement?} parent
+     */
+    drawPath(d, options, parent) {
+        parent = parent ?? this.svgRoot;
+
+        return createSVGElement('path', {
+            d: d,
+            ...options,
+        }, parent)
+    }
+
+
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/SVG/Element/ellipse
+     * @param {number} cx
+     * @param {number} cy
+     * @param {number} rx
+     * @param {number} ry
+     * @param {SVGElement?} parent
+     */
+    drawEllipse(cx, cy, rx, ry, options, parent) {
+        parent = parent ?? this.svgRoot;
+
+        return createSVGElement('ellipse', {
+            cx: cx,
+            cy: cy,
+            rx: rx,
+            ry: ry,
+            ...options
+        }, parent);
+    }
+
+
     addGroup(groupOptions) {
         return createSVGElement('g', groupOptions, this.svgRoot);
     }
@@ -42,5 +98,6 @@ export class SVGDrawer {
         wrapper.textContent = text;
         return wrapper;
     }
+
 
 }
