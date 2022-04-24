@@ -24,7 +24,6 @@ export class SVGDrawer {
 
         return createSVGElement('rect', {
             x: x,
-            y: y,
             width: width,
             height: height,
             ...options,

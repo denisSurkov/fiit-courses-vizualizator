@@ -1,4 +1,4 @@
-import {createSVGElement} from "./utils.js";
+import {createSVGElement, preCalc} from "./utils.js";
 import {SVGDrawer} from "./svg-drawer.js";
 import {MODULE_FONT, THEME_BLOCK_COLOR} from "./constants.js";
 
@@ -12,8 +12,7 @@ export class RoadmapDrawer {
     }
 
     run() {
-        // предпосчет параметров, без рисования
-
+        this.roadmapConfig = preCalc(this.roadmapConfig);
 
         // после подсчета начинаем рисовать
         this.root = createSVGElement('svg', {
