@@ -1,55 +1,96 @@
 import {RoadmapDrawer} from "./roadmap-drawer.js";
 
-const roadmapDrawer = new RoadmapDrawer(JSON.parse("[\n" +
-    "  {\n" +
-    "    \"mode\": \"theme\",\n" +
-    "    \"title\": \"Интернет\",\n" +
-    "    \"children\": [\n" +
-    "      {\n" +
-    "        \"mode\": \"module\",\n" +
-    "        \"title\": \"Bla bla\",\n" +
-    "        \"infoPath\": \"a/bla.md\"\n" +
-    "      },\n" +
-    "      {\n" +
-    "        \"mode\": \"module\",\n" +
-    "        \"title\": \"Bla bla\",\n" +
-    "        \"infoPath\": \"a/bla.md\"\n" +
-    "      }\n" +
-    "    ]\n" +
-    "  },\n" +
-    "  {\n" +
-    "    \"mode\": \"theme\",\n" +
-    "    \"type\": \"center|left|right\",\n" +
-    "    \"title\": \"Интернет\",\n" +
-    "    \"children\": [\n" +
-    "      {\n" +
-    "        \"mode\": \"module\",\n" +
-    "        \"title\": \"Bla bla\",\n" +
-    "        \"infoPath\": \"a/bla.md\"\n" +
-    "      },\n" +
-    "      {\n" +
-    "        \"mode\": \"module\",\n" +
-    "        \"title\": \"Bla bla\",\n" +
-    "        \"infoPath\": \"a/bla.md\"\n" +
-    "      },\n" +
-    "      {\n" +
-    "        \"mode\": \"module\",\n" +
-    "        \"title\": \"Bla bla\",\n" +
-    "        \"infoPath\": \"a/bla.md\"\n" +
-    "      },\n" +
-    "      {\n" +
-    "        \"mode\": \"module\",\n" +
-    "        \"title\": \"Bla bla\",\n" +
-    "        \"infoPath\": \"a/bla.md\"\n" +
-    "      },\n" +
-    "      {\n" +
-    "        \"mode\": \"module\",\n" +
-    "        \"title\": \"Bla bla\",\n" +
-    "        \"infoPath\": \"a/bla.md\"\n" +
-    "      }\n" +
-    "    ]\n" +
-    "  }\n" +
-    "]"));
+const config = [
+    {
+        "mode": "theme",
+        "title": "Интернет",
+        "children": [
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            }
+        ]
+    },
+    {
+        "mode": "theme",
+        "type": "right",
+        "title": "Интернет",
+        "children": [
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            }
+        ]
+    },
+    {
+        "mode": "theme",
+        "type": "left",
+        "title": "Интернет",
+        "children": [
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            }
+        ]
+    },
+    {
+        "mode": "theme",
+        "type": "center",
+        "title": "Интернет",
+        "children": [
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Bla bla",
+                "infoPath": "a/bla.md"
+            }
+        ]
+    }
+];
+
+const roadmapDrawer = new RoadmapDrawer(config);
 const elementToShow = roadmapDrawer.run();
 
 

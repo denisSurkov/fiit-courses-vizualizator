@@ -1,13 +1,16 @@
+import {
+    childWidth,
+    childrenYPadding,
+    bigPadding,
+    childHeight,
+    childrenXPadding,
+    leftPadding,
+    moduleWidth,
+    moduleHeight,
+    rightPadding
+} from "./constants.js";
+
 const _NAMESPACE_URL = 'http://www.w3.org/2000/svg';
-const childHeight = 100;
-const childWidth = 300;
-const moduleHeight = 100;
-const moduleWidth = 300;
-const childrenYPadding = 100;
-const childrenXPadding = 100;
-const leftPadding = 50;
-const rightPadding = 50;
-const bigPadding = 400;
 
 /**
  *
@@ -71,5 +74,10 @@ export function preCalc(config) {
         module.y = Math.floor((module.children[module.children.length - 1].y + viewHeight) / 2);
         viewHeight = module.children[module.children.length - 1].y + childrenYPadding;
     }
-    return config;
+
+
+    return {
+        viewHeight,
+        config
+    };
 }
