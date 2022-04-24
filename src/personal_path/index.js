@@ -37,6 +37,8 @@ document.addEventListener("dragover", function(event) {
     event.preventDefault();
 });
 
+
+//TODO: CREATE DATA IN COURSE-BLOCK FROM JS (IN CALLBACK dragstart)
 for (const sem of semesters) {
     let semContainer = document.createElement('div');
     semContainer.classList.add('courses-container', 'sem-container');
