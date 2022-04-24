@@ -4,20 +4,27 @@ export class SVGDrawer {
 
     constructor(svgRoot) {
         this.svgRoot = svgRoot;
+
+        this.canvasRenderingContext2D = document
+            .createElement('canvas')
+            .getContext('2d');
     }
 
     /**
      *  @see https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect
+     * @param {number} x
+     * @param {number} y
      * @param {SVGElement?} parent
      * @param {number} width
      * @param {number} height
      * @param {{"stroke-width": number, fill: string, stroke: string}} options
      */
-    drawRectangle(x, width, height, options, parent) {
+    drawRectangle(x, y, width, height, options, parent) {
         parent = parent ?? this.svgRoot;
 
         return createSVGElement('rect', {
             x: x,
+            y: y,
             width: width,
             height: height,
             ...options,
@@ -99,5 +106,14 @@ export class SVGDrawer {
         return wrapper;
     }
 
+    /**
+     * @param {string} text
+     * @param {string?} font
+     * @returns {TextMetrics}
+     */
+    measureText(text, font) {
+        this.canvasRenderingContext2D.font = font;
 
+        return this.canvasRenderingContext2D.measureText(text);
+    }
 }
