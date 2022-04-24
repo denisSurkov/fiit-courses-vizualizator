@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Путь ...</title>
+        <style>
+            .courses-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                flex-wrap: wrap;
+                min-height: 50px;
+                margin-bottom: 50px;
+                padding: 20px;
+            }
+
+            #courses-store {
+                background-color: darkseagreen;
+            }
+
+            .course-block {
+                height: 70px;
+                width: 120px;
+                background-color: crimson;
+                user-select: none;
+            }
+
+            .sem-container {
+                background-color: darkcyan;
+            }
+
+            .sem-container .sem-title {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .sem-container .zed-stat {
+                position: absolute;
+                top: 0;
+                left: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="courses-store" class="courses-container">
+            <div class="course-block" draggable="true">
+                <span class="title">Operation Systems</span>
+                <br>
+                <span class="zed-number">Zed: 4</span>
+            </div>
+        </div>
+        <div class="courses-container sem-container">
+            <span class="sem-title">Sem 5</span>
+            <span class="zed-stat">Zed: 0</span>
+        </div>
+        <script type="module" src="./index.js"></script>
+    </body>
+</html>
