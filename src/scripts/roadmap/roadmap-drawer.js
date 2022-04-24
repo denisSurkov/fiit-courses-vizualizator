@@ -1,6 +1,6 @@
 import {createSVGElement} from "./utils.js";
 import {SVGDrawer} from "./svg-drawer.js";
-import {THEME_BLOCK_COLOR} from "./constants.js";
+import {MODULE_FONT, THEME_BLOCK_COLOR} from "./constants.js";
 
 export class RoadmapDrawer {
 
@@ -24,6 +24,7 @@ export class RoadmapDrawer {
         });
         this.svgDrawer = new SVGDrawer(this.root);
 
+        this.#drawModule(100, 10, '3 курс');
         this.#drawStart(1920 / 2);
 
         return this.root;
@@ -33,7 +34,7 @@ export class RoadmapDrawer {
     #drawStart(x) {
         const group = this.svgDrawer.addGroup();
 
-        this.svgDrawer.drawRectangle(x - 100 / 2, 100, 30, {
+        this.svgDrawer.drawRectangle(x - 100 / 2, 100, 30, 100, {
             stroke: 'black',
             fill: THEME_BLOCK_COLOR,
             'stroke-width': 0.5,
@@ -43,4 +44,18 @@ export class RoadmapDrawer {
     }
 
 
+    /**
+     * @param {number} xCenter
+     * @param {number} yCenter
+     * @param {string} name
+     */
+    #drawModule(xCenter, yCenter, name) {
+        const newGroup = this.svgDrawer.addGroup();
+        const textMeasure = this.svgDrawer.measureText(name, MODULE_FONT);
+
+        const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
+
+        this.svgDrawer.drawRectangle(xCenter - textMeasure.width, 20, textMeasure.width * 2, actualHeight + 30, {}, newGroup);
+        this.svgDrawer.drawText(xCenter - textMeasure.width / 2, 20, name, {'fill': 'red'}, newGroup);
+    }
 }
