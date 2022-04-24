@@ -1,5 +1,12 @@
 import Update from "./Update.js";
 
+
+/**
+ * @callback onSetValueCallback
+ * @param {Update} update
+ */
+
+
 //TODO: async for setValue???
 export default class Storage {
     constructor() {
@@ -7,10 +14,10 @@ export default class Storage {
         this.callbackByKey = {}
     }
 
-    /*
-        function callback(update: Update) {
-        }
-    */
+    /**
+     * @param {Object} key
+     * @param {onSetValueCallback} callback
+     */
     register(key, callback) {
         if (!this.callbackByKey[key]) {
             this.callbackByKey[key] = [callback];
