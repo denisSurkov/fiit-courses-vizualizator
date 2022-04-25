@@ -1,80 +1,134 @@
-import Storage from "../state_storage/Storage.js";
+import Storage from "../state_storage/storage.js";
 
 
-let dragged;
-
-let courses = {
-    "Operation Systems": {
-        zedNumber: 4
-    },
-    "Networks": {
-        zedNumber: 4
-    }
-};
-
-let semesters = [
-    {
-        title: "sem5",
-        zedCount: 0
-    }
-];
+let draggableDomElement = null;
+let stateById = {};
 
 
-let states = new Storage();
+function handleDragLeaveForDropZone(event) {
+    let zoneState = stateById[event.target.id];
+    let itemState = stateById[draggableDomElement.id];
 
-states.setValue("sem5", semesters[0]);
-states.register("sem5", function(update) {
-    console.log(update);
-});
-
-
-document.addEventListener("dragstart", function(event) {
-    dragged = event.target;
-    console.log(dragged);
-});
-
-document.addEventListener("dragover", function(event) {
-    event.preventDefault();
-});
-
-
-//TODO: CREATE DATA IN COURSE-BLOCK FROM JS (IN CALLBACK dragstart)
-for (const sem of semesters) {
-    let semContainer = document.createElement('div');
-    semContainer.classList.add('courses-container', 'sem-container');
-    semContainer.innerHTML =
-        `<span class="sem-title">${sem.title}</span>
-        <span class="zed-stat">Zed: ${sem.zedCount}</span>`;
-
-    document.body.appendChild(semContainer);
-
-    document.addEventListener("drag", function(event) {
-
-    });
-
-    document.addEventListener("drop", function(event) {
-        console.log("drop");
-        console.log(event.target.className);
-
-        if (event.target.className.split(' ').indexOf('courses-container') === -1) {
-            return;
-        }
-
-        dragged.parentNode.removeChild(dragged);
-        event.target.appendChild(dragged);
-
-        if (dragged.parentNode.classList.contains('courses-container')) {
-            console.log("OK");
-            let title = dragged.parentNode.querySelector('.sem-title');
-
-            if (title !== null) {
-                states.setValue(title.textContent, {
-                    title: "sem5",
-                    zedCount: 10
-                });
-            }
-        }
-
-        dragged = undefined;
-    });
+    zoneState.setValue('zedCount', zoneState.getValue('zedCount') - itemState.getValue('zedCount'));
 }
+
+function handleDragEnterForDropZone(event) {
+    let zoneState = stateById[event.target.id];
+    let itemState = stateById[draggableDomElement.id];
+
+    console.log(zoneState.getValue('zedCount'));
+    console.log(itemState.getValue('zedCount'));
+    let nextCount = zoneState.getValue('zedCount') + itemState.getValue('zedCount');
+
+    console.log(nextCount);
+
+    zoneState.setValue('zedCount', nextCount);
+}
+
+function handleDragOverForDropZone(event) {
+    event.preventDefault();
+}
+
+function handleDropForDropZone(event) {
+    console.log('drop');
+    draggableDomElement.parentNode.removeChild(draggableDomElement);
+    event.target.appendChild(draggableDomElement);
+
+    draggableDomElement = null;
+}
+
+function createSemesterView(id) {
+    let target = document.createElement('div');
+    target.id = id;
+    target.classList.add('courses-container', 'sem-container');
+
+    let title = document.createElement('span');
+    title.classList.add('sem-title');
+
+    let zedCount = document.createElement('span');
+    zedCount.classList.add('zed-stat');
+
+    document.body.appendChild(target);
+    target.appendChild(title);
+    target.appendChild(zedCount);
+
+    target.addEventListener('dragleave', handleDragLeaveForDropZone);
+    target.addEventListener('dragenter', handleDragEnterForDropZone);
+    target.addEventListener('dragover', handleDragOverForDropZone);
+    target.addEventListener('drop', handleDropForDropZone);
+
+    return {target, title, zedCount};
+}
+
+function createSemester(id, title, zedCount) {
+    let view = createSemesterView(id);
+
+    let storage = new Storage();
+    storage.register('title', function(update) {
+        view.title.innerText = update.nextValue;
+    });
+
+    storage.register('zedCount', function(update) {
+        view.zedCount.innerText = 'Zed: ' + update.nextValue;
+    });
+
+    storage.updateState({title, zedCount});
+
+    return storage;
+}
+
+function handleDragStartForDraggable(event) {
+    draggableDomElement = event.target;
+}
+
+function handleDragEndForDraggable(event) {
+    console.log('dragend');
+}
+
+function createCourseView(id, courseContainer) {
+    let target = document.createElement('div');
+    target.id = id;
+    target.setAttribute('draggable', 'true');
+    target.classList.add('course-block');
+    let title = document.createElement('span');
+    let zedCount = document.createElement('span');
+
+    courseContainer.appendChild(target);
+    target.appendChild(title);
+    target.appendChild(document.createElement('br'));
+    target.appendChild(zedCount);
+
+    target.addEventListener('dragstart', handleDragStartForDraggable);
+    target.addEventListener('dragend', handleDragEndForDraggable);
+
+    return {
+        target,
+        title,
+        zedCount
+    };
+}
+
+function createCourse(id, courseContainer, title, zedCount) {
+    let view = createCourseView(id, courseContainer);
+    let storage = new Storage();
+
+    storage.register('title', function(update) {
+        view.title.innerText = update.nextValue;
+    });
+
+    storage.register('zedCount', function(update) {
+        view.zedCount.innerText = 'Zed: ' + update.nextValue;
+    });
+
+    storage.updateState({title, zedCount});
+
+    return storage;
+}
+
+
+stateById['sem5'] = createSemester('sem5', 'Sem 5', 0);
+stateById['sem6'] = createSemester('sem6', 'Sem 6', 0);
+
+let startContainer = document.querySelector('#courses-store');
+stateById['c1'] = createCourse('c1', startContainer, 'OS', 4);
+stateById['c2'] = createCourse('c2', startContainer, 'Linear Algebra', 6);

@@ -1,4 +1,4 @@
-import Update from "./Update.js";
+import Update from "./update.js";
 
 
 /**
@@ -7,7 +7,6 @@ import Update from "./Update.js";
  */
 
 
-//TODO: async for setValue???
 export default class Storage {
     constructor() {
         this.valueByKey = {}
@@ -26,10 +25,27 @@ export default class Storage {
         }
     }
 
-    getValue(key) {
-        return this.valueByKey[key]
+    /**
+     * @param {Object} obj
+     */
+    updateState(obj) {
+        for (const prop in obj) {
+            this.setValue(prop, obj[prop]);
+        }
     }
 
+    getState() {
+        return Object.assign({}, this.valueByKey);
+    }
+
+    getValue(key) {
+        return this.valueByKey[key];
+    }
+
+    /**
+     * @param {String} key
+     * @param {Object} value
+     * */
     setValue(key, value) {
         let update = new Update(this.valueByKey[key], value);
 
