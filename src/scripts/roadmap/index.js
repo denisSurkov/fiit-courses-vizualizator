@@ -3,16 +3,21 @@ import {RoadmapDrawer} from "./roadmap-drawer.js";
 const config = [
     {
         "mode": "theme",
-        "title": "Интернет",
+        "title": "5 семестр",
         "children": [
             {
                 "mode": "module",
-                "title": "Bla bla",
+                "title": "Фронтенд от Контура",
                 "infoPath": "a/bla.md"
             },
             {
                 "mode": "module",
-                "title": "Bla bla",
+                "title": "Hackedrom",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Бэкенд от Контура",
                 "infoPath": "a/bla.md"
             }
         ]

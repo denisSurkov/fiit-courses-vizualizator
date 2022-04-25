@@ -1,14 +1,15 @@
-export const THEME_BLOCK_COLOR = 'rgb(84, 176, 209)';
+export const BLOCK_THEME_STYLE_NAME = 'roadmap-theme';
+export const BLOCK_MODULE_STYLE_NAME = 'roadmap-module';
 
 export const MODULE_FONT = 'Roboto';
 
 
-export const childHeight = 100;
-export const childWidth = 300;
-export const moduleHeight = 100;
-export const moduleWidth = 300;
-export const childrenYPadding = 100;
-export const childrenXPadding = 100;
-export const leftPadding = 50;
-export const rightPadding = 50;
-export const bigPadding = 400;
+export const CHILD_HEIGHT = 100;
+export const CHILD_WIDTH = 300;
+export const MODULE_HEIGHT = 100;
+export const MODULE_WIDTH = 300;
+export const CHILDREN_Y_PADDING = 100;
+export const CHILDREN_X_PADDING = 10;
+export const LEFT_PADDING = 50;
+export const RIGHT_PADDING = 50;
+export const BIG_PADDING = 400;
