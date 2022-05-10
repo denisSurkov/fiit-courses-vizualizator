@@ -24,6 +24,27 @@ const config = [
     },
     {
         "mode": "theme",
+        "title": "6 семестр",
+        "children": [
+            {
+                "mode": "module",
+                "title": "Фронтенд от Контура",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Hackedrom",
+                "infoPath": "a/bla.md"
+            },
+            {
+                "mode": "module",
+                "title": "Бэкенд от Контура",
+                "infoPath": "a/bla.md"
+            }
+        ]
+    },
+    {
+        "mode": "theme",
         "type": "right",
         "title": "Интернет",
         "children": [
