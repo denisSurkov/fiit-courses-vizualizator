@@ -16,11 +16,7 @@ function handleDragEnterForDropZone(event) {
     let zoneState = stateById[event.target.id];
     let itemState = stateById[draggableDomElement.id];
 
-    console.log(zoneState.getValue('zedCount'));
-    console.log(itemState.getValue('zedCount'));
     let nextCount = zoneState.getValue('zedCount') + itemState.getValue('zedCount');
-
-    console.log(nextCount);
 
     zoneState.setValue('zedCount', nextCount);
 }
