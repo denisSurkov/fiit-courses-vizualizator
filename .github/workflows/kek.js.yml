@@ -13,6 +13,7 @@ jobs:
         run: |
           mkdir -p /var/test/frontend/
           rm -rf /var/test/frontend/*
+      - uses: actions/checkout@v3
       - name: Moving project to correct folder
         run: |
           ls
