@@ -11,10 +11,10 @@ jobs:
     steps:   
       - name: Creating correct folder and cleaning
         run: |
-          mkdir -p /var/test/frontend/
-          rm -rf /var/test/frontend/*
+          mkdir -p /home/timpo/web/src
+          rm -rf /home/timpo/web/src/*
       - uses: actions/checkout@v3
       - name: Moving project to correct folder
         run: |
           ls
-          mv ./src/* /var/test/frontend/
+          mv ./src/* /home/timpo/web/src/
