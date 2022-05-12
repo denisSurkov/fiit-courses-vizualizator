@@ -1,0 +1,19 @@
+name: Building node.js and publishing
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  
+  publish:
+    runs-on: self-hosted
+    steps:   
+      - name: Creating correct folder and cleaning
+        run: |
+          mkdir -p /var/test/frontend/
+          rm -rf /var/test/frontend/*
+      - name: Moving project to correct folder
+        run: |
+          ls
+          mv ./src/* /var/test/frontend/
