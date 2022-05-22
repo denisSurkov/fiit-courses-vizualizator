@@ -1,0 +1,20 @@
+name: Building node.js and publishing
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  
+  publish:
+    runs-on: self-hosted
+    steps:   
+      - name: Creating correct folder and cleaning
+        run: |
+          mkdir -p /home/timpo/web/src
+          rm -rf /home/timpo/web/src/*
+      - uses: actions/checkout@v3
+      - name: Moving project to correct folder
+        run: |
+          ls
+          mv ./src/* /home/timpo/web/src/

@@ -7,6 +7,11 @@
         "mode": "module",
         "title": "Bla bla",
         "infoPath": "a/bla.md"
+      },
+      {
+        "mode": "module",
+        "title": "Bla bla",
+        "infoPath": "a/bla.md"
       }
     ]
   },
@@ -15,6 +20,16 @@
     "type": "center|left|right",
     "title": "Интернет",
     "children": [
+      {
+        "mode": "module",
+        "title": "Bla bla",
+        "infoPath": "a/bla.md"
+      },
+      {
+        "mode": "module",
+        "title": "Bla bla",
+        "infoPath": "a/bla.md"
+      },
       {
         "mode": "module",
         "title": "Bla bla",
