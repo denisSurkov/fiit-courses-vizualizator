@@ -98,7 +98,6 @@ a {
 
 /* Overall styles start */
 
-
 html {
     box-sizing: border-box;
 }
@@ -116,8 +115,6 @@ body {
     background-color: #110F2C;
     color: white;
     font-family: golos-bold;
-    /* margin-right: 10%;
-    margin-left: 10%; */
 }
 
 .wrapper {
@@ -130,8 +127,9 @@ body {
 /* Header styles start */
 
 .header-container {
+    margin: 20px auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
 }
 
@@ -145,8 +143,8 @@ body {
 }
 
 .fiit-logo {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
 }
 
 .header-tab-group {
@@ -178,16 +176,26 @@ body {
     display: flex;
 }
 
+.header-description {
+    font-family: golos;
+    font-size: 24px;
+    margin: 0px 10px;
+}
+
 /* Header styles end */
 
 /* Main styles start */
+
+main {
+    margin-bottom: 100px;
+}
 
 .blocks-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, 360px);
     grid-column-gap: 20px;
     grid-row-gap: 33px;
-    margin-top: 30px;
+    margin: 20px auto;
 }
 
 
@@ -211,6 +219,12 @@ body {
 .block-description {
     font-family: golos;
     font-size: 18px;
+}
+
+.roadmap {
+    background: linear-gradient(90deg, #0F1B47 0%, rgba(56, 22, 79, 0.958802) 49.79%, rgba(84, 18, 85, 0.93) 100%), #C4C4C4;
+    height: 1000px;
+    /* Заглушка, должна изменяться динамически в зависимости от количества контента */
 }
 
 /* Main styles end */
