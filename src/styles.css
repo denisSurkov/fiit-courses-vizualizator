@@ -196,6 +196,7 @@ main {
     grid-column-gap: 20px;
     grid-row-gap: 33px;
     margin: 20px auto;
+    justify-content: center;
 }
 
 
