@@ -2,7 +2,7 @@
     {
         "title": "Frontend",
         "description": "Пошаговое руководство, как стать современным фронтенд-разработчиком в 2022 году",
-        "href": "#!"
+        "href": "./frontend_test.html"
     },
     {
         "title": "Backend",
