@@ -243,6 +243,7 @@ footer {
     height: 60px;
     position: relative;
     bottom: 25px;
+    z-index: -1;
 }
 
 .footer-content {
