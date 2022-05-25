@@ -275,6 +275,22 @@ footer {
 
 /* Footer styles end */
 
+/* SVG styles start */
+
+.roadmap-module, .roadmap-theme {
+    fill: #1AB3D5;
+}
+
+.roadmap-text-course{
+    fill: white;
+}
+
+.roadmap-line-course, .roadmap-line-semester {
+    stroke: #1AB3D5;
+}
+
+/* SVG styles end */
+
 /* Fonts start */
 
 @font-face {

@@ -1,6 +1,14 @@
 import {createSVGElement, preCalc} from "./utils.js";
 import {SVGDrawer} from "./svg-drawer.js";
-import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT, THEME_FONT} from "./constants.js";
+import {
+    BLOCK_MODULE_STYLE_NAME,
+    BLOCK_THEME_STYLE_NAME,
+    MODULE_FONT,
+    THEME_FONT,
+    BLOCK_TEXT_COURSE_STYLE_NAME,
+    LINE_COURSE_STYLE_NAME,
+    LINE_SEMESTER_STYLE_NAME, BLOCK_TEXT_SEMESTER_STYLE_NAME
+} from "./constants.js";
 
 const BLOCK_THEME_PARAMS = {
     'class': BLOCK_THEME_STYLE_NAME,
@@ -12,8 +20,17 @@ const BLOCK_MODULE_PARAMS = {
     'rx': 5,
 }
 
-const SEMESTR_LINE_PARAMS = {
+const BLOCK_TEXT_COURSE_PARAMS = {
+    'class': BLOCK_TEXT_COURSE_STYLE_NAME,
+}
+
+const BLOCK_TEXT_SEMESTER_PARAMS = {
+    'class': BLOCK_TEXT_COURSE_STYLE_NAME
+}
+
+const SEMESTER_LINE_PARAMS = {
     fill: 'none',
+    'class': LINE_SEMESTER_STYLE_NAME,
     stroke: 'rgb(43, 120, 228)',
     'stroke-width': 4,
 }
@@ -21,6 +38,7 @@ const SEMESTR_LINE_PARAMS = {
 const COURSE_LINE_PARAMS = {
     fill: 'none',
     stroke: 'rgb(43, 120, 228)',
+    'class': LINE_COURSE_STYLE_NAME,
     'stroke-width': 4,
     'stroke-dasharray': '0.8, 12',
     'stroke-linecap': 'round',
@@ -60,7 +78,8 @@ export class RoadmapDrawer {
             const differenceOfY = minYOfCurrentSemesterChild - maxYOfPrevSemesterChild;
             const almostMiddlePointInDiff = maxYOfPrevSemesterChild + differenceOfY / 2;
 
-            this.#drawSemesterPath(prevSemester.x, prevSemester.y, almostMiddlePointInDiff, currentSemester.x, currentSemester.y);
+            this.#drawSemesterPath(prevSemester.x, prevSemester.y, almostMiddlePointInDiff, currentSemester.x,
+                currentSemester.y);
         }
 
         for (const element of this.roadmapConfig.config) {
@@ -94,8 +113,9 @@ export class RoadmapDrawer {
 
         const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
 
-        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight * 2, textMeasure.width * 2, actualHeight * 3, BLOCK_MODULE_PARAMS, group);
-        this.svgDrawer.drawText(xCenter - textMeasure.width / 10, yCenter, name, {'fill': 'white'}, group);
+        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight * 2, textMeasure.width * 2,
+            actualHeight * 3, BLOCK_MODULE_PARAMS, group);
+        this.svgDrawer.drawText(xCenter - textMeasure.width / 10, yCenter, name, BLOCK_TEXT_COURSE_PARAMS, group);
     }
 
     /**
@@ -109,12 +129,14 @@ export class RoadmapDrawer {
 
         const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
 
-        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight * 2, textMeasure.width * 2, actualHeight * 3, BLOCK_THEME_PARAMS, group);
-        this.svgDrawer.drawText(xCenter - textMeasure.width / 12, yCenter, name, {'fill': 'white'}, group);
+        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight * 2, textMeasure.width * 2,
+            actualHeight * 3, BLOCK_THEME_PARAMS, group);
+        this.svgDrawer.drawText(xCenter - textMeasure.width / 12, yCenter, name, BLOCK_TEXT_SEMESTER_PARAMS, group);
     }
 
     #drawCoursePath(fromX, fromY, toX, toY, parent) {
-        this.svgDrawer.drawPath(`M${fromX + AVERAGE_PADDING_FOR_LINES} ${fromY}Q${fromX} ${toY} ${toX} ${toY}`, COURSE_LINE_PARAMS, parent);
+        this.svgDrawer.drawPath(`M${fromX + AVERAGE_PADDING_FOR_LINES} ${fromY}Q${fromX} ${toY} ${toX} ${toY}`,
+            COURSE_LINE_PARAMS, parent);
     }
 
 
@@ -148,6 +170,6 @@ export class RoadmapDrawer {
 
 
         this.svgDrawer.drawPath(
-            firstLine + secondLine + thirdLine + fourthLine + fiveLine, SEMESTR_LINE_PARAMS);
+            firstLine + secondLine + thirdLine + fourthLine + fiveLine, SEMESTER_LINE_PARAMS);
     }
 }
