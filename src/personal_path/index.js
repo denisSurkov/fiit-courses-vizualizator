@@ -7,6 +7,8 @@ let stateById = {};
 
 function handleDragLeaveForDropZone(event) {
     let zoneState = stateById[event.target.id];
+    // TODO: check zoneState type (must be not item)
+
     let itemState = stateById[draggableDomElement.id];
 
     zoneState.setValue('zedCount', zoneState.getValue('zedCount') - itemState.getValue('zedCount'));
@@ -14,6 +16,8 @@ function handleDragLeaveForDropZone(event) {
 
 function handleDragEnterForDropZone(event) {
     let zoneState = stateById[event.target.id];
+    if (zoneState)
+    console.log(event);
     let itemState = stateById[draggableDomElement.id];
 
     let nextCount = zoneState.getValue('zedCount') + itemState.getValue('zedCount');
