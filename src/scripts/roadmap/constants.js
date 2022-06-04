@@ -1,8 +1,8 @@
 export const BLOCK_THEME_STYLE_NAME = 'roadmap-theme';
 export const BLOCK_MODULE_STYLE_NAME = 'roadmap-module';
 
-export const MODULE_FONT = '1em Roboto';
-export const THEME_FONT = '2em Roboto';
+export const MODULE_FONT = '1em Sans';
+export const THEME_FONT = '2em Sans';
 
 
 export const CHILD_HEIGHT = 100;
