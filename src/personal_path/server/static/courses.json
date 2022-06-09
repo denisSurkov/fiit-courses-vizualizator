@@ -1,0 +1,16 @@
+[
+  {
+    "id": "c1",
+    "name": "OS",
+    "zedCount": 4,
+    "semType": "spring",
+    "description": "Course about operation systems"
+  },
+  {
+    "id": "c2",
+    "name": "Математический анализ",
+    "zedCount": 6,
+    "semType": "fall",
+    "description": "Про бесконечно малые и бесконечно большие"
+  }
+]

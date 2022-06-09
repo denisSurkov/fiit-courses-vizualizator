@@ -1,4 +1,4 @@
-import Storage from "../state_storage/storage.js";
+import Storage from "../state_storage_old/storage.js";
 
 
 let draggableDomElement = null;

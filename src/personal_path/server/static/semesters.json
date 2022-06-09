@@ -1,0 +1,26 @@
+[
+  {
+    "id": "s1",
+    "name": "3 курс; 1 семестр",
+    "semType": "fall",
+    "maxZedCount": 15
+  },
+  {
+    "id": "s2",
+    "name": "3 курс; 2 семестр",
+    "semType": "spring",
+    "maxZedCount": 15
+  },
+  {
+    "id": "s3",
+    "name": "4 курс; 1 семестр",
+    "semType": "fall",
+    "maxZedCount": 15
+  },
+  {
+    "id": "s4",
+    "name": "4 курс; 2 семестр",
+    "semType": "spring",
+    "maxZedCount": 15
+  }
+]
