@@ -9,26 +9,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link href="/src/styles/roadmap.css" rel="stylesheet">
+    <link rel="icon" href="./images/logo.png">
 </head>
 
 <body>
     <header>
         <div class="wrapper header-container">
             <div class="header-logo">
-                <a href="#!" class="header-logo-link">
+                <a href="./index.html" class="header-logo-link">
                     <img class="fiit-logo" src="images/logo.png" alt="Логотип ФИИТа">
                 </a>
             </div>
             <div class="header-text">
                 <p class="header-title">Визуализатор спецкурсов для ФИИТ</p>
                 <div class="header-tab-group">
-                    <a href="#!" class="header-tab-link">
+                    <a href="./index.html" class="header-tab-link">
                         <p class="header-tab-text tab-chosen">Подборка курсов от преподавателей</p>
                     </a>
                     <a href="#!" class="header-tab-link">
                         <div class="header-tab">
                             <p class="header-tab-text">Составить свой путь
-                            <img src="./images/right-arrow.svg" alt="right-arrow" class="header-tab-right-arrow">
+                                <img src="./images/right-arrow.svg" alt="right-arrow" class="header-tab-right-arrow">
                             </p>
                         </div>
                     </a>
@@ -38,18 +39,25 @@
     </header>
     <main>
         <div class="wrapper blocks-container">
-           <!-- Данные добавляются сюда с помощью ./path_title/script.js -->
+            {{#each roadmaps}}
+            <a href="{{href}}.html" class="block-link">
+                <div class="block">
+                    <p class="block-title">{{title}}</p>
+                    <p class="block-description">{{description}}</p>
+                </div>
+            </a>
+            {{/each}}
         </div>
     </main>
     <footer>
         <div class="footer-content">
-            <a href="#!" class="footer-content-link">
-                <p class="footer-content-text">О проекте</p>
+            <a href="https://fiit-urfu.ru/" class="footer-content-link">
+                <p class="footer-content-text">О ФИИТ</p>
             </a>
             <a href="#!" class="footer-content-link">
                 <p class="footer-content-text">Связаться с авторами</p>
             </a>
-            <a href="https://github.com/denisSurkov/fiit-courses-vizualizator" target=”_blank class="footer-content-link">
+            <a href="https://github.com/denisSurkov/fiit-courses-vizualizator" class="footer-content-link">
                 <p class="footer-content-text">GitHub</p>
             </a>
             <img src="./images/fotter.svg" alt="footer-fiit" class="footer-image">

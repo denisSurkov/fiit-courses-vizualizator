@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "name": "fiit-courses-vizualizator",
+  "version": "1.0.0",
+  "description": "Это учебный проект в рамках курса \"Основы веб-разработки\" ФИИТ.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denisSurkov/fiit-courses-vizualizator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denisSurkov/fiit-courses-vizualizator/issues"
+  },
+  "homepage": "https://github.com/denisSurkov/fiit-courses-vizualizator#readme",
+  "dependencies": {
+    "canvas": "^2.9.1",
+    "handlebars": "^4.7.7",
+    "jsdom": "^19.0.0"
+  }
+}

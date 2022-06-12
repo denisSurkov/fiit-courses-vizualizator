@@ -94,7 +94,7 @@ export class RoadmapDrawer {
 
         const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
 
-        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight * 2, textMeasure.width * 2, actualHeight * 3, BLOCK_MODULE_PARAMS, group);
+        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight, textMeasure.width * 1.2, actualHeight * 1.5, BLOCK_MODULE_PARAMS, group);
         this.svgDrawer.drawText(xCenter - textMeasure.width / 10, yCenter, name, {'fill': 'white'}, group);
     }
 
@@ -109,7 +109,7 @@ export class RoadmapDrawer {
 
         const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
 
-        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight * 2, textMeasure.width * 2, actualHeight * 3, BLOCK_THEME_PARAMS, group);
+        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight, textMeasure.width * 1.2, actualHeight * 1.5, BLOCK_THEME_PARAMS, group);
         this.svgDrawer.drawText(xCenter - textMeasure.width / 12, yCenter, name, {'fill': 'white'}, group);
     }
 

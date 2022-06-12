@@ -3,22 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Визуализатор спецкурсов</title>
+    <title>{{title}}</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="./images/logo.png">
 </head>
 
 <body>
     <header>
         <div class="wrapper header-container">
             <div class="header-logo">
-                <a href="#!" class="header-logo-link">
+                <a href="./index.html" class="header-logo-link">
                     <img class="fiit-logo" src="images/logo.png" alt="Логотип ФИИТа">
                 </a>
             </div>
             <div class="header-text">
-                <p class="header-title">Frontend-разработчик</p>
-                <p class="header-description">Пошаговое руководство, как стать современным фронтенд-разработчиком в 2022
-                    году</p>
+                <p class="header-title">{{title}}</p>
+                <p class="header-description">{{description}}</p>
                 <a href="./index.html">
                     <div class="header-back">
                         <img src="./images/back-arrow.svg" alt="back-arrow" class="header-back-arrow">
@@ -28,23 +28,22 @@
             </div>
     </header>
     <main>
-        <div class="roadmap" id="path-holder"></div>
+        <div class="roadmap" id="path-holder">{{{roadmap}}}</div>
     </main>
     <footer>
         <div class="footer-content">
-            <a href="#!" class="footer-content-link">
-                <p class="footer-content-text">О проекте</p>
+            <a href="https://fiit-urfu.ru/" class="footer-content-link">
+                <p class="footer-content-text">О ФИИТ</p>
             </a>
             <a href="#!" class="footer-content-link">
                 <p class="footer-content-text">Связаться с авторами</p>
             </a>
-            <a href="#!" class="footer-content-link">
+            <a href="https://github.com/denisSurkov/fiit-courses-vizualizator" class="footer-content-link">
                 <p class="footer-content-text">GitHub</p>
             </a>
             <img src="./images/fotter.svg" alt="footer-fiit" class="footer-image">
         </div>
     </footer>
-    <script src="scripts/roadmap/index.js" type="module"></script>
 </body>
 
 </html>
