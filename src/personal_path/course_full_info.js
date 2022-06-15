@@ -15,6 +15,10 @@ export default class CourseFullInfo extends CoursePreviewInfo {
         this.name = name;
         this.zedCount = zedCount;
         this.description = description;
+
+        view.coursePreview.title.innerText = this.name;
+        view.coursePreview.zedCountElement.innerText = this.zedCount;
+        view.descriptionWindow.descriptionElement.innerText = this.description;
     }
 
     createPreviewInfo() {

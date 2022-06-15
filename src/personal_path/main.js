@@ -4,9 +4,11 @@ import CourseView from "./course_view.js";
 import CoursePreview from "./course_preview.js";
 import SemesterView from "./semester_view.js";
 import DescriptionWindow from "./description_window.js";
+import CoursePreviewInfo from "./course_preview_info.js";
+import CourseContainer from "./course_container.js";
 
 let eventIdsCount = 0;
-let viewByEventId = {};
+let modelByEventId = {};
 let urlSearchParams = new URLSearchParams(window.location.search);
 
 //TODO: Изменение url в браузере без перезагрузки:
@@ -17,11 +19,8 @@ let urlSearchParams = new URLSearchParams(window.location.search);
 /**
  * @param {View} view
  * **/
-function initView(view) {
-    let eventId = 'eid' + eventIdsCount;
-
-    view.eventId = eventId;
-    viewByEventId[eventId] = view;
+function setNextEventId(view) {
+    view.eventId = 'eid' + eventIdsCount;
     eventIdsCount++;
 }
 
@@ -39,39 +38,112 @@ async function loadModels(url, recordToModelParser, viewFactory) {
     return Promise.resolve(models);
 }
 
+/**
+ * @param {object} jsonRecord,
+ * @param {CourseView} view
+ * **/
 function parseJsonToCourseFullInfo(jsonRecord, view) {
-    return new CourseFullInfo(
+    let result = new CourseFullInfo(
         jsonRecord['id'],
         jsonRecord['name'],
         jsonRecord['zedCount'],
         jsonRecord['description'],
         view
     );
+
+    modelByEventId[view.eventId] = result;
+    modelByEventId[view.coursePreview.eventId] = result;
+    modelByEventId[view.descriptionWindow.eventId] = result;
+
+    return result;
 }
 
-function parseJsonToSemesterInfo(jsonRecord, coursePreviewInfoById, view) {
-    return new SemesterInfo(
+function parseJsonToSemesterInfo(jsonRecord, coursePreviewInfoById, freeCourses, view) {
+    let result =  new SemesterInfo(
         jsonRecord['id'],
         jsonRecord['name'],
-        urlSearchParams.getAll(jsonRecord['id']).map(courseId => coursePreviewInfoById[courseId]),
+        [...new Set(
+            urlSearchParams
+                .getAll(jsonRecord['id'])
+                .filter(courseId => {
+                    let isCourseFree = freeCourses.has(courseId);
+                    if (isCourseFree)
+                        freeCourses.delete(courseId);
+
+                    return isCourseFree;
+                })
+                .map(courseId => coursePreviewInfoById[courseId]))
+        ],
         jsonRecord['maxZedCount'],
         view
-    )
+    );
+
+    modelByEventId[view.eventId] = result;
+    modelByEventId[view.courseContainer.eventId] = result;
+
+    return result;
+}
+
+function initDragAndDropEvents(semesterInfos, modelByEventId) {
+    let draggableCourse;
+    let semesterToDrop;
+
+    semesterInfos.forEach(item => {
+        item.view.courseContainer.root.addEventListener('dragstart', event => {
+            if (!(modelByEventId[event.target.id] instanceof CoursePreviewInfo))
+                return;
+
+            draggableCourse = modelByEventId[event.target.id];
+
+            console.log('dragstart ' + event.target.id + ' ' + modelByEventId[event.target.id].constructor.name);
+        });
+
+        item.view.courseContainer.root.addEventListener('dragend', event => {
+            draggableCourse = undefined;
+            console.log('dragend ' + event.target.id + ' ' + modelByEventId[event.target.id].constructor.name);
+        });
+
+        item.view.courseContainer.root.addEventListener('dragenter', event => {
+            if (!(modelByEventId[event.target.id] instanceof SemesterInfo))
+                return;
+
+            console.log('dragenter ' + event.target.id + ' ' + modelByEventId[event.target.id].constructor.name);
+        });
+
+        item.view.courseContainer.root.addEventListener('dragleave', event => {
+            if (!(modelByEventId[event.target.id] instanceof SemesterInfo))
+                return;
+
+            console.log('dragleave ' + event.target.id);
+        });
+
+        item.view.courseContainer.root.addEventListener('drop', event => {
+            semesterToDrop = undefined;
+        });
+    });
+}
+
+function initDescriptionOnClick(courseFullInfos) {
+    for (const item of courseFullInfos) {
+        item.view.coursePreview.root.addEventListener('click', event => {
+            console.log(item.description);
+        });
+    }
 }
 
 async function main() {
     let descriptionWindow = new DescriptionWindow();
-    initView(descriptionWindow);
+    setNextEventId(descriptionWindow);
 
     let courseFullInfos = await loadModels(
         '/static/courses.json',
         parseJsonToCourseFullInfo,
         () => {
              let preview = new CoursePreview();
-             initView(preview);
+             setNextEventId(preview);
 
              let view = new CourseView(preview, descriptionWindow);
-             initView(view);
+             setNextEventId(view);
 
              return view;
         }
@@ -86,19 +158,27 @@ async function main() {
         {}
     );
 
+    let freeCourses = new Set(courseFullInfos.map(item => item.id));
+
     let semesterInfos = await loadModels(
         '/static/semesters.json',
-        (jsonRecord, view) => parseJsonToSemesterInfo(jsonRecord, coursePreviewInfoById, view),
+        (jsonRecord, view) => parseJsonToSemesterInfo(
+            jsonRecord,
+            coursePreviewInfoById,
+            freeCourses,
+            view),
         () => {
-            let result = new SemesterView();
-            initView(result);
+            let container = new CourseContainer();
+            setNextEventId(container);
+
+            let result = new SemesterView(container, urlSearchParams);
+            setNextEventId(result);
 
             return result;
         }
     );
-    //TODO: 09.06.2022
+
     //TODO: You need to complete models: courses validation, correct work (and what is correct?).
-    //TODO: visualize courses
     //TODO: description on click
     //TODO: new DragAndDropManager(...views);
 
@@ -107,6 +187,10 @@ async function main() {
     console.log(courseFullInfos);
     console.log(coursePreviewInfoById);
     console.log(semesterInfos);
+    console.log(modelByEventId);
+
+    initDragAndDropEvents(semesterInfos, modelByEventId);
+    initDescriptionOnClick(courseFullInfos);
 }
 
 main().then();

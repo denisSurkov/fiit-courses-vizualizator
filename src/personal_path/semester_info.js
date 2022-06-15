@@ -54,12 +54,14 @@ export default class SemesterInfo extends Model {
      * @param {CoursePreviewInfo} course
      * **/
     addCourse(course) {
-        //TODO: Validate (duplicated courses)
+        if (this._courses.indexOf(course) >= 0)
+            return;
+
         this._courses.push(course);
         this.zedCount += course.zedCount;
 
         this.view.zedCount = this._zedCount;
-        this.view.courseContainer.appendChild(course.view.root);
+        this.view.courseContainer.root.appendChild(course.view.root);
     }
 
     /**
@@ -75,6 +77,6 @@ export default class SemesterInfo extends Model {
         this._zedCount -= course.zedCount
 
         this.view.zedCount = this._zedCount;
-        this.view.courseContainer.removeChild(course.view.root);
+        this.view.courseContainer.root.removeChild(course.view.root);
     }
 }

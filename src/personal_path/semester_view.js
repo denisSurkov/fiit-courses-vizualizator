@@ -1,11 +1,17 @@
 import View from "./view.js";
 
 export default class SemesterView extends View {
-    constructor(eventId) {
+    /**
+     * @param {CourseContainer} courseContainer
+     * @param {URLSearchParams} urlSearchParams
+     * @param {string} eventId
+     * **/
+    constructor(courseContainer, urlSearchParams, eventId) {
         super(eventId, document.createElement('div'));
 
-        this.courseContainer = document.createElement('div');
-        this.courseContainer.classList.add('courses-container', 'sem-container');
+        this.root.classList.add('semester-root');
+
+        this.courseContainer = courseContainer;
 
         this.title = document.createElement('span');
         this.title.classList.add('sem-title');
@@ -16,9 +22,11 @@ export default class SemesterView extends View {
         this.maxZedCountElement = document.createElement('span');
 
         this.root.appendChild(this.title);
-        this.root.appendChild(this.courseContainer);
+        this.root.appendChild(this.courseContainer.root);
         this.root.appendChild(this.zedCountElement);
         this.root.appendChild(this.maxZedCountElement);
+
+        this.urlSearchParams = urlSearchParams;
     }
 
     /**

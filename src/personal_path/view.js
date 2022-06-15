@@ -12,4 +12,8 @@ export default class View {
         if (this.root !== undefined)
             this.root.id = this.#eventId;
     }
+
+    get eventId() {
+        return this.#eventId;
+    }
 }

@@ -1,8 +1,8 @@
 import View from "./view.js";
 
 export default class CourseView extends View {
-    constructor(coursePreview, descriptionWindow, event_id) {
-        super(event_id);
+    constructor(coursePreview, descriptionWindow, eventId) {
+        super(eventId);
         this.coursePreview = coursePreview
         this.descriptionWindow = descriptionWindow;
     }

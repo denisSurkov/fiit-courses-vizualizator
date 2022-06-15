@@ -6,5 +6,7 @@ export default class DescriptionWindow extends View {
 
         this.root.id = eventId;
         this.root.classList.add('desc-window');
+
+        this.descriptionElement = document.createElement('div');
     }
 }
