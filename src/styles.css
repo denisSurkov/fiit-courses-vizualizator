@@ -152,7 +152,8 @@ body {
     justify-content: space-between;
 }
 
-.header-tab-text {
+.header-tab-link {
+    display: block;
     font-size: 24px;
     margin: 0px 10px;
 }
@@ -269,7 +270,8 @@ footer {
     font-size: 19px;
 }
 
-.footer-content-text {
+.footer-content-link {
+    display: block;
     margin: 5px 5px;
 }
 
