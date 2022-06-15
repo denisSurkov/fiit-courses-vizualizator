@@ -5,7 +5,7 @@ export default class CoursePreview extends View {
         super(eventId, document.createElement('div'));
 
         this.root.id = eventId;
-        this.root.classList.add('course-preview');
+        this.root.classList.add('course-preview-root');
         this.root.setAttribute('draggable', 'true');
 
         this.title = document.createElement('span');

@@ -58,7 +58,7 @@ function parseJsonToCourseFullInfo(jsonRecord, view) {
     return result;
 }
 
-function parseJsonToSemesterInfo(jsonRecord, coursePreviewInfoById, freeCourses, view) {
+function parseJsonToSemesterInfo(jsonRecord, courseFullInfoById, freeCourses, view) {
     let result =  new SemesterInfo(
         jsonRecord['id'],
         jsonRecord['name'],
@@ -72,7 +72,7 @@ function parseJsonToSemesterInfo(jsonRecord, coursePreviewInfoById, freeCourses,
 
                     return isCourseFree;
                 })
-                .map(courseId => coursePreviewInfoById[courseId]))
+                .map(courseId => courseFullInfoById[courseId]))
         ],
         jsonRecord['maxZedCount'],
         view
@@ -85,40 +85,44 @@ function parseJsonToSemesterInfo(jsonRecord, coursePreviewInfoById, freeCourses,
 }
 
 function initDragAndDropEvents(semesterInfos, modelByEventId) {
+    //TODO: refactoring with dataTransfer style
     let draggableCourse;
-    let semesterToDrop;
+    let startSemester;
 
     semesterInfos.forEach(item => {
         item.view.courseContainer.root.addEventListener('dragstart', event => {
-            if (!(modelByEventId[event.target.id] instanceof CoursePreviewInfo))
+            let model = modelByEventId[event.target.id];
+            if (!model || !(model instanceof CoursePreviewInfo))
                 return;
 
-            draggableCourse = modelByEventId[event.target.id];
-
-            console.log('dragstart ' + event.target.id + ' ' + modelByEventId[event.target.id].constructor.name);
+            draggableCourse = model;
         });
 
         item.view.courseContainer.root.addEventListener('dragend', event => {
             draggableCourse = undefined;
-            console.log('dragend ' + event.target.id + ' ' + modelByEventId[event.target.id].constructor.name);
-        });
-
-        item.view.courseContainer.root.addEventListener('dragenter', event => {
-            if (!(modelByEventId[event.target.id] instanceof SemesterInfo))
-                return;
-
-            console.log('dragenter ' + event.target.id + ' ' + modelByEventId[event.target.id].constructor.name);
+            startSemester = undefined;
         });
 
         item.view.courseContainer.root.addEventListener('dragleave', event => {
-            if (!(modelByEventId[event.target.id] instanceof SemesterInfo))
+            let model = modelByEventId[event.target.id];
+            if (!model || !(model instanceof SemesterInfo))
                 return;
 
-            console.log('dragleave ' + event.target.id);
+            if (startSemester === undefined)
+                startSemester = item;
+        });
+
+        item.view.courseContainer.root.addEventListener('dragover', event => {
+            event.preventDefault();
         });
 
         item.view.courseContainer.root.addEventListener('drop', event => {
-            semesterToDrop = undefined;
+            let model = modelByEventId[event.target.id];
+            if (!model || !(model instanceof SemesterInfo))
+                return;
+
+            startSemester.removeCourse(draggableCourse);
+            item.addCourse(draggableCourse);
         });
     });
 }
@@ -126,9 +130,20 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
 function initDescriptionOnClick(courseFullInfos) {
     for (const item of courseFullInfos) {
         item.view.coursePreview.root.addEventListener('click', event => {
-            console.log(item.description);
+            item.view.descriptionWindow.currentCourse = item;
+            item.view.descriptionWindow.show();
         });
     }
+}
+
+function createSemesterView() {
+    let container = new CourseContainer();
+    setNextEventId(container);
+
+    let result = new SemesterView(container, urlSearchParams);
+    setNextEventId(result);
+
+    return result;
 }
 
 async function main() {
@@ -149,9 +164,9 @@ async function main() {
         }
     );
 
-    let coursePreviewInfoById = courseFullInfos.reduce(
+    let courseFullInfoById = courseFullInfos.reduce(
         (acc, item) => {
-            acc[item.id] = item.createPreviewInfo();
+            acc[item.id] = item;
 
             return acc;
         },
@@ -164,28 +179,20 @@ async function main() {
         '/static/semesters.json',
         (jsonRecord, view) => parseJsonToSemesterInfo(
             jsonRecord,
-            coursePreviewInfoById,
+            courseFullInfoById,
             freeCourses,
             view),
-        () => {
-            let container = new CourseContainer();
-            setNextEventId(container);
-
-            let result = new SemesterView(container, urlSearchParams);
-            setNextEventId(result);
-
-            return result;
-        }
+        createSemesterView
     );
 
-    //TODO: You need to complete models: courses validation, correct work (and what is correct?).
-    //TODO: description on click
-    //TODO: new DragAndDropManager(...views);
+    //TODO: course validator obj
+    //TODO: free semester
+    //TODO: url changing
 
     semesterInfos.forEach(item => document.body.appendChild(item.view.root));
 
     console.log(courseFullInfos);
-    console.log(coursePreviewInfoById);
+    console.log(courseFullInfoById);
     console.log(semesterInfos);
     console.log(modelByEventId);
 

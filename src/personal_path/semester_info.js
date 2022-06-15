@@ -9,7 +9,7 @@ export default class SemesterInfo extends Model {
     /**
      * @param {string} id
      * @param {string} name
-     * @param {Array<CoursePreviewInfo>} courses
+     * @param {Array<CourseFullInfo>} courses
      * @param {Number} maxZedCount
      * @param {SemesterView} view
      * **/
@@ -51,7 +51,7 @@ export default class SemesterInfo extends Model {
     }
 
     /**
-     * @param {CoursePreviewInfo} course
+     * @param {CourseFullInfo} course
      * **/
     addCourse(course) {
         if (this._courses.indexOf(course) >= 0)
@@ -61,11 +61,11 @@ export default class SemesterInfo extends Model {
         this.zedCount += course.zedCount;
 
         this.view.zedCount = this._zedCount;
-        this.view.courseContainer.root.appendChild(course.view.root);
+        this.view.courseContainer.root.appendChild(course.view.coursePreview.root);
     }
 
     /**
-     * @param {CoursePreviewInfo} course
+     * @param {CourseFullInfo} course
      * **/
     removeCourse(course) {
         let index = this._courses.indexOf(course);
@@ -77,6 +77,6 @@ export default class SemesterInfo extends Model {
         this._zedCount -= course.zedCount
 
         this.view.zedCount = this._zedCount;
-        this.view.courseContainer.root.removeChild(course.view.root);
+        this.view.courseContainer.root.removeChild(course.view.coursePreview.root);
     }
 }
