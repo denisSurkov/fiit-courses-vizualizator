@@ -8,7 +8,7 @@ import {
     MODULE_WIDTH,
     MODULE_HEIGHT,
     RIGHT_PADDING
-} from "./constants.js";
+} from './constants.js';
 
 const _NAMESPACE_URL = 'http://www.w3.org/2000/svg';
 

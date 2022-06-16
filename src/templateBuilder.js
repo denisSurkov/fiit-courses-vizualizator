@@ -1,11 +1,14 @@
 import Handlebars from 'handlebars';
 import fs from 'fs';
-import {RoadmapDrawer} from '../roadmap/roadmap-drawer.js';
+import {RoadmapDrawer} from './roadmap/roadmap-drawer.js';
 
 const TEMPLATES_FOLDER = './src/templates'
 const PUBLIC_FOLDER = './public'
 
-export default class HtmlBuilder {
+const ROADMAPS_TEMPLATE = 'roadmap.template';
+const INDEX_TEMPLATE = 'index.template';
+
+export default class TemplateBuilder {
     constructor(roadmapsJsons) {
         this.roadmapsJsons = roadmapsJsons;
     };
@@ -16,9 +19,11 @@ export default class HtmlBuilder {
     };
 
     #buildRoadmaps() {
-        const renderedHtmlWithFilenames = [];
-
         const indexInfo = [];
+
+        const roadmapHtml = this.#openHtml(ROADMAPS_TEMPLATE);
+        const roadmapsTemplateScript = Handlebars.compile(roadmapHtml);
+
         for (const href in this.roadmapsJsons) {
             const {title, description, roadmap} = this.roadmapsJsons[href];
 
@@ -37,13 +42,7 @@ export default class HtmlBuilder {
             const elementToShow = roadmapDrawer.run();
             titleInfo.roadmap = elementToShow.outerHTML;
 
-            const templateScript = Handlebars.compile(this.#openHtml('roadmap.template'));
-            const html = templateScript(titleInfo);
-
-            renderedHtmlWithFilenames.push({
-                html,
-
-            })
+            const html = roadmapsTemplateScript(titleInfo);
             this.#saveHtml(html, href);
         }
 
@@ -51,15 +50,17 @@ export default class HtmlBuilder {
     };
 
     #buildIndex(indexInfo) {
-        const templateScript = Handlebars.compile(this.#openHtml('index.template'));
+        const indexHtml = this.#openHtml(INDEX_TEMPLATE);
+        const templateScript = Handlebars.compile(indexHtml);
         const html = templateScript(indexInfo);
-        this.#saveHtml(html, "index");
+
+        this.#saveHtml(html, 'index');
     };
 
     #saveHtml(html, name) {
         const dir = `${PUBLIC_FOLDER}/${name}.html`;
         fs.writeFileSync(dir, html);
-        console.log(dir)
+        console.log(dir);
     };
 
     #openHtml(name) {

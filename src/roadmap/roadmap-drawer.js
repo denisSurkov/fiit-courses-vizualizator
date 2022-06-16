@@ -1,6 +1,6 @@
-import {createSVGElement, preCalc} from "./utils.js";
-import {SVGDrawer} from "./svg-drawer.js";
-import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT, THEME_FONT} from "./constants.js";
+import {createSVGElement, preCalc} from './utils.js';
+import {SVGDrawer} from './svg-drawer.js';
+import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT, THEME_FONT} from './constants.js';
 
 const BLOCK_THEME_PARAMS = {
     'class': BLOCK_THEME_STYLE_NAME,

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import HtmlBuilder from './src/scripts/html_builder/html_builder.js';
+import TemplateBuilder from './src/templateBuilder.js';
 import {JSDOM} from 'jsdom';
 import path from 'path';
 
@@ -20,7 +20,7 @@ for (const configFilename of allConfigs) {
     console.log(`Processed ${fileWithoutExtension}`);
 }
 
-const htmlBuilder = new HtmlBuilder(roadmapJsons);
+const htmlBuilder = new TemplateBuilder(roadmapJsons);
 htmlBuilder.build();
 
 console.log('Pages created successfully');

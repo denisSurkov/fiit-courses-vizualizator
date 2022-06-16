@@ -1,4 +1,4 @@
-import {createSVGElement} from "./utils.js";
+import {createSVGElement} from './utils.js';
 
 export class SVGDrawer {
 
