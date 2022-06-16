@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Визуализатор спецкурсов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="../src/assets/styles/roadmap.css" rel="stylesheet">
+    <link href="../src/assets/styles/styles.css" rel="stylesheet">
+    <link rel="icon" href="../src/assets/images/logo.png">
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(89206971, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/89206971" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+
+<body>
+    <header class="wrapper header-container">
+        <a href="./index.html" class="header-logo header-logo-link">
+            <img class="fiit-logo" src="../src/assets/images/logo.png" alt="Логотип ФИИТа">
+        </a>
+        <div class="header-text">
+            <p class="header-title">Визуализатор спецкурсов для ФИИТ</p>
+            <div class="header-tab-group">
+                <a href="./index.html" class="header-tab-link tab-chosen">
+                    Подборка курсов от преподавателей
+                </a>
+                <a href="#!" class="header-tab-link">
+                    <div class="header-tab">
+                        <p class="header-tab-text">Составить свой путь
+                            <img src="../src/assets/images/right-arrow.svg" alt="right-arrow" class="header-tab-right-arrow">
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main class="wrapper blocks-container">
+        {{#each roadmaps}}
+            <a href="{{href}}.html" class="block block-link">
+                <p class="block-title">{{title}}</p>
+                <p class="block-description">{{description}}</p>
+            </a>
+        {{/each}}
+    </main>
+    <footer class="footer-content">
+        <a href="https://fiit-urfu.ru/" class="footer-content-link">
+            О ФИИТ
+        </a>
+        <a href="#!" class="footer-content-link">
+            Связаться с авторами
+        </a>
+        <a href="https://github.com/denisSurkov/fiit-courses-vizualizator" class="footer-content-link">
+            GitHub
+        </a>
+        <img src="../src/assets/images/fotter.svg" alt="Авторская загагулина для ФИИТа" class="footer-image">
+    </footer>
+    <script src="./path_title/script.js"></script>
+</body>
+
+</html>

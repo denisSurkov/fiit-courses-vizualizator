@@ -9,17 +9,17 @@
                 {
                     "mode": "module",
                     "title": "Фронтенд от Контура",
-                    "infoPath": "a/bla.md"
+                    "infoName": "kontur-frontend"
                 },
                 {
                     "mode": "module",
-                    "title": "Hackedrom",
-                    "infoPath": "a/bla.md"
+                    "title": "Hackedrom. Часть 1",
+                    "infoName": "hackerdom-part1"
                 },
                 {
                     "mode": "module",
                     "title": "Бэкенд от Контура",
-                    "infoPath": "a/bla.md"
+                    "infoName": "kontur-backend"
                 }
             ]
         },
@@ -30,17 +30,17 @@
                 {
                     "mode": "module",
                     "title": "Фронтенд от Контура",
-                    "infoPath": "a/bla.md"
+                    "infoName": "a/bla.md"
                 },
                 {
                     "mode": "module",
-                    "title": "Hackedrom",
-                    "infoPath": "a/bla.md"
+                    "title": "Hackedrom. Часть 2",
+                    "infoName": "hackerdom-part2"
                 },
                 {
                     "mode": "module",
                     "title": "Бэкенд от Контура",
-                    "infoPath": "a/bla.md"
+                    "infoName": "kontur-backend"
                 }
             ]
         },
@@ -52,17 +52,17 @@
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 },
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 },
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 }
             ]
         },
@@ -74,17 +74,17 @@
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 },
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 },
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 }
             ]
         },
@@ -96,22 +96,22 @@
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 },
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 },
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 },
                 {
                     "mode": "module",
                     "title": "Bla bla",
-                    "infoPath": "a/bla.md"
+                    "infoName": ""
                 }
             ]
         }

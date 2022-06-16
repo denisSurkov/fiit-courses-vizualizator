@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/denisSurkov/fiit-courses-vizualizator">
-    <img src="src/images/logo.png" alt="Logo" width="80" height="80">
+    <img src="src/assets/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Визуализатор спецкурсов для ФИИТ</h3>
@@ -10,8 +10,11 @@
     Узнай больше о спецкурсах!
     <br />
     <br />
-    <a href="http://62.84.114.245:8081/">Демо</a>
+    <a href="https://www.figma.com/proto/WGF4bQoWjH0xPK7dlgOUH8/Design-for-fiit-courses-vizualizator?node-id=51%3A243&starting-point-node-id=51%3A243&show-proto-sidebar=1&scaling=scale-down-width">Деплой</a>
     ·
+    <a href="http://62.84.114.245:8081/">Прототип в Figma</a>
+  </p>
+  <p align="center">
     <a href="https://github.com/denisSurkov/fiit-courses-vizualizator/issues">Сообщить о проблеме</a>
     ·
     <a href="https://github.com/denisSurkov/fiit-courses-vizualizator/issues">Предложить новую функцию</a>
@@ -66,7 +69,7 @@
    npm start
    ```
 
-   и откройте созданный `./src/index.html` 
+   и откройте созданный `./public/index.html` 
 
 ## Использование
 
