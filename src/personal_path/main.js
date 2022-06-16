@@ -6,15 +6,11 @@ import SemesterView from "./semester_view.js";
 import DescriptionWindow from "./description_window.js";
 import CoursePreviewInfo from "./course_preview_info.js";
 import CourseContainer from "./course_container.js";
+import SemConstants from "./sem_consts.js";
 
 let eventIdsCount = 0;
 let modelByEventId = {};
-let urlSearchParams = new URLSearchParams(window.location.search);
-
-//TODO: Изменение url в браузере без перезагрузки:
-// history.pushState(null, null, "https://ru.stackoverflow.com/static?Hello=ok1");
-
-//TODO: freeZone must be a Semester
+let url = new URL(window.location.href);
 
 /**
  * @param {View} view
@@ -48,6 +44,7 @@ function parseJsonToCourseFullInfo(jsonRecord, view) {
         jsonRecord['name'],
         jsonRecord['zedCount'],
         jsonRecord['description'],
+        jsonRecord['semTime'],
         view
     );
 
@@ -58,25 +55,34 @@ function parseJsonToCourseFullInfo(jsonRecord, view) {
     return result;
 }
 
-function parseJsonToSemesterInfo(jsonRecord, courseFullInfoById, freeCourses, view) {
+function parseJsonToSemesterInfo(jsonRecord, courseFullInfoById, freeCourseIds, view) {
+    let coursesArrayString = url.searchParams.get(jsonRecord['id']) || '';
+
     let result =  new SemesterInfo(
         jsonRecord['id'],
         jsonRecord['name'],
-        [...new Set(
-            urlSearchParams
-                .getAll(jsonRecord['id'])
-                .filter(courseId => {
-                    let isCourseFree = freeCourses.has(courseId);
-                    if (isCourseFree)
-                        freeCourses.delete(courseId);
-
-                    return isCourseFree;
-                })
-                .map(courseId => courseFullInfoById[courseId]))
-        ],
+        [],
         jsonRecord['maxZedCount'],
+        jsonRecord['semTime'],
         view
     );
+
+    let coursesToAdd = [...new Set(
+        coursesArrayString
+            .split(',')
+            .filter(item => item)
+            .map(courseId => courseFullInfoById[courseId]))
+    ];
+
+    coursesToAdd.filter(course => {
+        let isCourseFree = freeCourseIds.has(course.id);
+        if (isCourseFree && result.isSuitableForAdding(course))
+            freeCourseIds.delete(course.id);
+
+        return isCourseFree;
+    });
+
+    coursesToAdd.forEach(item => result.addCourse(item));
 
     modelByEventId[view.eventId] = result;
     modelByEventId[view.courseContainer.eventId] = result;
@@ -98,7 +104,7 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
             draggableCourse = model;
         });
 
-        item.view.courseContainer.root.addEventListener('dragend', event => {
+        item.view.courseContainer.root.addEventListener('dragend', () => {
             draggableCourse = undefined;
             startSemester = undefined;
         });
@@ -118,7 +124,7 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
 
         item.view.courseContainer.root.addEventListener('drop', event => {
             let model = modelByEventId[event.target.id];
-            if (!model || !(model instanceof SemesterInfo))
+            if (!model || !(model instanceof SemesterInfo) || !item.isSuitableForAdding(draggableCourse))
                 return;
 
             startSemester.removeCourse(draggableCourse);
@@ -129,18 +135,18 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
 
 function initDescriptionOnClick(courseFullInfos) {
     for (const item of courseFullInfos) {
-        item.view.coursePreview.root.addEventListener('click', event => {
+        item.view.coursePreview.root.addEventListener('click', () => {
             item.view.descriptionWindow.currentCourse = item;
             item.view.descriptionWindow.show();
         });
     }
 }
 
-function createSemesterView() {
+function createSemesterView(isNeedUrlUpdate=true) {
     let container = new CourseContainer();
     setNextEventId(container);
 
-    let result = new SemesterView(container, urlSearchParams);
+    let result = new SemesterView(container, isNeedUrlUpdate ? url : undefined);
     setNextEventId(result);
 
     return result;
@@ -173,28 +179,38 @@ async function main() {
         {}
     );
 
-    let freeCourses = new Set(courseFullInfos.map(item => item.id));
+    let freeCourseIds = new Set(courseFullInfos.map(item => item.id));
 
     let semesterInfos = await loadModels(
         '/static/semesters.json',
         (jsonRecord, view) => parseJsonToSemesterInfo(
             jsonRecord,
             courseFullInfoById,
-            freeCourses,
+            freeCourseIds,
             view),
         createSemesterView
     );
 
-    //TODO: course validator obj
-    //TODO: free semester
-    //TODO: url changing
+    let freeSemView = createSemesterView(false);
+
+    let freeSemester = new SemesterInfo(
+        'free',
+        'Все курсы',
+        [...freeCourseIds].map(item => courseFullInfoById[item]),
+        10000,
+        SemConstants.SemTime.ANY,
+        freeSemView
+    );
+
+    //TODO: http://localhost:8085/?s1=c3%2Cc2&s3=c1&s2=c1&s4=c1 bug see on zed counters
+    //TODO: show courses by filter
+
+    modelByEventId[freeSemView.eventId] = freeSemester;
+    modelByEventId[freeSemView.courseContainer.eventId] = freeSemester;
+
+    semesterInfos.unshift(freeSemester);
 
     semesterInfos.forEach(item => document.body.appendChild(item.view.root));
-
-    console.log(courseFullInfos);
-    console.log(courseFullInfoById);
-    console.log(semesterInfos);
-    console.log(modelByEventId);
 
     initDragAndDropEvents(semesterInfos, modelByEventId);
     initDescriptionOnClick(courseFullInfos);

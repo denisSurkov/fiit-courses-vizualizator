@@ -1,8 +1,9 @@
 import Model from "./model.js";
+import SemConstants from "./sem_consts.js";
 
 export default class SemesterInfo extends Model {
+    courses = [];
     _zedCount;
-    _courses = [];
     _name;
     _maxZedCount;
 
@@ -11,12 +12,14 @@ export default class SemesterInfo extends Model {
      * @param {string} name
      * @param {Array<CourseFullInfo>} courses
      * @param {Number} maxZedCount
+     * @param {string} semTime
      * @param {SemesterView} view
      * **/
-    constructor(id, name, courses, maxZedCount, view) {
+    constructor(id, name, courses, maxZedCount, semTime, view) {
         super(view);
 
         this.id = id;
+        this.semTime = semTime;
         this.name = name;
         this.zedCount = 0;
 
@@ -53,30 +56,39 @@ export default class SemesterInfo extends Model {
     /**
      * @param {CourseFullInfo} course
      * **/
+    isSuitableForAdding(course) {
+        return this.semTime === course.semTime || this.semTime === SemConstants.SemTime.ANY;
+    }
+
+    /**
+     * @param {CourseFullInfo} course
+     * **/
     addCourse(course) {
-        if (this._courses.indexOf(course) >= 0)
+        if (this.courses.indexOf(course) >= 0 || !this.isSuitableForAdding(course))
             return;
 
-        this._courses.push(course);
+        this.courses.push(course);
         this.zedCount += course.zedCount;
 
         this.view.zedCount = this._zedCount;
         this.view.courseContainer.root.appendChild(course.view.coursePreview.root);
+        this.view.updateUrl(this.id, this.courses);
     }
 
     /**
      * @param {CourseFullInfo} course
      * **/
     removeCourse(course) {
-        let index = this._courses.indexOf(course);
+        let index = this.courses.indexOf(course);
         if (index < 0)
             return;
 
-        this._courses.splice(index, 1);
+        this.courses.splice(index, 1);
 
         this._zedCount -= course.zedCount
 
         this.view.zedCount = this._zedCount;
         this.view.courseContainer.root.removeChild(course.view.coursePreview.root);
+        this.view.updateUrl(this.id, this.courses);
     }
 }

@@ -3,21 +3,21 @@
     "id": "c1",
     "name": "OS",
     "zedCount": 4,
-    "semType": "spring",
+    "semTime": "spring",
     "description": "Course about operation systems"
   },
   {
     "id": "c2",
     "name": "Математический анализ",
     "zedCount": 6,
-    "semType": "fall",
+    "semTime": "fall",
     "description": "Про бесконечно малые и бесконечно большие"
   },
   {
     "id": "c3",
     "name": "Алгем",
     "zedCount": 6,
-    "semType": "fall",
+    "semTime": "fall",
     "description": "Про матрицы, многочлены и СЛАУ"
   }
 ]
