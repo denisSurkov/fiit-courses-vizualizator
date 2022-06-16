@@ -7,15 +7,18 @@ global.document = new JSDOM().window.document;
 
 const roadmapsFolder = "./src/configuration/roadmaps";
 const roadmapJsons = {};
+const allConfigs = fs.readdirSync(roadmapsFolder);
 
-fs.readdirSync(roadmapsFolder).forEach(file => {
-  const filename = path.join(roadmapsFolder, file);
-  const fileData = fs.readFileSync(filename, 'utf-8');
+for (const configFilename of allConfigs) {
+  console.log(`Processing ${configFilename}`);
+  const absoluteFilename = path.join(roadmapsFolder, configFilename);
+  const fileData = fs.readFileSync(absoluteFilename, 'utf-8');
   const json = JSON.parse(fileData);
-  
-  const fileWithoutExtension = file.split('.')[0];
+
+  const fileWithoutExtension = path.parse(absoluteFilename).name;
   roadmapJsons[fileWithoutExtension] = json;
-});
+  console.log(`Processed ${fileWithoutExtension}`);
+}
 
 const htmlBuilder = new HtmlBuilder(roadmapJsons);
 htmlBuilder.build();
