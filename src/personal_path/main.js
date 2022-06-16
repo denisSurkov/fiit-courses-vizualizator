@@ -210,6 +210,8 @@ async function main() {
         freeSemView
     );
 
+    freeSemView.model = freeSemester;
+
     //TODO: show courses by filter
 
     modelByEventId[freeSemView.eventId] = freeSemester;
