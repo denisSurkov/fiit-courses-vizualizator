@@ -4,6 +4,7 @@
     "name": "OS",
     "zedCount": 4,
     "semTime": "spring",
+    "category": "dev-ops",
     "description": "Course about operation systems"
   },
   {
@@ -11,6 +12,7 @@
     "name": "Математический анализ",
     "zedCount": 6,
     "semTime": "fall",
+    "category": "math",
     "description": "Про бесконечно малые и бесконечно большие"
   },
   {
@@ -18,6 +20,7 @@
     "name": "Алгем",
     "zedCount": 6,
     "semTime": "fall",
+    "category": "math",
     "description": "Про матрицы, многочлены и СЛАУ"
   }
 ]
