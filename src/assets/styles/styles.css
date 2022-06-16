@@ -281,12 +281,12 @@ footer {
 
 @font-face {
     font-family: golos-bold;
-    src: url("./fonts/Golos Text_Bold.ttf");
+    src: url("../fonts/Golos Text_Bold.ttf");
 }
 
 @font-face {
     font-family: golos;
-    src: url("./fonts/Golos Text_Regular.ttf");
+    src: url("../fonts/Golos Text_Regular.ttf");
 }
 
 /* Fonts end */

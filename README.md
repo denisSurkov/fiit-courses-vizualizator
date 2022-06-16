@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/denisSurkov/fiit-courses-vizualizator">
-    <img src="src/images/logo.png" alt="Logo" width="80" height="80">
+    <img src="src/assets/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Визуализатор спецкурсов для ФИИТ</h3>
