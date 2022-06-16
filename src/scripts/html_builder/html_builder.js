@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import fs from 'fs';
-import {RoadmapDrawer} from '../scripts/roadmap/roadmap-drawer.js';
+import {RoadmapDrawer} from '../roadmap/roadmap-drawer.js';
 
 const TEMPLATES_FOLDER = './src/templates'
 const PUBLIC_FOLDER = './public'

@@ -1,5 +1,5 @@
 import fs from "fs";
-import HtmlBuilder from "./src/build_html/html_builder.js";
+import HtmlBuilder from "./src/scripts/html_builder/html_builder.js";
 import { JSDOM } from "jsdom";
 import path from "path";
 
