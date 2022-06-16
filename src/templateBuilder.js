@@ -9,8 +9,9 @@ const ROADMAPS_TEMPLATE = 'roadmap.template';
 const INDEX_TEMPLATE = 'index.template';
 
 export default class TemplateBuilder {
-    constructor(roadmapsJsons) {
-        this.roadmapsJsons = roadmapsJsons;
+    constructor(roadmaps, courses) {
+        this.roadmaps = roadmaps;
+        this.courses = courses;
     };
 
     build() {
@@ -24,8 +25,8 @@ export default class TemplateBuilder {
         const roadmapHtml = this.#openHtml(ROADMAPS_TEMPLATE);
         const roadmapsTemplateScript = Handlebars.compile(roadmapHtml);
 
-        for (const href in this.roadmapsJsons) {
-            const {title, description, roadmap} = this.roadmapsJsons[href];
+        for (const href in this.roadmaps) {
+            const {title, description, roadmap} = this.roadmaps[href];
 
             indexInfo.push({
                 title,

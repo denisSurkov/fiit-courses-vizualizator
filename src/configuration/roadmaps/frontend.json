@@ -8,110 +8,26 @@
             "children": [
                 {
                     "mode": "module",
-                    "title": "Фронтенд от Контура",
-                    "infoName": "kontur-frontend"
+                    "course": "kontur-frontend"
                 },
                 {
                     "mode": "module",
-                    "title": "Hackedrom. Часть 1",
-                    "infoName": "hackerdom-part1"
+                    "course": "hackerdom-part1"
                 },
                 {
                     "mode": "module",
-                    "title": "Бэкенд от Контура",
-                    "infoName": "kontur-backend"
+                    "course": "kontur-backend"
                 }
             ]
         },
         {
             "mode": "theme",
             "title": "6 семестр",
-            "children": [
-                {
-                    "mode": "module",
-                    "title": "Фронтенд от Контура",
-                    "infoName": "a/bla.md"
-                },
-                {
-                    "mode": "module",
-                    "title": "Hackedrom. Часть 2",
-                    "infoName": "hackerdom-part2"
-                },
-                {
-                    "mode": "module",
-                    "title": "Бэкенд от Контура",
-                    "infoName": "kontur-backend"
-                }
-            ]
-        },
-        {
-            "mode": "theme",
             "type": "right",
-            "title": "Интернет",
             "children": [
                 {
                     "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                },
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                },
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                }
-            ]
-        },
-        {
-            "mode": "theme",
-            "type": "left",
-            "title": "Интернет",
-            "children": [
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                },
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                },
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                }
-            ]
-        },
-        {
-            "mode": "theme",
-            "type": "center",
-            "title": "Интернет",
-            "children": [
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                },
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                },
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
-                },
-                {
-                    "mode": "module",
-                    "title": "Bla bla",
-                    "infoName": ""
+                    "course": "hackerdom-part2"
                 }
             ]
         }

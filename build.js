@@ -5,22 +5,31 @@ import path from 'path';
 
 global.document = new JSDOM().window.document;
 
-const roadmapsFolder = './src/configuration/roadmaps';
-const roadmapJsons = {};
-const allConfigs = fs.readdirSync(roadmapsFolder);
+const ROADMAPS_FOLDER = './src/configuration/roadmaps';
+const COURSES_FOLDER = './src/configuration/courses';
 
-for (const configFilename of allConfigs) {
-    console.log(`Processing ${configFilename}`);
-    const absoluteFilename = path.join(roadmapsFolder, configFilename);
-    const fileData = fs.readFileSync(absoluteFilename, 'utf-8');
-    const json = JSON.parse(fileData);
+function loadJsonFilesWithContent(folder) {
+    const jsonFilenameToContent = {};
+    const allFiles = fs.readdirSync(folder);
 
-    const fileWithoutExtension = path.parse(absoluteFilename).name;
-    roadmapJsons[fileWithoutExtension] = json;
-    console.log(`Processed ${fileWithoutExtension}`);
+    for (const configFilename of allFiles) {
+        console.log(`Processing ${configFilename}`);
+        const absoluteFilename = path.join(folder, configFilename);
+        const fileData = fs.readFileSync(absoluteFilename, 'utf-8');
+        const json = JSON.parse(fileData);
+
+        const fileWithoutExtension = path.parse(absoluteFilename).name;
+        jsonFilenameToContent[fileWithoutExtension] = json;
+    }
+
+    return jsonFilenameToContent;
 }
 
-const htmlBuilder = new TemplateBuilder(roadmapJsons);
+
+const roadmaps = loadJsonFilesWithContent(ROADMAPS_FOLDER);
+const courses = loadJsonFilesWithContent(COURSES_FOLDER);
+
+const htmlBuilder = new TemplateBuilder(roadmaps, courses);
 htmlBuilder.build();
 
 console.log('Pages created successfully');
