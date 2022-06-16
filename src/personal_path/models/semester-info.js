@@ -1,5 +1,5 @@
 import Model from "./model.js";
-import SemConstants from "./sem_consts.js";
+import constants from "../consts.js";
 
 export default class SemesterInfo extends Model {
     courses = [];
@@ -57,7 +57,7 @@ export default class SemesterInfo extends Model {
      * @param {CourseFullInfo} course
      * **/
     isSuitableForAdding(course) {
-        return this.semTime === course.semTime || this.semTime === SemConstants.SemTime.ANY;
+        return this.semTime === course.semTime || this.semTime === constants.semTime.ANY;
     }
 
     /**

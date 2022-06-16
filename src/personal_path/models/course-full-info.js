@@ -1,4 +1,4 @@
-import CoursePreviewInfo from "./course_preview_info.js";
+import CoursePreviewInfo from "./course-preview-info.js";
 
 export default class CourseFullInfo extends CoursePreviewInfo {
     /**

@@ -1,9 +1,9 @@
-const SemConstants = {
-    SemTime: {
+const constants = {
+    semTime: {
         FALL: 'fall',
         SPRING: 'spring',
         ANY: 'any'
     },
 }
 
-export default SemConstants;
+export default constants;

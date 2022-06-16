@@ -9,7 +9,7 @@ app.get(new RegExp("/static/.+"), (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'own_path.html'));
 });
 
 app.get(new RegExp('/.+'), (req, res) => {

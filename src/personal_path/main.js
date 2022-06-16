@@ -1,14 +1,14 @@
-import SemesterInfo from "./semester_info.js";
-import CourseFullInfo from "./course_full_info.js";
-import CourseView from "./course_view.js";
-import CoursePreview from "./course_preview.js";
-import SemesterView from "./semester_view.js";
-import DescriptionWindow from "./description_window.js";
-import CoursePreviewInfo from "./course_preview_info.js";
-import CourseContainer from "./course_container.js";
-import SemConstants from "./sem_consts.js";
-import FreeZone from "./free_zone.js";
-import FreeZoneView from "./free_zone_view.js";
+import SemesterInfo from "./models/semester-info.js";
+import CourseFullInfo from "./models/course-full-info.js";
+import CourseView from "./views/course-view.js";
+import CoursePreview from "./views/course-preview.js";
+import SemesterView from "./views/semester-view.js";
+import DescriptionWindow from "./views/description-window.js";
+import CoursePreviewInfo from "./models/course-preview-info.js";
+import CourseContainer from "./views/course-container.js";
+import constants from "./consts.js";
+import FreeZone from "./models/free-zone.js";
+import FreeZoneView from "./views/free-zone-view.js";
 
 let eventIdsCount = 0;
 let modelByEventId = {};
@@ -204,21 +204,21 @@ async function main() {
     let freeSemView = new FreeZoneView(courseContainer, undefined)
     setNextEventId(freeSemView);
 
-    let freeSemester = new FreeZone(
+    let freeZone = new FreeZone(
         'free',
-        'Все курсы',
+        'Свободные курсы',
         [...freeCourseIds].map(item => courseFullInfoById[item]),
         10000,
-        SemConstants.SemTime.ANY,
+        constants.semTime.ANY,
         freeSemView
     );
 
-    freeSemView.model = freeSemester;
+    freeSemView.model = freeZone;
 
-    modelByEventId[freeSemView.eventId] = freeSemester;
-    modelByEventId[freeSemView.courseContainer.eventId] = freeSemester;
+    modelByEventId[freeSemView.eventId] = freeZone;
+    modelByEventId[freeSemView.courseContainer.eventId] = freeZone;
 
-    semesterInfos.unshift(freeSemester);
+    semesterInfos.unshift(freeZone);
 
     initDragAndDropEvents(semesterInfos, modelByEventId);
     initDescriptionOnClick(courseFullInfos);

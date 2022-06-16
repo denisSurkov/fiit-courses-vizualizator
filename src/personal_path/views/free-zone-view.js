@@ -1,5 +1,5 @@
-import SemesterView from "./semester_view.js";
-import SemConstants from "./sem_consts.js";
+import SemesterView from "./semester-view.js";
+import constants from "../consts.js";
 
 export default class FreeZoneView extends SemesterView {
     _model;
@@ -19,21 +19,21 @@ export default class FreeZoneView extends SemesterView {
         this.fallFilterBtn.classList.add('filter-btn');
         this.fallFilterBtn.innerText = 'fall courses';
         this.fallFilterBtn.addEventListener('click', () => {
-            this.fillContainer(this._model.getCoursesBySemTime(SemConstants.SemTime.FALL));
+            this.fillContainer(this._model.getCoursesBySemTime(constants.semTime.FALL));
         });
 
         this.springFilterBtn = document.createElement('div');
         this.springFilterBtn.classList.add('filter-btn');
         this.springFilterBtn.innerText = 'spring courses';
         this.springFilterBtn.addEventListener('click', () => {
-            this.fillContainer(this._model.getCoursesBySemTime(SemConstants.SemTime.SPRING));
+            this.fillContainer(this._model.getCoursesBySemTime(constants.semTime.SPRING));
         });
 
         this.anyBtn = document.createElement('div');
         this.anyBtn.classList.add('filter-btn');
         this.anyBtn.innerText = 'All courses';
         this.anyBtn.addEventListener('click', () => {
-            this.fillContainer(this._model.getCoursesBySemTime(SemConstants.SemTime.ANY));
+            this.fillContainer(this._model.getCoursesBySemTime(constants.semTime.ANY));
         });
 
         this.root.appendChild(this.anyBtn);
