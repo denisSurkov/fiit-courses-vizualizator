@@ -7,6 +7,8 @@ import DescriptionWindow from "./description_window.js";
 import CoursePreviewInfo from "./course_preview_info.js";
 import CourseContainer from "./course_container.js";
 import SemConstants from "./sem_consts.js";
+import FreeZone from "./free_zone.js";
+import FreeZoneView from "./free_zone_view.js";
 
 let eventIdsCount = 0;
 let modelByEventId = {};
@@ -74,12 +76,14 @@ function parseJsonToSemesterInfo(jsonRecord, courseFullInfoById, freeCourseIds, 
             .map(courseId => courseFullInfoById[courseId]))
     ];
 
-    coursesToAdd.filter(course => {
+    coursesToAdd = coursesToAdd.filter(course => {
         let isCourseFree = freeCourseIds.has(course.id);
-        if (isCourseFree && result.isSuitableForAdding(course))
+        if (isCourseFree && result.isSuitableForAdding(course)) {
             freeCourseIds.delete(course.id);
+            return true;
+        }
 
-        return isCourseFree;
+        return false;
     });
 
     coursesToAdd.forEach(item => result.addCourse(item));
@@ -191,9 +195,13 @@ async function main() {
         createSemesterView
     );
 
-    let freeSemView = createSemesterView(false);
+    let courseContainer = new CourseContainer();
+    setNextEventId(courseContainer);
 
-    let freeSemester = new SemesterInfo(
+    let freeSemView = new FreeZoneView(courseContainer, undefined)
+    setNextEventId(freeSemView);
+
+    let freeSemester = new FreeZone(
         'free',
         'Все курсы',
         [...freeCourseIds].map(item => courseFullInfoById[item]),
@@ -202,7 +210,6 @@ async function main() {
         freeSemView
     );
 
-    //TODO: http://localhost:8085/?s1=c3%2Cc2&s3=c1&s2=c1&s4=c1 bug see on zed counters
     //TODO: show courses by filter
 
     modelByEventId[freeSemView.eventId] = freeSemester;
