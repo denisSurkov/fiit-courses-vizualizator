@@ -128,7 +128,10 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
 
         item.view.courseContainer.root.addEventListener('drop', event => {
             let model = modelByEventId[event.target.id];
-            if (!model || !(model instanceof SemesterInfo) || !item.isSuitableForAdding(draggableCourse))
+            if (!model
+                || !(model instanceof SemesterInfo)
+                || !item.isSuitableForAdding(draggableCourse)
+                || !startSemester)
                 return;
 
             startSemester.removeCourse(draggableCourse);
@@ -212,17 +215,15 @@ async function main() {
 
     freeSemView.model = freeSemester;
 
-    //TODO: show courses by filter
-
     modelByEventId[freeSemView.eventId] = freeSemester;
     modelByEventId[freeSemView.courseContainer.eventId] = freeSemester;
 
     semesterInfos.unshift(freeSemester);
 
-    semesterInfos.forEach(item => document.body.appendChild(item.view.root));
-
     initDragAndDropEvents(semesterInfos, modelByEventId);
     initDescriptionOnClick(courseFullInfos);
+
+    semesterInfos.forEach(item => document.body.appendChild(item.view.root));
 }
 
 main().then();
