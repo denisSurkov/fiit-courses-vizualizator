@@ -201,13 +201,13 @@ main {
     width: 100%;
 }
 
-.courses-container::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: rgba(21, 96, 128, 0.5);
     border: 3px solid rgb(26, 25, 47);
     border-radius: 10px;
 }
 
-.courses-container::-webkit-scrollbar {
+::-webkit-scrollbar {
     background-color: rgba(21, 96, 128, 0.5);
     border-radius: 10px;
 }
