@@ -20,7 +20,6 @@ export default class FreeZoneView extends SemesterView {
         if (categories.length < 1)
             throw new Error('must be at least one category');
 
-        this.maxZedCountElement.remove();
         this.zedCountElement.remove();
 
         this.fallFilterBtn = document.createElement('div');

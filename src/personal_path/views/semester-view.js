@@ -21,26 +21,33 @@ export default class SemesterView extends View {
         this.title = document.createElement('span');
         this.title.classList.add('sem-title');
 
-        this.zedCountElement = document.createElement('span');
-        this.zedCountElement.classList.add('zed-stat');
+        this.zedCountElement = document.createElement('div');
+        this.zedCountElement.classList.add('zed-counter-text');
 
-        this.maxZedCountElement = document.createElement('span');
+        let zedCounterContainer = document.createElement('div');
+        zedCounterContainer.classList.add('zed-counter');
+        zedCounterContainer.appendChild(this.zedCountElement);
 
         this.root.appendChild(this.title);
         this.root.appendChild(this.courseContainer.root);
-        this.root.appendChild(this.zedCountElement);
-        this.root.appendChild(this.maxZedCountElement);
+        this.root.appendChild(zedCounterContainer);
     }
 
     /**
      * @param {Number} value
      * **/
     set zedCount(value) {
-        this.zedCountElement.innerText = `Zed: ${value}/`;
+        let splitText = this.zedCountElement.innerText.split('/');
+        splitText[0] = value.toString();
+
+        this.zedCountElement.innerText = splitText.join('/');
     }
 
     set maxZedCount(value) {
-        this.maxZedCountElement.innerText = `${value}`;
+        let splitText = this.zedCountElement.innerText.split('/');
+        splitText[1] = value.toString();
+
+        this.zedCountElement.innerText = splitText.join('/');
     }
 
     /**

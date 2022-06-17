@@ -17,10 +17,13 @@ export default class CoursePreview extends View {
 
 
         this.zedCountElement = document.createElement('div');
-        this.zedCountElement.classList.add('zed-counter');
+        this.zedCountElement.classList.add('zed-counter-text');
+
+        let zedCounterDiv = document.createElement('div');
+        zedCounterDiv.appendChild(this.zedCountElement);
+        zedCounterDiv.classList.add('zed-counter');
 
         this.root.appendChild(titleContainer);
-        this.root.appendChild(document.createElement('br'));
-        this.root.appendChild(this.zedCountElement);
+        this.root.appendChild(zedCounterDiv);
     }
 }

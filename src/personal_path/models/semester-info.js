@@ -67,7 +67,7 @@ export default class SemesterInfo extends Model {
         if (this.courses.indexOf(course) >= 0 || !this.isSuitableForAdding(course))
             return;
 
-        this.courses.unshift(course);
+        this.courses.push(course);
         this.zedCount += course.zedCount;
 
         this.view.zedCount = this._zedCount;

@@ -33,10 +33,18 @@
   },
   {
     "id": "c5",
-    "name": "OOP with C# MathMech UrFU",
+    "name": "OOP with C# MathMech UrFU True",
     "zedCount": 4,
     "semTime": "fall",
     "category": "prog",
     "description": "Про ООП"
+  },
+  {
+    "id": "c6",
+    "name": "Дебаты",
+    "zedCount": 4,
+    "semTime": "spring",
+    "category": "other",
+    "description": "Дебаты"
   }
 ]

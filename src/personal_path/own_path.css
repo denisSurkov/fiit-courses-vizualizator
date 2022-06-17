@@ -17,7 +17,7 @@ main {
 .semester-root {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .semester-root.free-zone-root {
@@ -52,7 +52,7 @@ main {
 .course-preview-root {
     position: relative;
     width: 80%;
-    height: 50px;
+    height: 30px;
     background-color: rgb(26, 179, 213);
     border-radius: 10px;
     color: rgb(245, 245, 245);
@@ -68,11 +68,11 @@ main {
     background-color: inherit;
 }
 
-.course-preview-root .title {
+.sem-container .course-preview-root .title {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .course-preview-root .zed-counter {
@@ -80,11 +80,12 @@ main {
     bottom: -10px;
     right: -10px;
     background-color: rgb(254, 37, 167);
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    vertical-align: middle;
+    width: 24px;
+    height: 24px;
     border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .semester-root {
@@ -144,15 +145,13 @@ main {
 
 .semester-root .courses-container {
     display: flex;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    padding-top: 20px;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     overflow-y: auto;
     overflow-x: hidden;
     /*border: solid rgb(21, 96, 128) 3px;*/
-    padding: 7px;
     cursor: pointer;
     height: 70%;
 }
@@ -166,8 +165,26 @@ main {
     background-color: rgba(21, 96, 128, 0.5);
 }
 
+.semester-root > .zed-counter {
+    position: absolute;
+    right: -30px;
+    bottom: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: rgb(254, 37, 167);
+    border-radius: 30px;
+}
+
+.semester-root > .zed-counter > .zed-counter-text {
+    color: rgb(245, 245, 245);
+}
+
 .semester-root {
     flex-shrink: 0;
+    position: relative;
 }
 
 .sem-container {

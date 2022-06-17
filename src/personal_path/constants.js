@@ -7,7 +7,8 @@ const constants = {
     courseCategory: {
         PROGRAMING: 'prog',
         MATH: 'math',
-        DEV_OPS: 'dev-ops'
+        DEV_OPS: 'dev-ops',
+        OTHER: 'other'
     },
     semContainersElements: {
         FALL: document.querySelector('#fall-sem-container'),
