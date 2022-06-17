@@ -19,7 +19,7 @@ function displayModalById(id){
 }
 
 function closeModal(event){
-    if (event.target == container){
+    if (event.target == container && section !== undefined){
         container.style.display = 'none';
         section.style.display = 'none';
         section = undefined;
