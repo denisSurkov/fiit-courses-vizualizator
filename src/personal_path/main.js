@@ -113,6 +113,14 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
             startSemester = undefined;
         });
 
+        item.view.courseContainer.root.addEventListener('dragenter', event => {
+            let model = modelByEventId[event.target.id];
+            if (!model || !(model instanceof FreeZone))
+                return;
+
+            model.view.currentCategory = draggableCourse.category;
+        })
+
         item.view.courseContainer.root.addEventListener('dragleave', event => {
             let model = modelByEventId[event.target.id];
             if (!model || !(model instanceof SemesterInfo))
@@ -236,9 +244,7 @@ async function main() {
 
     semesterInfos.unshift(freeZone);
 
-    //TODO: upgrade filtering (can update property list of course and make filters by them)
-    //TODO: freeZone showing by click on courseContainer
-    //TODO: freeZone change state on dragenter
+    //TODO: refactor filtering
     //TODO: DnD no parent freeze
 
     initDragAndDropEvents(semesterInfos, modelByEventId);

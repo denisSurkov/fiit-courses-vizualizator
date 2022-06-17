@@ -89,7 +89,6 @@ main {
 }
 
 .semester-root {
-    background-color: darkseagreen;
     margin-bottom: 25px;
     padding: 10px;
 }
@@ -109,23 +108,46 @@ main {
 .desc-window-root .container .window {
     position: absolute;
     display: flex;
-    background-color: rgba(95, 158, 160, 50%);
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(17, 15, 44);
     margin-top: 75px;
     margin-left: 50px;
     padding: 10px;
     width: 50%;
-    min-height: 60%;
+    height: 60%;
+    border-radius: 10px;
+    border: solid rgb(26, 179, 213) 4px;
+    flex-shrink: 0;
 }
 
 .desc-window-root .container .window .desc {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
     align-self: start;
+    margin-bottom: 15px;
 }
 
 .desc-window-root .container .window .close-btn {
-    background-color: crimson;
     text-align: center;
     cursor: pointer;
-    align-self: end;
+    border-radius: 20px;
+    width: 15%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: 5px;
+    font-size: 17px;
+    border: solid rgb(26, 179, 213) 2px;
+    color: rgb(26, 179, 213);
+    opacity: 0.2;
+}
+
+.desc-window-root .container .window .close-btn:hover {
+    transition: 0.5s;
+    opacity: 0.6;
 }
 
 .filter-btn {
@@ -146,6 +168,7 @@ main {
 .semester-root .courses-container {
     display: flex;
     padding-top: 20px;
+    padding-bottom: 10px;
     flex-direction: column;
     align-items: center;
     gap: 15px;
@@ -167,7 +190,7 @@ main {
 
 .semester-root > .zed-counter {
     position: absolute;
-    right: -30px;
+    right: -15px;
     bottom: -10px;
     display: flex;
     justify-content: center;

@@ -46,5 +46,29 @@
     "semTime": "spring",
     "category": "other",
     "description": "Дебаты"
+  },
+  {
+    "id": "c7",
+    "name": "Frontend",
+    "zedCount": 7,
+    "semTime": "fall",
+    "category": "prog",
+    "description": "Frontend description"
+  },
+  {
+    "id": "c8",
+    "name": "Backend Java",
+    "zedCount": 4,
+    "semTime": "spring",
+    "category": "prog",
+    "description": "just Java"
+  },
+  {
+    "id": "c9",
+    "name": "Algo",
+    "zedCount": 5,
+    "semTime": "fall",
+    "category": "prog",
+    "description": "<div><h1>Курс по алгоритмам</h1><ul><li>Полиномиальный хэш</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li></ul></div>"
   }
 ]

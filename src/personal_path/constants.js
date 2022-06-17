@@ -1,4 +1,5 @@
 const constants = {
+    DEBUG: false,
     semTime: {
         FALL: 'fall',
         SPRING: 'spring',
@@ -15,5 +16,12 @@ const constants = {
         SPRING: document.querySelector('#spring-sem-container')
     }
 }
+
+constants.courseCategoryAliases = {};
+constants.courseCategoryAliases[constants.courseCategory.PROGRAMING] = 'Программирование';
+constants.courseCategoryAliases[constants.courseCategory.DEV_OPS] = 'DevOps';
+constants.courseCategoryAliases[constants.courseCategory.MATH] = 'Математика';
+constants.courseCategoryAliases[constants.courseCategory.OTHER] = 'Остальное';
+
 
 export default constants;

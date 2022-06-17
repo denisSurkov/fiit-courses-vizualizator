@@ -1,4 +1,5 @@
 import View from "./view.js";
+import constants from "../constants.js";
 
 export default class DescriptionWindow extends View {
     constructor(eventId) {
@@ -17,7 +18,7 @@ export default class DescriptionWindow extends View {
         this.descriptionElement.classList.add('desc');
 
         this.closeBtn = document.createElement('div');
-        this.closeBtn.innerText = 'close';
+        this.closeBtn.innerText = 'закрыть';
         this.closeBtn.classList.add('close-btn');
 
         this.closeBtn.addEventListener('click', () => this.hide());
@@ -35,7 +36,8 @@ export default class DescriptionWindow extends View {
      * @param {CourseInfo} course
      * **/
     set currentCourse(course) {
-        this.descriptionElement.innerText = course.id + '\n' + course.description;
+        let debugInfo = constants.DEBUG ? course.id + '\n' : '';
+        this.descriptionElement.innerHTML = debugInfo + course.description;
     }
 
     show() {
