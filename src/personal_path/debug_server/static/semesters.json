@@ -1,25 +1,25 @@
 [
   {
     "id": "s1",
-    "name": "3 курс; 1 семестр",
+    "name": "5 семестр",
     "semTime": "fall",
     "maxZedCount": 15
   },
   {
     "id": "s2",
-    "name": "3 курс; 2 семестр",
+    "name": "6 семестр",
     "semTime": "spring",
     "maxZedCount": 15
   },
   {
     "id": "s3",
-    "name": "4 курс; 1 семестр",
+    "name": "7 семестр",
     "semTime": "fall",
     "maxZedCount": 15
   },
   {
     "id": "s4",
-    "name": "4 курс; 2 семестр",
+    "name": "8 семестр",
     "semTime": "spring",
     "maxZedCount": 15
   }

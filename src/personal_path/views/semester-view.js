@@ -1,6 +1,9 @@
 import View from "./view.js";
+import constants from "../constants.js";
 
 export default class SemesterView extends View {
+    _model;
+
     /**
      * @param {CourseContainer} courseContainer
      * @param {URL} url
@@ -42,13 +45,13 @@ export default class SemesterView extends View {
 
     /**
      * @param {string} semesterId
-     * @param {Array<CourseFullInfo>} courses
+     * @param {Array<CourseInfo>} courses
      * **/
     updateUrl(semesterId, courses) {
         if (!this.url)
             return;
 
-        this.url.searchParams.set(semesterId, courses.map(item => item.id));
+        this.url.searchParams.set(semesterId, courses.map(item => item.id).toString());
 
         history.pushState(null, null, this.url.href);
     }

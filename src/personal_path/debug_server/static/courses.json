@@ -19,8 +19,24 @@
     "id": "c3",
     "name": "Алгем",
     "zedCount": 6,
-    "semTime": "fall",
+    "semTime": "spring",
     "category": "math",
     "description": "Про матрицы, многочлены и СЛАУ"
+  },
+  {
+    "id": "c4",
+    "name": "Networks",
+    "zedCount": 3,
+    "semTime": "fall",
+    "category": "dev-ops",
+    "description": "Про сети"
+  },
+  {
+    "id": "c5",
+    "name": "OOP with C# MathMech UrFU",
+    "zedCount": 4,
+    "semTime": "fall",
+    "category": "prog",
+    "description": "Про ООП"
   }
 ]

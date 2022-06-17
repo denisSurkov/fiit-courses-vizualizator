@@ -32,7 +32,7 @@ export default class DescriptionWindow extends View {
     }
 
     /**
-     * @param {CourseFullInfo} course
+     * @param {CourseInfo} course
      * **/
     set currentCourse(course) {
         this.descriptionElement.innerText = course.id + '\n' + course.description;

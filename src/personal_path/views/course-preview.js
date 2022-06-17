@@ -8,10 +8,18 @@ export default class CoursePreview extends View {
         this.root.classList.add('course-preview-root');
         this.root.setAttribute('draggable', 'true');
 
-        this.title = document.createElement('span');
-        this.zedCountElement = document.createElement('span');
+        this.title = document.createElement('div');
+        this.title.classList.add('title');
+        let titleContainer = document.createElement('div');
+        titleContainer.classList.add('title-container');
 
-        this.root.appendChild(this.title);
+        titleContainer.appendChild(this.title);
+
+
+        this.zedCountElement = document.createElement('div');
+        this.zedCountElement.classList.add('zed-counter');
+
+        this.root.appendChild(titleContainer);
         this.root.appendChild(document.createElement('br'));
         this.root.appendChild(this.zedCountElement);
     }

@@ -1,12 +1,11 @@
 import SemesterInfo from "./models/semester-info.js";
-import CourseFullInfo from "./models/course-full-info.js";
+import CourseInfo from "./models/course-info.js";
 import CourseView from "./views/course-view.js";
 import CoursePreview from "./views/course-preview.js";
 import SemesterView from "./views/semester-view.js";
 import DescriptionWindow from "./views/description-window.js";
-import CoursePreviewInfo from "./models/course-preview-info.js";
 import CourseContainer from "./views/course-container.js";
-import constants from "./consts.js";
+import constants from "./constants.js";
 import FreeZone from "./models/free-zone.js";
 import FreeZoneView from "./views/free-zone-view.js";
 
@@ -41,12 +40,13 @@ async function loadModels(url, recordToModelParser, viewFactory) {
  * @param {CourseView} view
  * **/
 function parseJsonToCourseFullInfo(jsonRecord, view) {
-    let result = new CourseFullInfo(
+    let result = new CourseInfo(
         jsonRecord['id'],
         jsonRecord['name'],
         jsonRecord['zedCount'],
         jsonRecord['description'],
         jsonRecord['semTime'],
+        jsonRecord['category'],
         view
     );
 
@@ -102,7 +102,7 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
     semesterInfos.forEach(item => {
         item.view.courseContainer.root.addEventListener('dragstart', event => {
             let model = modelByEventId[event.target.id];
-            if (!model || !(model instanceof CoursePreviewInfo))
+            if (!model || !(model instanceof CourseInfo))
                 return;
 
             draggableCourse = model;
@@ -142,9 +142,11 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
 
 function initDescriptionOnClick(courseFullInfos) {
     for (const item of courseFullInfos) {
-        item.view.coursePreview.root.addEventListener('click', () => {
+        item.view.coursePreview.root.addEventListener('click', event => {
             item.view.descriptionWindow.currentCourse = item;
             item.view.descriptionWindow.show();
+
+            event.stopPropagation();
         });
     }
 }
@@ -201,8 +203,12 @@ async function main() {
     let courseContainer = new CourseContainer();
     setNextEventId(courseContainer);
 
-    let freeSemView = new FreeZoneView(courseContainer, undefined)
-    setNextEventId(freeSemView);
+    let freeZoneView = new FreeZoneView(
+        courseContainer,
+        undefined,
+        Object.getOwnPropertyNames(constants.courseCategory).map(item => constants.courseCategory[item])
+    );
+    setNextEventId(freeZoneView);
 
     let freeZone = new FreeZone(
         'free',
@@ -210,20 +216,42 @@ async function main() {
         [...freeCourseIds].map(item => courseFullInfoById[item]),
         10000,
         constants.semTime.ANY,
-        freeSemView
+        freeZoneView
     );
 
-    freeSemView.model = freeZone;
+    freeZoneView.model = freeZone;
 
-    modelByEventId[freeSemView.eventId] = freeZone;
-    modelByEventId[freeSemView.courseContainer.eventId] = freeZone;
+    modelByEventId[freeZoneView.eventId] = freeZone;
+    modelByEventId[freeZoneView.courseContainer.eventId] = freeZone;
+
+    semesterInfos.forEach(semesterInfo => {
+        semesterInfo.view.root.addEventListener('click', () => {
+            freeZoneView.currentSemTime = semesterInfo.semTime;
+
+            freeZoneView.show();
+
+            console.log(semesterInfo.id);
+        });
+    });
 
     semesterInfos.unshift(freeZone);
+
+    //TODO: upgrade filtering (can update property list of course and make filters by them)
+    //TODO: freeZone showing by click on courseContainer
+    //TODO: freeZone change state on dragenter
+    //TODO: DnD no parent freeze
 
     initDragAndDropEvents(semesterInfos, modelByEventId);
     initDescriptionOnClick(courseFullInfos);
 
-    semesterInfos.forEach(item => document.body.appendChild(item.view.root));
+    semesterInfos.forEach(item => {
+        if (item instanceof FreeZone)
+            document.body.appendChild(item.view.root);
+        else if (item.semTime === constants.semTime.FALL)
+            constants.semContainersElements.FALL.appendChild(item.view.root);
+        else if (item.semTime === constants.semTime.SPRING)
+            constants.semContainersElements.SPRING.appendChild(item.view.root);
+    });
 }
 
 main().then();

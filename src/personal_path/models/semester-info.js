@@ -1,5 +1,5 @@
 import Model from "./model.js";
-import constants from "../consts.js";
+import constants from "../constants.js";
 
 export default class SemesterInfo extends Model {
     courses = [];
@@ -10,7 +10,7 @@ export default class SemesterInfo extends Model {
     /**
      * @param {string} id
      * @param {string} name
-     * @param {Array<CourseFullInfo>} courses
+     * @param {Array<CourseInfo>} courses
      * @param {Number} maxZedCount
      * @param {string} semTime
      * @param {SemesterView} view
@@ -54,14 +54,14 @@ export default class SemesterInfo extends Model {
     }
 
     /**
-     * @param {CourseFullInfo} course
+     * @param {CourseInfo} course
      * **/
     isSuitableForAdding(course) {
         return this.semTime === course.semTime || this.semTime === constants.semTime.ANY;
     }
 
     /**
-     * @param {CourseFullInfo} course
+     * @param {CourseInfo} course
      * **/
     addCourse(course) {
         if (this.courses.indexOf(course) >= 0 || !this.isSuitableForAdding(course))
@@ -76,7 +76,7 @@ export default class SemesterInfo extends Model {
     }
 
     /**
-     * @param {CourseFullInfo} course
+     * @param {CourseInfo} course
      * **/
     removeCourse(course) {
         let index = this.courses.indexOf(course);
@@ -90,5 +90,9 @@ export default class SemesterInfo extends Model {
         this.view.zedCount = this._zedCount;
         this.view.courseContainer.root.removeChild(course.view.coursePreview.root);
         this.view.updateUrl(this.id, this.courses);
+    }
+
+    selectCoursesWithFilter(filterCallback) {
+        return this.courses.filter(filterCallback);
     }
 }

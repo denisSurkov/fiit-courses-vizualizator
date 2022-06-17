@@ -1,0 +1,183 @@
+body {
+    background-color: rgb(17, 15, 44);
+    font-family: "Roboto Light", sans-serif;
+    color: rgb(21, 96, 128);
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 95vh;
+    width: 80%;
+}
+
+.semester-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.semester-root.free-zone-root {
+    display: block;
+    position: fixed;
+    width: 45%;
+    height: 100%;
+    top: 0;
+    border-top: 0;
+    border-radius: 0;
+    border-color: rgb(26, 179, 213);
+}
+
+#course-number-container {
+    display: flex;
+    width: 10%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    font-size: 120%;
+}
+
+@media (max-width: 1145px) {
+    #course-number-container * {
+        writing-mode: tb;
+        text-orientation: upright;
+        width: 20px;
+    }
+}
+
+.course-preview-root {
+    position: relative;
+    width: 80%;
+    height: 50px;
+    background-color: rgb(26, 179, 213);
+    border-radius: 10px;
+    color: rgb(245, 245, 245);
+}
+
+.course-preview-root .title-container {
+    border-radius: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+}
+
+.course-preview-root .title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 20px;
+}
+
+.course-preview-root .zed-counter {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    background-color: rgb(254, 37, 167);
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 15px;
+}
+
+.semester-root {
+    background-color: darkseagreen;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+
+.desc-window-root {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.desc-window-root .container {
+    height: 99vh;
+    display: flex;
+    justify-content: center;
+}
+
+.desc-window-root .container .window {
+    position: absolute;
+    display: flex;
+    background-color: rgba(95, 158, 160, 50%);
+    margin-top: 75px;
+    margin-left: 50px;
+    padding: 10px;
+    width: 50%;
+    min-height: 60%;
+}
+
+.desc-window-root .container .window .desc {
+    align-self: start;
+}
+
+.desc-window-root .container .window .close-btn {
+    background-color: crimson;
+    text-align: center;
+    cursor: pointer;
+    align-self: end;
+}
+
+.filter-btn {
+    background-color: cornflowerblue;
+    margin: 5px;
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.semester-root {
+    height: 40%;
+    background-color: inherit;
+    border: solid rgb(21, 96, 128) 3px;
+    border-radius: 10px;
+}
+
+.semester-root .courses-container {
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*border: solid rgb(21, 96, 128) 3px;*/
+    padding: 7px;
+    cursor: pointer;
+    height: 70%;
+}
+
+.courses-container::-webkit-scrollbar-thumb {
+    background-color: rgba(21, 96, 128, 0.5);
+    border: 3px solid rgb(26, 25, 47);
+}
+
+.courses-container::-webkit-scrollbar {
+    background-color: rgba(21, 96, 128, 0.5);
+}
+
+.semester-root {
+    flex-shrink: 0;
+}
+
+.sem-container {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+
+.sem-container .title {
+    text-align: center;
+    padding: 10px;
+    font-size: 120%;
+}

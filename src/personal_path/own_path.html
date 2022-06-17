@@ -2,75 +2,21 @@
 <html lang="en">
 <head>
     <title>Path</title>
-    <style>
-        .courses-container {
-            background-color: red;
-            margin: 10px;
-            padding: 7px;
-            display: flex;
-        }
-
-        .course-preview-root {
-            width: 150px;
-            min-height: 70px;
-            background-color: darkcyan;
-            margin: 10px;
-        }
-
-        .course-preview-root * {
-            background-color: burlywood;
-        }
-
-        .semester-root {
-            background-color: darkseagreen;
-            margin-bottom: 25px;
-            padding: 10px;
-        }
-
-        .desc-window-root {
-            position: fixed;
-            width: 100%;
-        }
-
-        .desc-window-root .container {
-            height: 99vh;
-            display: flex;
-            justify-content: center;
-        }
-
-        .desc-window-root .container .window {
-            position: absolute;
-            display: flex;
-            background-color: rgba(95, 158, 160, 50%);
-            margin-top: 75px;
-            margin-left: 50px;
-            padding: 10px;
-            width: 50%;
-            min-height: 60%;
-        }
-
-        .desc-window-root .container .window .desc {
-            align-self: start;
-        }
-
-        .desc-window-root .container .window .close-btn {
-            background-color: crimson;
-            text-align: center;
-            cursor: pointer;
-            align-self: end;
-        }
-
-        .filter-btn {
-            background-color: cornflowerblue;
-            margin: 5px;
-            display: inline-block;
-            padding: 10px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="./own_path.css">
 </head>
 <body>
+    <main>
+        <div id="fall-sem-container" class="sem-container">
+            <div class="title">Осенний семестр</div>
+        </div>
+        <div id="course-number-container">
+            <span>3 курс</span>
+            <span>4 курс</span>
+        </div>
+        <div id="spring-sem-container" class="sem-container">
+            <div class="title">Весенний семестр</div>
+        </div>
+    </main>
     <script src="./main.js" type="module"></script>
 </body>
-
 </html>
