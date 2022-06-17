@@ -220,7 +220,7 @@ async function main() {
 
     let freeZone = new FreeZone(
         'free',
-        'Свободные курсы',
+        '',
         [...freeCourseIds].map(item => courseFullInfoById[item]),
         10000,
         constants.semTime.ANY,

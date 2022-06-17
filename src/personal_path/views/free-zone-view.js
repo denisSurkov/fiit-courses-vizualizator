@@ -22,40 +22,20 @@ export default class FreeZoneView extends SemesterView {
 
         this.zedCountElement.remove();
 
-        this.fallFilterBtn = document.createElement('div');
-        this.fallFilterBtn.classList.add('filter-btn');
-        this.fallFilterBtn.innerText = 'fall courses';
-        this.fallFilterBtn.addEventListener('click', () => {
-            this.currentSemTime = constants.semTime.FALL;
-        });
-
-        this.springFilterBtn = document.createElement('div');
-        this.springFilterBtn.classList.add('filter-btn');
-        this.springFilterBtn.innerText = 'spring courses';
-        this.springFilterBtn.addEventListener('click', () => {
-            this.currentSemTime = constants.semTime.SPRING;
-        });
-
-        this.anyBtn = document.createElement('div');
-        this.anyBtn.classList.add('filter-btn');
-        this.anyBtn.innerText = 'All courses';
-        this.anyBtn.addEventListener('click', () => {
-            this.currentSemTime = constants.semTime.ANY;
-        });
-
         this.hideBtn = document.createElement('div');
         this.hideBtn.classList.add('filter-btn');
-        this.hideBtn.innerText = 'hide';
-
+        this.hideBtn.innerText = 'закрыть';
         this.hideBtn.addEventListener('click', () => this.hide());
 
         this.status = document.createElement('div');
 
+        this.navigationContainer = document.createElement('div');
+        this.navigationContainer.classList.add('navigation-container');
+        this.root.insertBefore(this.navigationContainer, this.root.firstChild);
+
+
         this.root.appendChild(this.status);
         this.root.appendChild(this.hideBtn);
-        this.root.appendChild(this.anyBtn);
-        this.root.appendChild(this.fallFilterBtn);
-        this.root.appendChild(this.springFilterBtn);
 
         this.categoryBtns = [];
         for (const category of this.categories) {
@@ -63,13 +43,13 @@ export default class FreeZoneView extends SemesterView {
             this.categoryBtns.push(btn);
 
             btn.classList.add('filter-btn');
-            btn.innerText = category;
+            btn.innerText = constants.courseCategoryAliases[category];
 
             btn.addEventListener('click', () => {
                this.currentCategory = category;
             });
 
-            this.root.appendChild(btn);
+            this.navigationContainer.appendChild(btn);
         }
 
         this._currentCategory = this.categories[0];
@@ -85,7 +65,8 @@ export default class FreeZoneView extends SemesterView {
 
         this.fillContainer(this._model.selectCoursesWithFilter(item => this.#filterCourse(item)));
 
-        this.status.innerText = this._currentSemTime + ' ' + this._currentCategory;
+        if (constants.DEBUG)
+            this.status.innerText = this._currentSemTime + ' ' + this._currentCategory;
     }
 
     /**
@@ -110,7 +91,8 @@ export default class FreeZoneView extends SemesterView {
             this.root.style.setProperty('right', '0');
         }
 
-        this.status.innerText = this._currentSemTime + ' ' + this._currentCategory;
+        if (constants.DEBUG)
+            this.status.innerText = this._currentSemTime + ' ' + this._currentCategory;
     }
 
     /**

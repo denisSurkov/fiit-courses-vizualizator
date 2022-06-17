@@ -131,6 +131,10 @@ main {
     margin-bottom: 15px;
 }
 
+.close-btn {
+
+}
+
 .desc-window-root .container .window .close-btn {
     text-align: center;
     cursor: pointer;
