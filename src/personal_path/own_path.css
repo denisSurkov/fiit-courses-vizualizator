@@ -21,14 +21,21 @@ main {
 }
 
 .semester-root.free-zone-root {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     width: 45%;
-    height: 100%;
+    height: 99%;
     top: 0;
     border-top: 0;
     border-radius: 0;
     border-color: rgb(26, 179, 213);
+}
+
+.semester-root.free-zone-root .courses-container {
+    margin-bottom: 10px;
 }
 
 #course-number-container {
@@ -68,11 +75,13 @@ main {
     background-color: inherit;
 }
 
-.sem-container .course-preview-root .title {
+.course-preview-root .title {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     font-size: 15px;
+    text-align: center;
+    padding: 10px;
 }
 
 .course-preview-root .zed-counter {
@@ -129,17 +138,16 @@ main {
     width: 100%;
     align-self: start;
     margin-bottom: 15px;
+    color: rgb(183, 183, 183);
 }
 
 .close-btn {
-
-}
-
-.desc-window-root .container .window .close-btn {
     text-align: center;
     cursor: pointer;
     border-radius: 20px;
     width: 15%;
+    padding-left: 5px;
+    padding-right: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     padding-bottom: 5px;
@@ -147,19 +155,28 @@ main {
     border: solid rgb(26, 179, 213) 2px;
     color: rgb(26, 179, 213);
     opacity: 0.2;
+    margin-bottom: 10px;
 }
 
-.desc-window-root .container .window .close-btn:hover {
+.close-btn:hover {
     transition: 0.5s;
     opacity: 0.6;
 }
 
 .filter-btn {
-    background-color: cornflowerblue;
+    background-color: rgb(254, 37, 167);
+    color: rgb(245, 245, 245);
+    border-radius: 50px;
     margin: 5px;
     display: inline-block;
     padding: 10px;
     cursor: pointer;
+    opacity: 0.5;
+}
+
+.filter-btn:hover {
+    transition: 0.5s;
+    opacity: 1;
 }
 
 .semester-root {
@@ -181,15 +198,18 @@ main {
     /*border: solid rgb(21, 96, 128) 3px;*/
     cursor: pointer;
     height: 70%;
+    width: 100%;
 }
 
 .courses-container::-webkit-scrollbar-thumb {
     background-color: rgba(21, 96, 128, 0.5);
     border: 3px solid rgb(26, 25, 47);
+    border-radius: 10px;
 }
 
 .courses-container::-webkit-scrollbar {
     background-color: rgba(21, 96, 128, 0.5);
+    border-radius: 10px;
 }
 
 .semester-root > .zed-counter {
@@ -200,7 +220,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 5px 10px;
-    font-size: 18px;
+    font-size: 16px;
     background-color: rgb(254, 37, 167);
     border-radius: 30px;
 }
@@ -220,8 +240,9 @@ main {
     width: 33%;
 }
 
-.sem-container .title {
+.sem-container > .title {
     text-align: center;
     padding: 10px;
     font-size: 120%;
 }
+

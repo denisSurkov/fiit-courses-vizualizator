@@ -70,5 +70,93 @@
     "semTime": "fall",
     "category": "prog",
     "description": "<div><h1>Курс по алгоритмам</h1><ul><li>Полиномиальный хэш</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li></ul></div>"
+  },
+  {
+    "id": "c10",
+    "name": "Backend Java",
+    "zedCount": 4,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c11",
+    "name": "Backend Java",
+    "zedCount": 4,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c12",
+    "name": "Backend Java",
+    "zedCount": 4,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c13",
+    "name": "Backend Java",
+    "zedCount": 4,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c14",
+    "name": "Backend Java",
+    "zedCount": 4,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c15",
+    "name": "Backend Java",
+    "zedCount": 5,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c16",
+    "name": "Backend Java",
+    "zedCount": 5,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c17",
+    "name": "Backend Java",
+    "zedCount": 5,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c18",
+    "name": "Backend Java",
+    "zedCount": 5,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c19",
+    "name": "Backend Java",
+    "zedCount": 5,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
+  },
+  {
+    "id": "c20",
+    "name": "Backend Java",
+    "zedCount": 5,
+    "semTime": "spring",
+    "category": "backend",
+    "description": "just Java"
   }
 ]

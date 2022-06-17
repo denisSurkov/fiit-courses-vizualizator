@@ -23,7 +23,7 @@ export default class FreeZoneView extends SemesterView {
         this.zedCountElement.remove();
 
         this.hideBtn = document.createElement('div');
-        this.hideBtn.classList.add('filter-btn');
+        this.hideBtn.classList.add('close-btn');
         this.hideBtn.innerText = 'закрыть';
         this.hideBtn.addEventListener('click', () => this.hide());
 
@@ -37,10 +37,10 @@ export default class FreeZoneView extends SemesterView {
         this.root.appendChild(this.status);
         this.root.appendChild(this.hideBtn);
 
-        this.categoryBtns = [];
+        this.categoryBtns = {};
         for (const category of this.categories) {
             let btn = document.createElement('div');
-            this.categoryBtns.push(btn);
+            this.categoryBtns[category] = btn;
 
             btn.classList.add('filter-btn');
             btn.innerText = constants.courseCategoryAliases[category];
@@ -52,7 +52,7 @@ export default class FreeZoneView extends SemesterView {
             this.navigationContainer.appendChild(btn);
         }
 
-        this._currentCategory = this.categories[0];
+        this.currentCategory = this.categories[0];
         this._currentSemTime = constants.semTime.ANY;
     }
 
@@ -61,9 +61,15 @@ export default class FreeZoneView extends SemesterView {
     }
 
     set currentCategory(value) {
+        if (this.currentCategory !== undefined)
+            this.categoryBtns[this.currentCategory].style.removeProperty('opacity');
+
         this._currentCategory = value;
 
-        this.fillContainer(this._model.selectCoursesWithFilter(item => this.#filterCourse(item)));
+        this.categoryBtns[this.currentCategory].style.opacity = '1';
+
+        if (this._model !== undefined)
+            this.fillContainer(this._model.selectCoursesWithFilter(item => this.#filterCourse(item)));
 
         if (constants.DEBUG)
             this.status.innerText = this._currentSemTime + ' ' + this._currentCategory;

@@ -238,14 +238,15 @@ async function main() {
 
             freeZoneView.show();
 
-            console.log(semesterInfo.id);
+            if (constants.DEBUG)
+                console.log('click on ' + semesterInfo.id);
         });
     });
 
     semesterInfos.unshift(freeZone);
 
     //TODO: refactor filtering
-    //TODO: DnD no parent freeze
+    //TODO: fix DnD parent freeze
 
     initDragAndDropEvents(semesterInfos, modelByEventId);
     initDescriptionOnClick(courseFullInfos);
