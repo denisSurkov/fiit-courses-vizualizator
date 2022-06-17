@@ -19,9 +19,6 @@ export default class DescriptionBuilder {
     }
 
     #extractCourses(roadmap){
-    return roadmap
-    .map(x => x.children
-        .map(y => y.course))
-    .flat();
+    return roadmap.map(x => x.children.map(y => y.course)).flat();
     }
 }

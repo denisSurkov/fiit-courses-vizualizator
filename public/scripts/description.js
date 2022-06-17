@@ -1,4 +1,6 @@
 const elements = document.querySelectorAll('.roadmap-module');
+const container = document.querySelector('.description-container');
+let section = undefined;
 
 elements.forEach(element => {
     element.addEventListener('click', event => {
@@ -6,10 +8,20 @@ elements.forEach(element => {
     });
 })
 
-function displayModalById(id){
-    const container = document.querySelector('.description-container');
-    container.style.display = 'inherit';
+window.addEventListener('click', event => {
+    closeModal(event);
+})
 
-    const section = document.getElementById(id);
+function displayModalById(id){
+    container.style.display = 'inherit';
+    section = document.getElementById(id);
     section.style.display = 'inherit';
+}
+
+function closeModal(event){
+    if (event.target == container){
+        container.style.display = 'none';
+        section.style.display = 'none';
+        section = undefined;
+    }
 }
