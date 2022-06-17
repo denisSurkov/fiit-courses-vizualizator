@@ -249,6 +249,33 @@ main {
 
 /* Main styles end */
 
+
+/* Description styles start */
+
+.description-container .title{
+    font-size: 36px;
+    color: #FE25A7;
+    text-decoration-line: underline;
+}
+
+.description-container .description{
+    font-family: golos;
+    font-size: 20px;
+}
+
+.description-container .section-title{
+    font-size: 30px;
+    color: #1AB3D5;
+    text-decoration: underline;
+}
+
+.description-container .section {
+    margin: 10px 0px;
+}
+
+/* Description styles end */
+
+
 /* Footer styles start */
 
 footer {
