@@ -5,7 +5,16 @@ export default class DescriptionBuilder {
 
     getDescriptions(roadmap){
         const coursesFromRoadmap = this.#extractCourses(roadmap);
-        const resultDescriptions = coursesFromRoadmap.map(x => this.courses[x]);
+        const resultDescriptions = coursesFromRoadmap
+        .map(description => this.courses[description]);
+        
+        resultDescriptions.forEach(description => {
+            description['id'] = description['title']
+            .toLowerCase()
+            .replaceAll(' ', '-')
+            .replaceAll('.', '');
+        });
+        
         return resultDescriptions;
     }
 

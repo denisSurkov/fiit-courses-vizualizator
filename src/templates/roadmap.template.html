@@ -46,7 +46,7 @@
         <div class="roadmap">{{{roadmap}}}</div>
         <div class="description-container">
             {{#each coursesInfo}}
-            <div class="description-section">
+            <div class="description-section" id="{{id}}">
                 <div class="section">
                     <p class="title">{{title}}</p>
                     <p class="description">{{description}}</p>
@@ -72,5 +72,6 @@
         </a>
         <img src="assets/images/fotter.svg" alt="footer-fiit" class="footer-image">
     </footer>
+    <script src="./scripts/description.js"></script>
 </body>
 </html>
