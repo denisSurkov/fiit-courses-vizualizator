@@ -1,6 +1,7 @@
 import Handlebars from 'handlebars';
 import fs from 'fs';
 import {RoadmapDrawer} from './roadmap/roadmap-drawer.js';
+import DescriptionBuilder from './descriptionBuilder.js';
 
 const TEMPLATES_FOLDER = './src/templates'
 const PUBLIC_FOLDER = './public'
@@ -12,6 +13,7 @@ export default class TemplateBuilder {
     constructor(roadmaps, courses) {
         this.roadmaps = roadmaps;
         this.courses = courses;
+        this.descriptionBuilder = new DescriptionBuilder(courses);
     };
 
     build() {
@@ -34,14 +36,16 @@ export default class TemplateBuilder {
                 href
             });
 
-            const titleInfo = {
-                title,
-                description
-            };
-
+            const coursesInfo = this.descriptionBuilder.getDescriptions(roadmap);
             const roadmapDrawer = new RoadmapDrawer(roadmap, this.courses);
             const elementToShow = roadmapDrawer.run();
-            titleInfo.roadmap = elementToShow.outerHTML;
+
+            const titleInfo = {
+                title,
+                description,
+                coursesInfo,
+                roadmap: elementToShow.outerHTML
+            };
 
             const html = roadmapsTemplateScript(titleInfo);
             this.#saveHtml(html, href);

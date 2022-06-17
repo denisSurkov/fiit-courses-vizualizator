@@ -1,6 +1,7 @@
 import {createSVGElement, preCalc} from './utils.js';
 import {SVGDrawer} from './svg-drawer.js';
 import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT, THEME_FONT} from './constants.js';
+import { convertCourseNameToId } from '../utils.js';
 
 const BLOCK_THEME_PARAMS = {
     'class': BLOCK_THEME_STYLE_NAME,
@@ -79,7 +80,9 @@ export class RoadmapDrawer {
             this.#drawCoursePath(semesterData.x, semesterData.y, child.x, child.y, semester);
 
             const courseName = this.courses[child.course].title;
-            this.#drawModule(child.x, child.y, courseName, semester);
+            const dataCourse = convertCourseNameToId(courseName);
+
+            this.#drawModule(child.x, child.y, courseName, semester, dataCourse);
         }
 
         this.#drawTheme(semesterData.x, semesterData.y, semesterData.title, semester);
@@ -92,12 +95,12 @@ export class RoadmapDrawer {
      * @param {string} name
      * @param {SVGElement} group
      */
-    #drawModule(xCenter, yCenter, name, group) {
+    #drawModule(xCenter, yCenter, name, group, dataCourse) {
         const textMeasure = this.svgDrawer.measureText(name, MODULE_FONT);
-
         const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
-
-        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight, textMeasure.width * 1.2, actualHeight * 1.5, BLOCK_MODULE_PARAMS, group);
+        const currentBlockParams = {...BLOCK_MODULE_PARAMS, 'data-course': dataCourse};
+ 
+        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight, textMeasure.width * 1.2, actualHeight * 1.5, currentBlockParams, group);
         this.svgDrawer.drawText(xCenter - textMeasure.width / 10, yCenter, name, {'fill': 'white'}, group);
     }
 

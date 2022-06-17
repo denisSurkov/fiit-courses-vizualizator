@@ -43,7 +43,22 @@
             </div>
     </header>
     <main>
-        <div class="roadmap" id="path-holder">{{{roadmap}}}</div>
+        <div class="roadmap">{{{roadmap}}}</div>
+        <div class="description-container">
+            {{#each coursesInfo}}
+            <div class="description-section" id="{{id}}">
+                <div class="section">
+                    <p class="title">{{title}}</p>
+                    <p class="description">{{description}}</p>
+                </div>
+                {{#each other}}
+                <div class="section">
+                    <p class="section-title">{{title}}</p>
+                    <p class="description">{{description}}</p>
+                </div>
+                {{/each}}
+            </div>
+            {{/each}}
     </main>
     <footer class="footer-content">
         <a href="https://fiit-urfu.ru/" class="footer-content-link">
@@ -57,5 +72,6 @@
         </a>
         <img src="assets/images/fotter.svg" alt="footer-fiit" class="footer-image">
     </footer>
+    <script src="./scripts/description.js"></script>
 </body>
 </html>

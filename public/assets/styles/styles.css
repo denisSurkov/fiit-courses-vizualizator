@@ -249,6 +249,86 @@ main {
 
 /* Main styles end */
 
+/* Description styles start */
+
+.description-container .title{
+    font-size: 36px;
+    padding-bottom: 10px;
+    color: #FE25A7;
+    text-decoration-line: underline;
+}
+
+.description-container .description{
+    font-family: golos;
+    font-size: 20px;
+}
+
+.description-container .section-title{
+    font-size: 30px;
+    padding-bottom: 10px;
+    color: #1AB3D5;
+    text-decoration: underline;
+}
+
+.description-container .section {
+    margin: 20px 0px;
+}
+
+.description-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.description-section {
+    display: none;
+    margin: auto;
+    background-color: #110F2C;
+    width: 70%;
+    height: 90%;
+    border: #1AB3D5 solid 3px;
+    border-radius: 25px;
+    padding: 5px 30px;
+    overflow-y: auto;
+    transform: translateY(5%);
+    animation-name: modalopen;
+    animation-duration: 500ms;
+    scrollbar-color: #FE25A7;
+}
+
+/* Scrollbar styles start */
+
+.description-container ::-webkit-scrollbar {
+    width: 3px;
+}
+ 
+.description-container ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    margin: 10px;
+
+}
+ 
+.description-container ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #1AB3D5;
+    opacity: 0.5;
+}
+
+/* Scrollbar styles end */
+
+@keyframes modalopen {
+    from{opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Description styles end */
+
 /* Footer styles start */
 
 footer {
