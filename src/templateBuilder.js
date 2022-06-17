@@ -39,7 +39,7 @@ export default class TemplateBuilder {
                 description
             };
 
-            const roadmapDrawer = new RoadmapDrawer(roadmap);
+            const roadmapDrawer = new RoadmapDrawer(roadmap, this.courses);
             const elementToShow = roadmapDrawer.run();
             titleInfo.roadmap = elementToShow.outerHTML;
 

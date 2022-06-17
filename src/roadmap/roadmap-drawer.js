@@ -31,8 +31,9 @@ const AVERAGE_PADDING_FOR_LINES = 25;
 
 export class RoadmapDrawer {
 
-    constructor(roadmapConfig) {
+    constructor(roadmapConfig, courses) {
         this.roadmapConfig = roadmapConfig;
+        this.courses = courses;
 
         this.root = null;
         this.svgDrawer = null;
@@ -76,7 +77,9 @@ export class RoadmapDrawer {
 
         for (const child of semesterData.children) {
             this.#drawCoursePath(semesterData.x, semesterData.y, child.x, child.y, semester);
-            this.#drawModule(child.x, child.y, child.title, semester);
+
+            const courseName = this.courses[child.course].title;
+            this.#drawModule(child.x, child.y, courseName, semester);
         }
 
         this.#drawTheme(semesterData.x, semesterData.y, semesterData.title, semester);
