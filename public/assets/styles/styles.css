@@ -89,9 +89,16 @@ video {
     vertical-align: baseline;
 }
 
+:root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #1AB3D5;
+    --highlighted-text-color: #FE25A7;
+    --bg-color: #110F2C;
+}
+
 a {
     text-decoration: none;
-    color: white;
+    color: var(--primary-color);
 }
 
 /* Reset styles end */
@@ -101,6 +108,7 @@ a {
 html {
     box-sizing: border-box;
 }
+
 
 *,
 *::before,
@@ -112,8 +120,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #110F2C;
-    color: white;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
     font-family: golos-bold;
 }
 
@@ -129,7 +137,6 @@ body {
 .header-container {
     margin: 20px auto;
     display: flex;
-    flex-wrap: nowrap;
     align-items: center;
 }
 
@@ -142,7 +149,7 @@ body {
     margin: 0px 10px;
 }
 
-.fiit-logo {
+.header-logo {
     width: 160px;
     height: 160px;
 }
@@ -163,7 +170,7 @@ body {
 }
 
 .tab-chosen {
-    color: #FE25A7;
+    color: var(--highlighted-text-color);
     text-decoration-line: underline;
 }
 
@@ -171,10 +178,6 @@ body {
     width: 25px;
     position: relative;
     top: 2px;
-}
-
-.header-tab {
-    display: flex;
 }
 
 .header-description {
@@ -186,12 +189,11 @@ body {
 .header-back-button {
     font-size: 24px;
     margin: 0px 5px;
-    color: #FE25A7;
+    color: var(--highlighted-text-color);
 }
 
 .header-back-button:hover {
     text-decoration-line: underline;
-    /* border-bottom: 1px solid #FE25A7; */
 }
 
 .header-back-arrow {
@@ -222,7 +224,7 @@ main {
 
 
 .block {
-    border: white solid 3px;
+    border: var(--primary-color) solid 3px;
     border-radius: 25px;
     padding: 15px 20px;
     width: 360px;
@@ -230,7 +232,7 @@ main {
 }
 
 .block:hover {
-    background-color: #1AB3D5;
+    background-color: var(--secondary-color);
 }
 
 .block-title {
@@ -251,22 +253,22 @@ main {
 
 /* Description styles start */
 
-.description-container .title{
+.description-container .title {
     font-size: 36px;
     padding-bottom: 10px;
-    color: #FE25A7;
+    color: var(--highlighted-text-color);
     text-decoration-line: underline;
 }
 
-.description-container .description{
+.description-container .description {
     font-family: golos;
     font-size: 20px;
 }
 
-.description-container .section-title{
+.description-container .section-title {
     font-size: 30px;
     padding-bottom: 10px;
-    color: #1AB3D5;
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
@@ -283,7 +285,7 @@ main {
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .description-section {
@@ -292,15 +294,26 @@ main {
     background-color: #110F2C;
     width: 70%;
     height: 90%;
-    border: #1AB3D5 solid 3px;
+    border: var(--secondary-color) solid 3px;
     border-radius: 25px;
     padding: 5px 30px;
     overflow-y: auto;
     transform: translateY(5%);
     animation-name: modalopen;
     animation-duration: 500ms;
-    scrollbar-color: #FE25A7;
 }
+
+@keyframes modalopen {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Description styles end */
 
 /* Scrollbar styles start */
 
@@ -316,18 +329,11 @@ main {
 
 .description-container ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: #1AB3D5;
+    background-color: var(--secondary-color);
     opacity: 0.5;
 }
 
 /* Scrollbar styles end */
-
-@keyframes modalopen {
-    from{opacity: 0;}
-    to {opacity: 1;}
-}
-
-/* Description styles end */
 
 /* Footer styles start */
 
@@ -359,16 +365,30 @@ footer {
 
 /* SVG styles start */
 
-.roadmap-module, .roadmap-theme {
-    fill: #1AB3D5;
+.roadmap-module,
+.roadmap-theme {
+    fill: var(--secondary-color);
+    cursor: pointer;
 }
 
-.roadmap-text-course{
-    fill: white;
+.roadmap-text-course {
+    fill: var(--primary-color);
+    cursor: pointer;
 }
 
-.roadmap-line-course, .roadmap-line-semester {
-    stroke: #1AB3D5;
+.roadmap-line-course,
+.roadmap-line-semester {
+    stroke: var(--secondary-color);
+}
+
+.roadmap-zet-circle {
+    fill: var(--highlighted-text-color);
+    cursor: pointer;
+}
+
+.roadmap-zet-text {
+    fill: var(--primary-color);
+    cursor: pointer;
 }
 
 /* SVG styles end */
