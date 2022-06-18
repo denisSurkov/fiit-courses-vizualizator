@@ -28,6 +28,9 @@ export default class CourseInfo extends Model {
         this.semTime = semTime;
         this.category = category;
 
+        [view.coursePreview.root, view.coursePreview.title, view.coursePreview.zedCountElement]
+            .concat(...view.coursePreview.root.children)
+            .forEach(item => item.setAttribute('data-course', this.id));
         view.coursePreview.title.innerText = this.name;
         view.coursePreview.zedCountElement.innerText = this.zedCount.toString();
     }

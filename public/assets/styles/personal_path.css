@@ -6,14 +6,6 @@
     height: auto;
 }
 
-#personal-path-body .description-container {
-    justify-content: center;
-}
-
-#personal-path-body .description-section {
-    margin: 0;
-}
-
 #personal-path-body #personal-path-main {
     color: rgb(21, 96, 128);
     display: flex;
@@ -111,47 +103,6 @@
 #personal-path-body .semester-root {
     margin-bottom: 25px;
     padding: 10px;
-}
-
-#personal-path-body .desc-window-root {
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    top: 0;
-    left: 0;
-}
-
-#personal-path-body .desc-window-root .container {
-    height: 99vh;
-    display: flex;
-    justify-content: center;
-}
-
-#personal-path-body .desc-window-root .container .window {
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    background-color: rgb(17, 15, 44);
-    margin-top: 75px;
-    margin-left: 50px;
-    padding: 10px;
-    width: 50%;
-    height: 60%;
-    border-radius: 10px;
-    border: solid rgb(26, 179, 213) 4px;
-    flex-shrink: 0;
-}
-
-#personal-path-body .desc-window-root .container .window .desc {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
-    width: 100%;
-    align-self: start;
-    margin-bottom: 15px;
-    color: rgb(183, 183, 183);
 }
 
 #personal-path-body .close-btn {

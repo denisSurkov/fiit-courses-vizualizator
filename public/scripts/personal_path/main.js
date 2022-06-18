@@ -8,6 +8,7 @@ import CourseContainer from "./views/course-container.js";
 import constants from "./constants.js";
 import FreeZone from "./models/free-zone.js";
 import FreeZoneView from "./views/free-zone-view.js";
+import {initModal} from "../description.js";
 
 let eventIdsCount = 0;
 let modelByEventId = {};
@@ -149,14 +150,14 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
 }
 
 function initDescriptionOnClick(courseFullInfos) {
-    for (const item of courseFullInfos) {
-        item.view.coursePreview.root.addEventListener('click', event => {
-            item.view.descriptionWindow.currentCourse = item;
-            item.view.descriptionWindow.show();
-
-            event.stopPropagation();
-        });
-    }
+    // for (const item of courseFullInfos) {
+    //     item.view.coursePreview.root.addEventListener('click', event => {
+    //         item.view.descriptionWindow.currentCourse = item;
+    //         item.view.descriptionWindow.show();
+    //
+    //         event.stopPropagation();
+    //     });
+    // }
 }
 
 function createSemesterView(isNeedUrlUpdate=true) {
@@ -253,7 +254,7 @@ async function main() {
     //TODO: fix DnD parent freeze
 
     initDragAndDropEvents(semesterInfos, modelByEventId);
-    initDescriptionOnClick(courseFullInfos);
+    //initDescriptionOnClick(courseFullInfos);
 
     semesterInfos.forEach(item => {
         if (item instanceof FreeZone)
@@ -263,6 +264,12 @@ async function main() {
         else if (item.semTime === constants.semTime.SPRING)
             constants.semContainersElements.SPRING.appendChild(item.view.root);
     });
+
+    initModal(courseFullInfos.reduce((acc, item) => {
+        acc.push(item.view.coursePreview.root, item.view.coursePreview.title, item.view.coursePreview.zedCountElement);
+
+        return acc;
+    }, []));
 }
 
 main().then();
