@@ -8,6 +8,8 @@ const PUBLIC_FOLDER = './public'
 
 const ROADMAPS_TEMPLATE = 'roadmap.template';
 const INDEX_TEMPLATE = 'index.template';
+const OWN_PATH_TEMPLATE = 'own_path.template';
+
 
 export default class TemplateBuilder {
     constructor(roadmaps, courses) {
@@ -51,7 +53,8 @@ export default class TemplateBuilder {
             this.#saveHtml(html, href);
         }
 
-        this.#buildIndex({roadmaps: indexInfo})
+        this.#buildIndex({roadmaps: indexInfo});
+        this.#buildOwnPath();
     };
 
     #buildIndex(indexInfo) {
@@ -60,6 +63,14 @@ export default class TemplateBuilder {
         const html = templateScript(indexInfo);
 
         this.#saveHtml(html, 'index');
+    };
+
+    #buildOwnPath() {
+
+        const ownPathTemplate = this.#openHtml(OWN_PATH_TEMPLATE);
+        const roadmapsTemplateScript = Handlebars.compile(ownPathTemplate);
+        const html = roadmapsTemplateScript({});
+        this.#saveHtml(html, 'own_path');
     };
 
     #saveHtml(html, name) {

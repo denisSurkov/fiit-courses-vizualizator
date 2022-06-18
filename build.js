@@ -2,7 +2,6 @@ import fs from 'fs';
 import TemplateBuilder from './src/templateBuilder.js';
 import {JSDOM} from 'jsdom';
 import path from 'path';
-import OwnPathTemplateBuilder from "./src/ownPathTemplateBuilder.js";
 
 global.document = new JSDOM().window.document;
 
@@ -32,8 +31,5 @@ const courses = loadJsonFilesWithContent(COURSES_FOLDER);
 
 const htmlBuilder = new TemplateBuilder(roadmaps, courses);
 htmlBuilder.build();
-
-const ownPathBuilder = new OwnPathTemplateBuilder(courses);
-ownPathBuilder.build();
 
 console.log('Pages created successfully');
