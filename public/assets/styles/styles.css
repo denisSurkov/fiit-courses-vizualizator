@@ -136,7 +136,6 @@ body {
 .header-container {
     margin: 20px auto;
     display: flex;
-    flex-wrap: nowrap;
     align-items: center;
 }
 
@@ -149,7 +148,7 @@ body {
     margin: 0px 10px;
 }
 
-.fiit-logo {
+.header-logo {
     width: 160px;
     height: 160px;
 }
@@ -180,10 +179,6 @@ body {
     top: 2px;
 }
 
-.header-tab {
-    display: flex;
-}
-
 .header-description {
     font-family: golos;
     font-size: 24px;
@@ -198,7 +193,6 @@ body {
 
 .header-back-button:hover {
     text-decoration-line: underline;
-    /* border-bottom: 1px solid #FE25A7; */
 }
 
 .header-back-arrow {
