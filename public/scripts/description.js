@@ -1,4 +1,4 @@
-const elements = document.querySelectorAll('.roadmap-module');
+const elements = document.querySelectorAll('[data-course]');
 const container = document.querySelector('.description-container');
 let section = undefined;
 
