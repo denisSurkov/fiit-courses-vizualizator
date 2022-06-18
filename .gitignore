@@ -8,7 +8,7 @@
 
 
 public/*.html
-!public/personal_path.html
+!public/personal_path_old.html
 .idea/*
 .vscode
 

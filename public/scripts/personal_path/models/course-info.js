@@ -30,9 +30,5 @@ export default class CourseInfo extends Model {
 
         view.coursePreview.title.innerText = this.name;
         view.coursePreview.zedCountElement.innerText = this.zedCount.toString();
-<<<<<<< HEAD
-=======
-        view.descriptionWindow.descriptionElement.innerText = this.description;
->>>>>>> origin/fix/dd_event
     }
 }

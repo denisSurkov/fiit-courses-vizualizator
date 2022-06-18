@@ -1,5 +1,4 @@
 import View from "./view.js";
-import constants from "../constants.js";
 
 export default class SemesterView extends View {
     _model;
