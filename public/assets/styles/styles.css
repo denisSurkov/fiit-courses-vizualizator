@@ -91,7 +91,7 @@ video {
 
 a {
     text-decoration: none;
-    color: white;
+    color: #FFFFFF;
 }
 
 /* Reset styles end */
@@ -100,6 +100,13 @@ a {
 
 html {
     box-sizing: border-box;
+}
+
+:root{
+    --white-color: #FFFFFF;
+    --cyan-color: #1AB3D5;
+    --pink-color: #FE25A7;
+    --bg-color: #110F2C;
 }
 
 *,
@@ -112,8 +119,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #110F2C;
-    color: white;
+    background-color: var(--bg-color);
+    color: var(--white-color);
     font-family: golos-bold;
 }
 
@@ -163,7 +170,7 @@ body {
 }
 
 .tab-chosen {
-    color: #FE25A7;
+    color: var(--pink-color);
     text-decoration-line: underline;
 }
 
@@ -186,7 +193,7 @@ body {
 .header-back-button {
     font-size: 24px;
     margin: 0px 5px;
-    color: #FE25A7;
+    color: var(--pink-color);
 }
 
 .header-back-button:hover {
@@ -222,7 +229,7 @@ main {
 
 
 .block {
-    border: white solid 3px;
+    border: var(--white-color) solid 3px;
     border-radius: 25px;
     padding: 15px 20px;
     width: 360px;
@@ -230,7 +237,7 @@ main {
 }
 
 .block:hover {
-    background-color: #1AB3D5;
+    background-color: var(--cyan-color);
 }
 
 .block-title {
@@ -254,7 +261,7 @@ main {
 .description-container .title{
     font-size: 36px;
     padding-bottom: 10px;
-    color: #FE25A7;
+    color: var(--pink-color);
     text-decoration-line: underline;
 }
 
@@ -266,7 +273,7 @@ main {
 .description-container .section-title{
     font-size: 30px;
     padding-bottom: 10px;
-    color: #1AB3D5;
+    color: var(--cyan-color);
     text-decoration: underline;
 }
 
@@ -292,15 +299,21 @@ main {
     background-color: #110F2C;
     width: 70%;
     height: 90%;
-    border: #1AB3D5 solid 3px;
+    border: var(--cyan-color) solid 3px;
     border-radius: 25px;
     padding: 5px 30px;
     overflow-y: auto;
     transform: translateY(5%);
     animation-name: modalopen;
     animation-duration: 500ms;
-    scrollbar-color: #FE25A7;
 }
+
+@keyframes modalopen {
+    from{opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Description styles end */
 
 /* Scrollbar styles start */
 
@@ -316,18 +329,11 @@ main {
  
 .description-container ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: #1AB3D5;
+    background-color: var(--cyan-color);
     opacity: 0.5;
 }
 
 /* Scrollbar styles end */
-
-@keyframes modalopen {
-    from{opacity: 0;}
-    to {opacity: 1;}
-}
-
-/* Description styles end */
 
 /* Footer styles start */
 
