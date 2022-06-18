@@ -174,7 +174,11 @@ async function main() {
     setNextEventId(descriptionWindow);
 
     let courseFullInfos = await loadModels(
+<<<<<<< HEAD
         './assets/data/courses.json',
+=======
+        'static/courses.json',
+>>>>>>> origin/fix/dd_event
         parseJsonToCourseFullInfo,
         () => {
              let preview = new CoursePreview();
@@ -199,7 +203,11 @@ async function main() {
     let freeCourseIds = new Set(courseFullInfos.map(item => item.id));
 
     let semesterInfos = await loadModels(
+<<<<<<< HEAD
         './assets/data/semesters.json',
+=======
+        'static/semesters.json',
+>>>>>>> origin/fix/dd_event
         (jsonRecord, view) => parseJsonToSemesterInfo(
             jsonRecord,
             courseFullInfoById,

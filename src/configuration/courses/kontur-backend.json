@@ -2,5 +2,8 @@
     "title": "Бэкенд от Контура",
     "description": "",
     "zet": 5,
-    "other": []
+    "other": [],
+    "id": 3,
+    "semester": "fall",
+    "theme": "Программирование"
 }
