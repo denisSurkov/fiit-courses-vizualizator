@@ -1,7 +1,7 @@
 import {createSVGElement, preCalc} from './utils.js';
 import {SVGDrawer} from './svg-drawer.js';
-import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT, THEME_FONT} from './constants.js';
-import { convertCourseNameToId } from '../utils.js';
+import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT} from './constants.js';
+import {convertCourseNameToId} from '../utils.js';
 
 const BLOCK_THEME_PARAMS = {
     'class': BLOCK_THEME_STYLE_NAME,
@@ -81,8 +81,9 @@ export class RoadmapDrawer {
 
             const courseName = this.courses[child.course].title;
             const dataCourse = convertCourseNameToId(courseName);
+            const zet = this.courses[child.course].zet;
 
-            this.#drawModule(child.x, child.y, courseName, semester, dataCourse);
+            this.#drawCourse(child.x, child.y, courseName, semester, dataCourse, zet);
         }
 
         this.#drawTheme(semesterData.x, semesterData.y, semesterData.title, semester);
@@ -94,14 +95,45 @@ export class RoadmapDrawer {
      * @param {number} yCenter
      * @param {string} name
      * @param {SVGElement} group
+     * @param {string} dataCourse
+     * @param {number} zet
      */
-    #drawModule(xCenter, yCenter, name, group, dataCourse) {
+    #drawCourse(xCenter, yCenter, name, group, dataCourse, zet) {
         const textMeasure = this.svgDrawer.measureText(name, MODULE_FONT);
         const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
-        const currentBlockParams = {...BLOCK_MODULE_PARAMS, 'data-course': dataCourse};
- 
-        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight, textMeasure.width * 1.2, actualHeight * 1.5, currentBlockParams, group);
-        this.svgDrawer.drawText(xCenter - textMeasure.width / 10, yCenter, name, {'fill': 'white'}, group);
+
+        this.#drawCourseRectangle(xCenter, yCenter, textMeasure, actualHeight, group, dataCourse);
+        this.#drawCourseText(xCenter, yCenter, name, textMeasure, group, dataCourse);
+        this.#drawCourseZet(xCenter, yCenter, zet, textMeasure, actualHeight, group, dataCourse);
+    }
+
+    #drawCourseRectangle(xCenter, yCenter, textMeasure, actualHeight, group, dataCourse) {
+        const rectangleX = xCenter - textMeasure.width / 4;
+        const rectangleY = yCenter - actualHeight;
+        const rectangleWidth = textMeasure.width * 1.2;
+        const rectangleHeight = actualHeight * 1.5
+
+        const options = {...BLOCK_MODULE_PARAMS, 'data-course': dataCourse};
+
+        this.svgDrawer.drawRectangle(rectangleX, rectangleY,
+            rectangleWidth, rectangleHeight, options, group);
+    }
+
+
+    #drawCourseText(xCenter, yCenter, name, textMeasure, group, dataCourse) {
+        const textX = xCenter - textMeasure.width / 10;
+        const textY = yCenter;
+        this.svgDrawer.drawText(textX, textY, name, {'fill': 'white', 'data-course': dataCourse}, group);
+    }
+
+    #drawCourseZet(xCenter, yCenter, zet, textMeasure, actualHeight, group, dataCourse) {
+        const circleX = xCenter + textMeasure.width * 0.95;
+        const circleY = yCenter + actualHeight / 4;
+        this.svgDrawer.drawCircle(circleX, circleY, 10, {'fill': 'white', 'data-course': dataCourse}, group);
+
+        const textX = xCenter + textMeasure.width * 0.925;
+        const textY = yCenter + actualHeight * 0.5;
+        this.svgDrawer.drawText(textX, textY, zet, {'fill': 'blue', 'data-course': dataCourse}, group);
     }
 
     /**
