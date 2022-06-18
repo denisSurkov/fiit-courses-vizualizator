@@ -1,7 +1,7 @@
 import {createSVGElement, preCalc} from './utils.js';
 import {SVGDrawer} from './svg-drawer.js';
-import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT, THEME_FONT} from './constants.js';
-import { convertCourseNameToId } from '../utils.js';
+import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT} from './constants.js';
+import {convertCourseNameToId} from '../utils.js';
 
 const BLOCK_THEME_PARAMS = {
     'class': BLOCK_THEME_STYLE_NAME,
@@ -81,8 +81,9 @@ export class RoadmapDrawer {
 
             const courseName = this.courses[child.course].title;
             const dataCourse = convertCourseNameToId(courseName);
+            const zet = this.courses[child.course].zet;
 
-            this.#drawModule(child.x, child.y, courseName, semester, dataCourse);
+            this.#drawCourse(child.x, child.y, courseName, semester, dataCourse, zet);
         }
 
         this.#drawTheme(semesterData.x, semesterData.y, semesterData.title, semester);
@@ -94,14 +95,46 @@ export class RoadmapDrawer {
      * @param {number} yCenter
      * @param {string} name
      * @param {SVGElement} group
+     * @param {string} dataCourse
+     * @param {number} zet
      */
-    #drawModule(xCenter, yCenter, name, group, dataCourse) {
+    #drawCourse(xCenter, yCenter, name, group, dataCourse, zet) {
+        const courseGroup = this.svgDrawer.addGroup({
+            'data-course': dataCourse,
+        }, group);
         const textMeasure = this.svgDrawer.measureText(name, MODULE_FONT);
         const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
-        const currentBlockParams = {...BLOCK_MODULE_PARAMS, 'data-course': dataCourse};
- 
-        this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight, textMeasure.width * 1.2, actualHeight * 1.5, currentBlockParams, group);
-        this.svgDrawer.drawText(xCenter - textMeasure.width / 10, yCenter, name, {'fill': 'white'}, group);
+
+        this.#drawCourseRectangle(xCenter, yCenter, textMeasure, actualHeight, courseGroup);
+        this.#drawCourseText(xCenter, yCenter, name, textMeasure, courseGroup);
+        this.#drawCourseZet(xCenter, yCenter, zet, textMeasure, actualHeight, courseGroup);
+    }
+
+    #drawCourseRectangle(xCenter, yCenter, textMeasure, actualHeight, group) {
+        const rectangleX = xCenter - textMeasure.width / 4;
+        const rectangleY = yCenter - actualHeight;
+        const rectangleWidth = textMeasure.width * 1.2;
+        const rectangleHeight = actualHeight * 1.5
+
+        this.svgDrawer.drawRectangle(rectangleX, rectangleY,
+            rectangleWidth, rectangleHeight, BLOCK_MODULE_PARAMS, group);
+    }
+
+
+    #drawCourseText(xCenter, yCenter, name, textMeasure, group) {
+        const textX = xCenter - textMeasure.width / 10;
+        const textY = yCenter;
+        this.svgDrawer.drawText(textX, textY, name, {'fill': 'white'}, group);
+    }
+
+    #drawCourseZet(xCenter, yCenter, zet, textMeasure, actualHeight, group) {
+        const circleX = xCenter + textMeasure.width * 0.95;
+        const circleY = yCenter + actualHeight / 4;
+        this.svgDrawer.drawCircle(circleX, circleY, 10, {'fill': 'white'}, group);
+
+        const textX = xCenter + textMeasure.width * 0.925;
+        const textY = yCenter + actualHeight * 0.5;
+        this.svgDrawer.drawText(textX, textY, zet, {'fill': 'blue'}, group);
     }
 
     /**
