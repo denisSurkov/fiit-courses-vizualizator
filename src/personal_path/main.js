@@ -245,7 +245,9 @@ async function main() {
 
     semesterInfos.unshift(freeZone);
 
+	//TODO: merge with master (look at guide in readme)
     //TODO: header and footer
+    //TODO: paths to courses data in configs
     //TODO: constants from smt_config.json
     //TODO: refactoring css
     //TODO: refactor filtering
