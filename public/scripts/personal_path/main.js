@@ -42,11 +42,11 @@ async function loadModels(url, recordToModelParser, viewFactory) {
 function parseJsonToCourseFullInfo(jsonRecord, view) {
     let result = new CourseInfo(
         jsonRecord['id'],
-        jsonRecord['name'],
-        jsonRecord['zedCount'],
-        jsonRecord['description'],
-        jsonRecord['semTime'],
-        jsonRecord['category'],
+        jsonRecord['title'],
+        jsonRecord['zet'],
+        '',
+        jsonRecord['semester'],
+        jsonRecord['theme'],
         view
     );
 
@@ -245,8 +245,7 @@ async function main() {
 
     semesterInfos.unshift(freeZone);
 
-	//TODO: merge with master (look at guide in readme)
-    //TODO: header and footer
+    //TODO: dnd zone placeholder
     //TODO: paths to courses data in configs
     //TODO: constants from smt_config.json
     //TODO: refactoring css

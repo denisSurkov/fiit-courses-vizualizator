@@ -7,10 +7,8 @@ const constants = {
     },
     courseCategory: {
         PROGRAMING: 'prog',
+        SECURITY: 'security',
         MATH: 'math',
-        DEV_OPS: 'dev-ops',
-        FRONTEND: 'frontend',
-        BACKEND: 'backend',
         OTHER: 'other'
     },
     semContainersElements: {
@@ -21,10 +19,8 @@ const constants = {
 
 constants.courseCategoryAliases = {};
 constants.courseCategoryAliases[constants.courseCategory.PROGRAMING] = 'Программирование';
-constants.courseCategoryAliases[constants.courseCategory.DEV_OPS] = 'DevOps';
+constants.courseCategoryAliases[constants.courseCategory.SECURITY] = 'Безопасность';
 constants.courseCategoryAliases[constants.courseCategory.MATH] = 'Математика';
-constants.courseCategoryAliases[constants.courseCategory.FRONTEND] = 'Frontend';
-constants.courseCategoryAliases[constants.courseCategory.BACKEND] = 'Backend';
 constants.courseCategoryAliases[constants.courseCategory.OTHER] = 'Остальное';
 
 

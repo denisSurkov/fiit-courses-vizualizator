@@ -2,6 +2,7 @@ import fs from 'fs';
 import TemplateBuilder from './src/templateBuilder.js';
 import {JSDOM} from 'jsdom';
 import path from 'path';
+import {createPersonalPathData} from "./src/utils.js";
 
 global.document = new JSDOM().window.document;
 
@@ -33,3 +34,5 @@ const htmlBuilder = new TemplateBuilder(roadmaps, courses);
 htmlBuilder.build();
 
 console.log('Pages created successfully');
+
+createPersonalPathData(courses);
