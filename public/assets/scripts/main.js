@@ -174,7 +174,7 @@ async function main() {
     setNextEventId(descriptionWindow);
 
     let courseFullInfos = await loadModels(
-        '/static/courses.json',
+        'static/courses.json',
         parseJsonToCourseFullInfo,
         () => {
              let preview = new CoursePreview();
@@ -199,7 +199,7 @@ async function main() {
     let freeCourseIds = new Set(courseFullInfos.map(item => item.id));
 
     let semesterInfos = await loadModels(
-        '/static/semesters.json',
+        'static/semesters.json',
         (jsonRecord, view) => parseJsonToSemesterInfo(
             jsonRecord,
             courseFullInfoById,
