@@ -55,6 +55,22 @@
         <div id="spring-sem-container" class="sem-container">
             <div class="title">Весенний семестр</div>
         </div>
+        <div class="description-container">
+            {{#each coursesInfo}}
+            <div class="description-section" id="{{id}}">
+                <div class="section">
+                    <p class="title">{{title}}</p>
+                    <p class="description">{{description}}</p>
+                </div>
+                {{#each other}}
+                <div class="section">
+                    <p class="section-title">{{title}}</p>
+                    <p class="description">{{description}}</p>
+                </div>
+                {{/each}}
+            </div>
+            {{/each}}
+        </div>
     </main>
     <footer class="footer-content">
         <a href="https://fiit-urfu.ru/" class="footer-content-link">

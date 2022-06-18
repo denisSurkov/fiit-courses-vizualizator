@@ -54,7 +54,7 @@ export default class TemplateBuilder {
         }
 
         this.#buildIndex({roadmaps: indexInfo});
-        this.#buildOwnPath();
+        this.#buildOwnPath({coursesInfo: this.courses});
     };
 
     #buildIndex(indexInfo) {
@@ -65,11 +65,11 @@ export default class TemplateBuilder {
         this.#saveHtml(html, 'index');
     };
 
-    #buildOwnPath() {
+    #buildOwnPath(coursesInfo) {
 
         const ownPathTemplate = this.#openHtml(OWN_PATH_TEMPLATE);
         const roadmapsTemplateScript = Handlebars.compile(ownPathTemplate);
-        const html = roadmapsTemplateScript({});
+        const html = roadmapsTemplateScript(coursesInfo);
         this.#saveHtml(html, 'own_path');
     };
 
