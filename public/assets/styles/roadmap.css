@@ -1,9 +1,0 @@
-:root {
-    --block-color: rgb(84, 176, 209);
-}
-
-.roadmap-module {
-    fill: var(--block-color);
-    stroke: black;
-    stroke-width: 0.2;
-}

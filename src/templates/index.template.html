@@ -30,32 +30,31 @@
 
 <body>
     <header class="wrapper header-container">
-        <a href="/index.html" class="header-logo header-logo-link">
-            <img class="fiit-logo" src="assets/images/logo.png" alt="Логотип ФИИТа">
+        <a href="index.html" class="header-logo-link">
+            <img class="header-logo" src="assets/images/logo.png" alt="Логотип ФИИТа">
         </a>
         <div class="header-text">
             <p class="header-title">Визуализатор спецкурсов для ФИИТ</p>
             <div class="header-tab-group">
-                <a href="/index.html" class="header-tab-link tab-chosen">
+                <a href="index.html" class="header-tab-link tab-chosen">
                     Подборка курсов от преподавателей
                 </a>
-                <a href="#!" class="header-tab-link">
-                    <div class="header-tab">
-                        <p class="header-tab-text">Составить свой путь
-                            <img src="assets/images/right-arrow.svg" alt="right-arrow" class="header-tab-right-arrow">
-                        </p>
-                    </div>
+                <a href="#!" class="header-tab-link header-tab-text">
+                    Составить свой путь
+                    <img src="assets/images/right-arrow.svg" alt="right-arrow" class="header-tab-right-arrow">
                 </a>
             </div>
         </div>
     </header>
-    <main class="wrapper blocks-container">
-        {{#each roadmaps}}
-            <a href="{{href}}.html" class="block block-link">
-                <p class="block-title">{{title}}</p>
-                <p class="block-description">{{description}}</p>
-            </a>
-        {{/each}}
+    <main>
+        <div class="wrapper blocks-container">
+            {{#each roadmaps}}
+                <a href="{{href}}.html" class="block block-link">
+                    <p class="block-title">{{title}}</p>
+                    <p class="block-description">{{description}}</p>
+                </a>
+            {{/each}}
+        </div>
     </main>
     <footer class="footer-content">
         <a href="https://fiit-urfu.ru/" class="footer-content-link">
