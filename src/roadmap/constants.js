@@ -1,5 +1,10 @@
 export const BLOCK_THEME_STYLE_NAME = 'roadmap-theme';
 export const BLOCK_MODULE_STYLE_NAME = 'roadmap-module';
+export const BLOCK_TEXT_COURSE_STYLE_NAME = 'roadmap-text-course';
+export const BLOCK_TEXT_SEMESTER_STYLE_NAME = 'roadmap-text-semester';
+
+export const LINE_COURSE_STYLE_NAME = 'roadmap-line-course';
+export const LINE_SEMESTER_STYLE_NAME = 'roadmap-line-semester';
 
 export const MODULE_FONT = '1em Sans';
 export const THEME_FONT = '2em Sans';

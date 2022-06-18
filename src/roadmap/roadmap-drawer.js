@@ -1,6 +1,13 @@
 import {createSVGElement, preCalc} from './utils.js';
 import {SVGDrawer} from './svg-drawer.js';
-import {BLOCK_MODULE_STYLE_NAME, BLOCK_THEME_STYLE_NAME, MODULE_FONT} from './constants.js';
+import {
+    BLOCK_MODULE_STYLE_NAME,
+    BLOCK_THEME_STYLE_NAME,
+    MODULE_FONT,
+    BLOCK_TEXT_COURSE_STYLE_NAME,
+    LINE_COURSE_STYLE_NAME,
+    LINE_SEMESTER_STYLE_NAME,
+} from "./constants.js";
 import {convertCourseNameToId} from '../utils.js';
 
 const BLOCK_THEME_PARAMS = {
@@ -13,8 +20,17 @@ const BLOCK_MODULE_PARAMS = {
     'rx': 5,
 }
 
-const SEMESTR_LINE_PARAMS = {
+const BLOCK_TEXT_COURSE_PARAMS = {
+    'class': BLOCK_TEXT_COURSE_STYLE_NAME,
+}
+
+const BLOCK_TEXT_SEMESTER_PARAMS = {
+    'class': BLOCK_TEXT_COURSE_STYLE_NAME
+}
+
+const SEMESTER_LINE_PARAMS = {
     fill: 'none',
+    'class': LINE_SEMESTER_STYLE_NAME,
     stroke: 'rgb(43, 120, 228)',
     'stroke-width': 4,
 }
@@ -22,6 +38,7 @@ const SEMESTR_LINE_PARAMS = {
 const COURSE_LINE_PARAMS = {
     fill: 'none',
     stroke: 'rgb(43, 120, 228)',
+    'class': LINE_COURSE_STYLE_NAME,
     'stroke-width': 4,
     'stroke-dasharray': '0.8, 12',
     'stroke-linecap': 'round',
@@ -29,6 +46,15 @@ const COURSE_LINE_PARAMS = {
 }
 
 const AVERAGE_PADDING_FOR_LINES = 25;
+
+
+const ZET_CIRCLE_PARAMS = {
+    'fill': 'rgb(233, 64, 163)'
+}
+
+const ZET_TEXT_PARAMS = {
+    'fill': 'white',
+}
 
 export class RoadmapDrawer {
 
@@ -108,9 +134,9 @@ export class RoadmapDrawer {
     }
 
     #drawCourseRectangle(xCenter, yCenter, textMeasure, actualHeight, group, dataCourse) {
-        const rectangleX = xCenter - textMeasure.width / 4;
+        const rectangleX = xCenter - textMeasure.width / 5;
         const rectangleY = yCenter - actualHeight;
-        const rectangleWidth = textMeasure.width * 1.2;
+        const rectangleWidth = textMeasure.width;
         const rectangleHeight = actualHeight * 1.5
 
         const options = {...BLOCK_MODULE_PARAMS, 'data-course': dataCourse};
@@ -123,17 +149,22 @@ export class RoadmapDrawer {
     #drawCourseText(xCenter, yCenter, name, textMeasure, group, dataCourse) {
         const textX = xCenter - textMeasure.width / 10;
         const textY = yCenter;
-        this.svgDrawer.drawText(textX, textY, name, {'fill': 'white', 'data-course': dataCourse}, group);
+
+        const options = {...BLOCK_TEXT_COURSE_PARAMS, 'data-course': dataCourse};
+
+        this.svgDrawer.drawText(textX, textY, name, options, group);
     }
 
     #drawCourseZet(xCenter, yCenter, zet, textMeasure, actualHeight, group, dataCourse) {
-        const circleX = xCenter + textMeasure.width * 0.95;
+        const circleX = xCenter + textMeasure.width * 0.8;
         const circleY = yCenter + actualHeight / 4;
-        this.svgDrawer.drawCircle(circleX, circleY, 10, {'fill': 'white', 'data-course': dataCourse}, group);
+        const circleOptions = {...ZET_CIRCLE_PARAMS, 'data-course': dataCourse}
+        this.svgDrawer.drawCircle(circleX, circleY, 10, circleOptions, group);
 
-        const textX = xCenter + textMeasure.width * 0.925;
+        const textX = xCenter + textMeasure.width * 0.775;
         const textY = yCenter + actualHeight * 0.5;
-        this.svgDrawer.drawText(textX, textY, zet, {'fill': 'blue', 'data-course': dataCourse}, group);
+        const textOptions = {...ZET_TEXT_PARAMS, 'data-course': dataCourse};
+        this.svgDrawer.drawText(textX, textY, zet, textOptions, group);
     }
 
     /**
@@ -148,7 +179,7 @@ export class RoadmapDrawer {
         const actualHeight = textMeasure.actualBoundingBoxAscent + textMeasure.actualBoundingBoxDescent;
 
         this.svgDrawer.drawRectangle(xCenter - textMeasure.width / 4, yCenter - actualHeight, textMeasure.width * 1.2, actualHeight * 1.5, BLOCK_THEME_PARAMS, group);
-        this.svgDrawer.drawText(xCenter - textMeasure.width / 12, yCenter, name, {'fill': 'white'}, group);
+        this.svgDrawer.drawText(xCenter - textMeasure.width / 12, yCenter, name, BLOCK_TEXT_SEMESTER_PARAMS, group);
     }
 
     #drawCoursePath(fromX, fromY, toX, toY, parent) {
@@ -186,6 +217,6 @@ export class RoadmapDrawer {
 
 
         this.svgDrawer.drawPath(
-            firstLine + secondLine + thirdLine + fourthLine + fiveLine, SEMESTR_LINE_PARAMS);
+            firstLine + secondLine + thirdLine + fourthLine + fiveLine, SEMESTER_LINE_PARAMS);
     }
 }

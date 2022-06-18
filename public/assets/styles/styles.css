@@ -307,13 +307,13 @@ main {
 .description-container ::-webkit-scrollbar {
     width: 3px;
 }
- 
+
 .description-container ::-webkit-scrollbar-track {
     border-radius: 10px;
     margin: 10px;
 
 }
- 
+
 .description-container ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: #1AB3D5;
@@ -356,6 +356,22 @@ footer {
 }
 
 /* Footer styles end */
+
+/* SVG styles start */
+
+.roadmap-module, .roadmap-theme {
+    fill: #1AB3D5;
+}
+
+.roadmap-text-course{
+    fill: white;
+}
+
+.roadmap-line-course, .roadmap-line-semester {
+    stroke: #1AB3D5;
+}
+
+/* SVG styles end */
 
 /* Fonts start */
 
