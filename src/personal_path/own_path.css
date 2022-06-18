@@ -2,8 +2,8 @@ body {
     background-color: rgb(17, 15, 44);
     font-family: "Roboto Light", sans-serif;
     color: rgb(21, 96, 128);
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
 }
 
 main {
@@ -11,7 +11,7 @@ main {
     justify-content: center;
     flex-wrap: wrap;
     height: 95vh;
-    width: 80%;
+    width: 100%;
 }
 
 .semester-root {
@@ -106,6 +106,8 @@ main {
     position: fixed;
     width: 100%;
     z-index: 1;
+    top: 0;
+    left: 0;
 }
 
 .desc-window-root .container {

@@ -245,6 +245,9 @@ async function main() {
 
     semesterInfos.unshift(freeZone);
 
+    //TODO: header and footer
+    //TODO: constants from smt_config.json
+    //TODO: refactoring css
     //TODO: refactor filtering
     //TODO: fix DnD parent freeze
 
