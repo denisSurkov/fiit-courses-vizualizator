@@ -89,9 +89,16 @@ video {
     vertical-align: baseline;
 }
 
+:root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #1AB3D5;
+    --highlighted-text-color: #FE25A7;
+    --bg-color: #110F2C;
+}
+
 a {
     text-decoration: none;
-    color: #FFFFFF;
+    color: var(--primary-color);
 }
 
 /* Reset styles end */
@@ -102,12 +109,6 @@ html {
     box-sizing: border-box;
 }
 
-:root{
-    --primary-color: #FFFFFF;
-    --secondary-color: #1AB3D5;
-    --highlighted-text-color: #FE25A7;
-    --bg-color: #110F2C;
-}
 
 *,
 *::before,
@@ -252,19 +253,19 @@ main {
 
 /* Description styles start */
 
-.description-container .title{
+.description-container .title {
     font-size: 36px;
     padding-bottom: 10px;
     color: var(--highlighted-text-color);
     text-decoration-line: underline;
 }
 
-.description-container .description{
+.description-container .description {
     font-family: golos;
     font-size: 20px;
 }
 
-.description-container .section-title{
+.description-container .section-title {
     font-size: 30px;
     padding-bottom: 10px;
     color: var(--secondary-color);
@@ -284,7 +285,7 @@ main {
     height: 100%;
     width: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .description-section {
@@ -303,8 +304,13 @@ main {
 }
 
 @keyframes modalopen {
-    from{opacity: 0;}
-    to {opacity: 1;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Description styles end */
@@ -359,16 +365,30 @@ footer {
 
 /* SVG styles start */
 
-.roadmap-module, .roadmap-theme {
-    fill: #1AB3D5;
+.roadmap-module,
+.roadmap-theme {
+    fill: var(--secondary-color);
+    cursor: pointer;
 }
 
-.roadmap-text-course{
-    fill: white;
+.roadmap-text-course {
+    fill: var(--primary-color);
+    cursor: pointer;
 }
 
-.roadmap-line-course, .roadmap-line-semester {
-    stroke: #1AB3D5;
+.roadmap-line-course,
+.roadmap-line-semester {
+    stroke: var(--secondary-color);
+}
+
+.roadmap-zet-circle {
+    fill: var(--highlighted-text-color);
+    cursor: pointer;
+}
+
+.roadmap-zet-text {
+    fill: var(--primary-color);
+    cursor: pointer;
 }
 
 /* SVG styles end */

@@ -7,6 +7,8 @@ import {
     BLOCK_TEXT_COURSE_STYLE_NAME,
     LINE_COURSE_STYLE_NAME,
     LINE_SEMESTER_STYLE_NAME,
+    ZET_CIRCLE_STYLE_NAME,
+    ZET_TEXT_STYLE_NAME,
 } from "./constants.js";
 import {convertCourseNameToId} from '../utils.js';
 
@@ -49,11 +51,11 @@ const AVERAGE_PADDING_FOR_LINES = 25;
 
 
 const ZET_CIRCLE_PARAMS = {
-    'fill': 'rgb(233, 64, 163)'
+    'class': ZET_CIRCLE_STYLE_NAME,
 }
 
 const ZET_TEXT_PARAMS = {
-    'fill': 'white',
+    'class': ZET_TEXT_STYLE_NAME,
 }
 
 export class RoadmapDrawer {
