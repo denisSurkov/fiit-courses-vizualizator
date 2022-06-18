@@ -8,6 +8,7 @@
 
 
 public/*.html
+!public/personal_path.html
 .idea/*
 .vscode
 
