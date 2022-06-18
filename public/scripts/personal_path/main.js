@@ -1,26 +1,15 @@
 import SemesterInfo from "./models/semester-info.js";
 import CourseInfo from "./models/course-info.js";
-import CourseView from "./views/course-view.js";
 import CoursePreview from "./views/course-preview.js";
-import SemesterView from "./views/semester-view.js";
-import DescriptionWindow from "./views/description-window.js";
-import CourseContainer from "./views/course-container.js";
 import constants from "./constants.js";
 import FreeZone from "./models/free-zone.js";
 import FreeZoneView from "./views/free-zone-view.js";
 import {initModal} from "../description.js";
+import {modelByEventId, registerDragAndDropModel} from "./dnd-manager.js";
+import SemesterView from "./views/semester-view.js";
 
-let eventIdsCount = 0;
-let modelByEventId = {};
-let url = new URL(window.location.href);
 
-/**
- * @param {View} view
- * **/
-function setNextEventId(view) {
-    view.eventId = 'eid' + eventIdsCount;
-    eventIdsCount++;
-}
+const url = new URL(window.location.href);
 
 async function loadModels(url, recordToModelParser, viewFactory) {
     let recordsList = await (await fetch(url)).json();
@@ -38,24 +27,17 @@ async function loadModels(url, recordToModelParser, viewFactory) {
 
 /**
  * @param {object} jsonRecord,
- * @param {CourseView} view
+ * @param {CoursePreview} view
  * **/
 function parseJsonToCourseFullInfo(jsonRecord, view) {
-    let result = new CourseInfo(
+    return new CourseInfo(
         jsonRecord['id'],
         jsonRecord['title'],
         jsonRecord['zet'],
-        '',
         jsonRecord['semester'],
         jsonRecord['theme'],
         view
     );
-
-    modelByEventId[view.eventId] = result;
-    modelByEventId[view.coursePreview.eventId] = result;
-    modelByEventId[view.descriptionWindow.eventId] = result;
-
-    return result;
 }
 
 function parseJsonToSemesterInfo(jsonRecord, courseFullInfoById, freeCourseIds, view) {
@@ -89,19 +71,24 @@ function parseJsonToSemesterInfo(jsonRecord, courseFullInfoById, freeCourseIds, 
 
     coursesToAdd.forEach(item => result.addCourse(item));
 
-    modelByEventId[view.eventId] = result;
-    modelByEventId[view.courseContainer.eventId] = result;
-
     return result;
 }
 
-function initDragAndDropEvents(semesterInfos, modelByEventId) {
-    //TODO: refactoring with dataTransfer style
+function initDragAndDropEvents(semesterInfos, courseInfos) {
     let draggableCourse;
     let startSemester;
 
     semesterInfos.forEach(item => {
-        item.view.courseContainer.root.addEventListener('dragstart', event => {
+        registerDragAndDropModel(item.view.root, item);
+        registerDragAndDropModel(item.view.courseContainer, item);
+    });
+
+    courseInfos.forEach(item => {
+        registerDragAndDropModel(item.view.root, item);
+    });
+
+    semesterInfos.forEach(item => {
+        item.view.courseContainer.addEventListener('dragstart', event => {
             let model = modelByEventId[event.target.id];
             if (!model || !(model instanceof CourseInfo))
                 return;
@@ -109,12 +96,12 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
             draggableCourse = model;
         });
 
-        item.view.courseContainer.root.addEventListener('dragend', () => {
+        item.view.courseContainer.addEventListener('dragend', () => {
             draggableCourse = undefined;
             startSemester = undefined;
         });
 
-        item.view.courseContainer.root.addEventListener('dragenter', event => {
+        item.view.courseContainer.addEventListener('dragenter', event => {
             let model = modelByEventId[event.target.id];
             if (!model || !(model instanceof FreeZone))
                 return;
@@ -122,7 +109,7 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
             model.view.currentCategory = draggableCourse.category;
         })
 
-        item.view.courseContainer.root.addEventListener('dragleave', event => {
+        item.view.courseContainer.addEventListener('dragleave', event => {
             let model = modelByEventId[event.target.id];
             if (!model || !(model instanceof SemesterInfo))
                 return;
@@ -131,11 +118,11 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
                 startSemester = item;
         });
 
-        item.view.courseContainer.root.addEventListener('dragover', event => {
+        item.view.courseContainer.addEventListener('dragover', event => {
             event.preventDefault();
         });
 
-        item.view.courseContainer.root.addEventListener('drop', event => {
+        item.view.courseContainer.addEventListener('drop', event => {
             let model = modelByEventId[event.target.id];
             if (!model
                 || !(model instanceof SemesterInfo)
@@ -149,43 +136,11 @@ function initDragAndDropEvents(semesterInfos, modelByEventId) {
     });
 }
 
-function initDescriptionOnClick(courseFullInfos) {
-    // for (const item of courseFullInfos) {
-    //     item.view.coursePreview.root.addEventListener('click', event => {
-    //         item.view.descriptionWindow.currentCourse = item;
-    //         item.view.descriptionWindow.show();
-    //
-    //         event.stopPropagation();
-    //     });
-    // }
-}
-
-function createSemesterView(isNeedUrlUpdate=true) {
-    let container = new CourseContainer();
-    setNextEventId(container);
-
-    let result = new SemesterView(container, isNeedUrlUpdate ? url : undefined);
-    setNextEventId(result);
-
-    return result;
-}
-
 async function main() {
-    let descriptionWindow = new DescriptionWindow();
-    setNextEventId(descriptionWindow);
-
     let courseFullInfos = await loadModels(
         'static/courses.json',
         parseJsonToCourseFullInfo,
-        () => {
-             let preview = new CoursePreview();
-             setNextEventId(preview);
-
-             let view = new CourseView(preview, descriptionWindow);
-             setNextEventId(view);
-
-             return view;
-        }
+        () => new CoursePreview()
     );
 
     let courseFullInfoById = courseFullInfos.reduce(
@@ -206,32 +161,24 @@ async function main() {
             courseFullInfoById,
             freeCourseIds,
             view),
-        createSemesterView
+        () => new SemesterView(url)
     );
 
-    let courseContainer = new CourseContainer();
-    setNextEventId(courseContainer);
-
     let freeZoneView = new FreeZoneView(
-        courseContainer,
         undefined,
         Object.getOwnPropertyNames(constants.courseCategory).map(item => constants.courseCategory[item])
     );
-    setNextEventId(freeZoneView);
 
     let freeZone = new FreeZone(
         'free',
         '',
         [...freeCourseIds].map(item => courseFullInfoById[item]),
-        10000,
+        NaN,
         constants.semTime.ANY,
         freeZoneView
     );
 
     freeZoneView.model = freeZone;
-
-    modelByEventId[freeZoneView.eventId] = freeZone;
-    modelByEventId[freeZoneView.courseContainer.eventId] = freeZone;
 
     semesterInfos.forEach(semesterInfo => {
         semesterInfo.view.root.addEventListener('click', () => {
@@ -247,14 +194,8 @@ async function main() {
     semesterInfos.unshift(freeZone);
 
     //TODO: dnd zone placeholder
-    //TODO: paths to courses data in configs
-    //TODO: constants from smt_config.json
-    //TODO: refactoring css
-    //TODO: refactor filtering
-    //TODO: fix DnD parent freeze
 
-    initDragAndDropEvents(semesterInfos, modelByEventId);
-    //initDescriptionOnClick(courseFullInfos);
+    initDragAndDropEvents(semesterInfos, courseFullInfos);
 
     semesterInfos.forEach(item => {
         if (item instanceof FreeZone)
@@ -266,7 +207,7 @@ async function main() {
     });
 
     initModal(courseFullInfos.reduce((acc, item) => {
-        acc.push(item.view.coursePreview.root, item.view.coursePreview.title, item.view.coursePreview.zedCountElement);
+        acc.push(item.view.root, item.view.title, item.view.zedCountElement);
 
         return acc;
     }, []));

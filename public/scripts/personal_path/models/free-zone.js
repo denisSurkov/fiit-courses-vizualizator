@@ -1,5 +1,4 @@
 import SemesterInfo from "./semester-info.js";
-import constants from "../constants.js";
 
 export default class FreeZone extends SemesterInfo {
     /**
@@ -18,14 +17,5 @@ export default class FreeZone extends SemesterInfo {
         semTime,
         view) {
         super(id, name, courses, maxZedCount, semTime, view);
-    }
-
-    /**
-     * @param {string} semTime
-     * **/
-    getCoursesBySemTime(semTime) {
-        return semTime === constants.semTime.ANY
-            ? [...this.courses]
-            : this.courses.filter(course => course.semTime === semTime);
     }
 }

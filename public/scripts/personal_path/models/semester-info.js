@@ -2,7 +2,7 @@ import Model from "./model.js";
 import constants from "../constants.js";
 
 export default class SemesterInfo extends Model {
-    courses = [];
+    #courses = [];
     _zedCount;
     _name;
     _maxZedCount;
@@ -64,35 +64,35 @@ export default class SemesterInfo extends Model {
      * @param {CourseInfo} course
      * **/
     addCourse(course) {
-        if (this.courses.indexOf(course) >= 0 || !this.isSuitableForAdding(course))
+        if (this.#courses.indexOf(course) >= 0 || !this.isSuitableForAdding(course))
             return;
 
-        this.courses.push(course);
+        this.#courses.push(course);
         this.zedCount += course.zedCount;
 
         this.view.zedCount = this._zedCount;
-        this.view.courseContainer.root.appendChild(course.view.coursePreview.root);
-        this.view.updateUrl(this.id, this.courses);
+        this.view.courseContainer.appendChild(course.view.root);
+        this.view.updateUrl(this.id, this.#courses);
     }
 
     /**
      * @param {CourseInfo} course
      * **/
     removeCourse(course) {
-        let index = this.courses.indexOf(course);
+        let index = this.#courses.indexOf(course);
         if (index < 0)
             return;
 
-        this.courses.splice(index, 1);
+        this.#courses.splice(index, 1);
 
         this._zedCount -= course.zedCount
 
         this.view.zedCount = this._zedCount;
-        this.view.courseContainer.root.removeChild(course.view.coursePreview.root);
-        this.view.updateUrl(this.id, this.courses);
+        this.view.courseContainer.removeChild(course.view.root);
+        this.view.updateUrl(this.id, this.#courses);
     }
 
     selectCoursesWithFilter(filterCallback) {
-        return this.courses.filter(filterCallback);
+        return this.#courses.filter(filterCallback);
     }
 }

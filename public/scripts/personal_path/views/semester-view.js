@@ -1,35 +1,21 @@
 import View from "./view.js";
+import {createDomElement} from "../utils.js";
 
 export default class SemesterView extends View {
-    _model;
-
     /**
-     * @param {CourseContainer} courseContainer
      * @param {URL} url
-     * @param {string} eventId
      * **/
-    constructor(courseContainer, url, eventId) {
-        super(eventId, document.createElement('div'));
+    constructor(url) {
+        super(createDomElement('semester-root'));
 
         this.url = url;
 
-        this.root.classList.add('semester-root');
-
-        this.courseContainer = courseContainer;
-
-        this.title = document.createElement('span');
-        this.title.classList.add('sem-title');
-
-        this.zedCountElement = document.createElement('div');
-        this.zedCountElement.classList.add('zed-counter-text');
-
-        let zedCounterContainer = document.createElement('div');
-        zedCounterContainer.classList.add('zed-counter');
-        zedCounterContainer.appendChild(this.zedCountElement);
-
-        this.root.appendChild(this.title);
-        this.root.appendChild(this.courseContainer.root);
-        this.root.appendChild(zedCounterContainer);
+        this.title = createDomElement('sem-title', this.root, '', 'span');
+        this.courseContainer = createDomElement('courses-container', this.root);
+        this.zedCountElement = createDomElement(
+            'zed-counter-text',
+            createDomElement('zed-counter', this.root)
+        );
     }
 
     /**

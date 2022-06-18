@@ -1,7 +1,15 @@
-export function createDomElement(tagName='div', classes='', id='') {
+export function createDomElement(classes='', parent=undefined, id='', tagName='div') {
+
     let result = document.createElement(tagName);
-    result.classList.add(...classes.split(' '));
+
+    const classesArray = classes.split(' ');
+    if (classesArray[0])
+        result.classList.add(...classes.split(' '));
+
     result.id = id;
+
+    if (parent !== undefined)
+        parent.appendChild(result);
 
     return result;
 }
