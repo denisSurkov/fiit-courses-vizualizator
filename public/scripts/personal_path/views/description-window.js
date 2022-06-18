@@ -1,34 +1,31 @@
 import View from "./view.js";
 import constants from "../constants.js";
+import {createDomElement} from "../utils.js";
 
 export default class DescriptionWindow extends View {
     constructor(eventId) {
-        super(eventId, document.createElement('div'));
+        super(eventId, createDomElement('div', 'description-container'));
 
-        this.root.id = eventId;
-        this.root.classList.add('desc-window-root');
+        this.root.addEventListener('click', event => {
+           this.hide();
+           event.stopPropagation();
+        });
 
-        this.mainContainer = document.createElement('div');
-        this.mainContainer.classList.add('container');
+        this.descriptionSection = createDomElement('div', 'description-section');
 
-        this.window = document.createElement('div');
-        this.window.classList.add('window');
+        this.descriptionSection.addEventListener('click', event => event.stopPropagation());
 
-        this.descriptionElement = document.createElement('div');
-        this.descriptionElement.classList.add('desc');
-
-        this.closeBtn = document.createElement('div');
-        this.closeBtn.innerText = 'закрыть';
-        this.closeBtn.classList.add('close-btn');
-
-        this.closeBtn.addEventListener('click', () => this.hide());
+        // this.window = document.createElement('div');
+        // this.window.classList.add('window');
+        //
+        // this.descriptionElement = document.createElement('div');
+        // this.descriptionElement.classList.add('desc');
 
         this.hide();
 
-        this.window.appendChild(this.descriptionElement);
-        this.window.appendChild(this.closeBtn);
-        this.mainContainer.appendChild(this.window);
-        this.root.appendChild(this.mainContainer);
+        //this.window.appendChild(this.descriptionElement);
+        //this.descriptionSection.appendChild(this.window);
+        this.root.appendChild(this.descriptionSection);
         document.body.appendChild(this.root);
     }
 
@@ -37,14 +34,20 @@ export default class DescriptionWindow extends View {
      * **/
     set currentCourse(course) {
         let debugInfo = constants.DEBUG ? course.id + '\n' : '';
-        this.descriptionElement.innerHTML = debugInfo + course.description;
+        this.descriptionSection.innerHTML = debugInfo + course.description;
     }
 
     show() {
-        this.root.hidden = false;
+        this.root.style.display = 'inherit';
+        this.descriptionSection.style.display = 'inherit';
     }
 
     hide() {
-        this.root.hidden = true;
+        this.root.style.removeProperty('display');
+        this.descriptionSection.style.removeProperty('display');
+    }
+
+    static #createDescriptionHtml(descriptionObj) {
+
     }
 }

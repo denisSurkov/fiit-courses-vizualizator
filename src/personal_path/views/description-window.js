@@ -9,7 +9,7 @@ export default class DescriptionWindow extends View {
         this.root.classList.add('desc-window-root');
 
         this.mainContainer = document.createElement('div');
-        this.mainContainer.classList.add('container');
+        this.descriptionSection.classList.add('container');
 
         this.window = document.createElement('div');
         this.window.classList.add('window');
@@ -27,8 +27,8 @@ export default class DescriptionWindow extends View {
 
         this.window.appendChild(this.descriptionElement);
         this.window.appendChild(this.closeBtn);
-        this.mainContainer.appendChild(this.window);
-        this.root.appendChild(this.mainContainer);
+        this.descriptionSection.appendChild(this.window);
+        this.root.appendChild(this.descriptionSection);
         document.body.appendChild(this.root);
     }
 

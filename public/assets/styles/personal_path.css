@@ -1,12 +1,21 @@
-body {
-    background-color: rgb(17, 15, 44);
-    font-family: "Roboto Light", sans-serif;
-    color: rgb(21, 96, 128);
-    /*display: flex;*/
-    /*justify-content: center;*/
+#personal-path-body .header-container {
+    justify-content: center;
 }
 
-main {
+#personal-path-body {
+    height: auto;
+}
+
+#personal-path-body .description-container {
+    justify-content: center;
+}
+
+#personal-path-body .description-section {
+    margin: 0;
+}
+
+#personal-path-body #personal-path-main {
+    color: rgb(21, 96, 128);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -14,31 +23,33 @@ main {
     width: 100%;
 }
 
-.semester-root {
+#personal-path-body .semester-root {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    flex-shrink: 0;
 }
 
-.semester-root.free-zone-root {
+#personal-path-body .semester-root.free-zone-root {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
-    width: 45%;
-    height: 99%;
+    width: 47%;
+    height: 100%;
     top: 0;
     border-top: 0;
+    border-bottom: 0;
     border-radius: 0;
     border-color: rgb(26, 179, 213);
 }
 
-.semester-root.free-zone-root .courses-container {
+#personal-path-body .semester-root.free-zone-root .courses-container {
     margin-bottom: 10px;
 }
 
-#course-number-container {
+#personal-path-body #course-number-container {
     display: flex;
     width: 10%;
     flex-direction: column;
@@ -49,14 +60,14 @@ main {
 }
 
 @media (max-width: 1145px) {
-    #course-number-container * {
+    #personal-path-body #course-number-container * {
         writing-mode: tb;
         text-orientation: upright;
         width: 20px;
     }
 }
 
-.course-preview-root {
+#personal-path-body .course-preview-root {
     position: relative;
     width: 80%;
     height: 30px;
@@ -65,7 +76,7 @@ main {
     color: rgb(245, 245, 245);
 }
 
-.course-preview-root .title-container {
+#personal-path-body .course-preview-root .title-container {
     border-radius: inherit;
     display: flex;
     align-items: center;
@@ -75,7 +86,7 @@ main {
     background-color: inherit;
 }
 
-.course-preview-root .title {
+#personal-path-body .course-preview-root .title {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -84,7 +95,7 @@ main {
     padding: 10px;
 }
 
-.course-preview-root .zed-counter {
+#personal-path-body .course-preview-root .zed-counter {
     position: absolute;
     bottom: -10px;
     right: -10px;
@@ -97,12 +108,12 @@ main {
     align-items: center;
 }
 
-.semester-root {
+#personal-path-body .semester-root {
     margin-bottom: 25px;
     padding: 10px;
 }
 
-.desc-window-root {
+#personal-path-body .desc-window-root {
     position: fixed;
     width: 100%;
     z-index: 1;
@@ -110,13 +121,13 @@ main {
     left: 0;
 }
 
-.desc-window-root .container {
+#personal-path-body .desc-window-root .container {
     height: 99vh;
     display: flex;
     justify-content: center;
 }
 
-.desc-window-root .container .window {
+#personal-path-body .desc-window-root .container .window {
     position: absolute;
     display: flex;
     justify-content: space-between;
@@ -133,7 +144,7 @@ main {
     flex-shrink: 0;
 }
 
-.desc-window-root .container .window .desc {
+#personal-path-body .desc-window-root .container .window .desc {
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
@@ -143,7 +154,7 @@ main {
     color: rgb(183, 183, 183);
 }
 
-.close-btn {
+#personal-path-body .close-btn {
     text-align: center;
     cursor: pointer;
     border-radius: 20px;
@@ -160,12 +171,12 @@ main {
     margin-bottom: 10px;
 }
 
-.close-btn:hover {
+#personal-path-body .close-btn:hover {
     transition: 0.5s;
     opacity: 0.6;
 }
 
-.filter-btn {
+#personal-path-body .filter-btn {
     background-color: rgb(254, 37, 167);
     color: rgb(245, 245, 245);
     border-radius: 50px;
@@ -176,19 +187,19 @@ main {
     opacity: 0.5;
 }
 
-.filter-btn:hover {
+#personal-path-body .filter-btn:hover {
     transition: 0.5s;
     opacity: 1;
 }
 
-.semester-root {
+#personal-path-body .semester-root {
     height: 40%;
     background-color: inherit;
     border: solid rgb(21, 96, 128) 3px;
     border-radius: 10px;
 }
 
-.semester-root .courses-container {
+#personal-path-body .semester-root .courses-container {
     display: flex;
     padding-top: 20px;
     padding-bottom: 10px;
@@ -205,7 +216,6 @@ main {
 
 ::-webkit-scrollbar-thumb {
     background-color: rgba(21, 96, 128, 0.5);
-    border: 3px solid rgb(26, 25, 47);
     border-radius: 10px;
 }
 
@@ -214,7 +224,7 @@ main {
     border-radius: 10px;
 }
 
-.semester-root > .zed-counter {
+#personal-path-body .semester-root > .zed-counter {
     position: absolute;
     right: -15px;
     bottom: -10px;
@@ -227,24 +237,23 @@ main {
     border-radius: 30px;
 }
 
-.semester-root > .zed-counter > .zed-counter-text {
+#personal-path-body .semester-root > .zed-counter > .zed-counter-text {
     color: rgb(245, 245, 245);
 }
 
-.semester-root {
+#personal-path-body .semester-root {
     flex-shrink: 0;
     position: relative;
 }
 
-.sem-container {
+#personal-path-body .sem-container {
     display: flex;
     flex-direction: column;
     width: 33%;
 }
 
-.sem-container > .title {
+#personal-path-body .sem-container > .title {
     text-align: center;
     padding: 10px;
     font-size: 120%;
 }
-
