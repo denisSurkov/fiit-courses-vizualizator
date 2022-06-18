@@ -1,4 +1,4 @@
-import {createSVGElement} from "./utils.js";
+import {createSVGElement} from './utils.js';
 
 export class SVGDrawer {
 
@@ -42,7 +42,7 @@ export class SVGDrawer {
     drawCircle(cx, cy, r, options, parent) {
         parent = parent ?? this.svgRoot;
 
-        return createSVGElement('rect', {
+        return createSVGElement('circle', {
             cx: cx,
             cy: cy,
             r: r,
@@ -88,8 +88,8 @@ export class SVGDrawer {
     }
 
 
-    addGroup(groupOptions) {
-        return createSVGElement('g', groupOptions, this.svgRoot);
+    addGroup(groupOptions, parent) {
+        return createSVGElement('g', groupOptions, parent ?? this.svgRoot);
     }
 
 

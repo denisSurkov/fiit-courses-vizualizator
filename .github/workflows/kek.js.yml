@@ -1,0 +1,42 @@
+name: Building node.js and publishing
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - run: npm install
+      - run: npm start
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: frontend
+          path: ./public/
+          retention-days: 3
+  publish:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: Download math result for job 1
+        uses: actions/download-artifact@v2
+        with:
+          name: frontend
+          path: /home/timpo/kek/
+      - name: Creating correct folder and cleaning
+        run: |
+          mkdir -p /home/timpo/web/src
+          rm -rf /home/timpo/web/src/*
+      - uses: actions/checkout@v3
+      - name: Moving project to correct folder
+        run: |
+          ls
+          mv /home/timpo/kek/* /home/timpo/web/src/

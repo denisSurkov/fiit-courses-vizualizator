@@ -1,0 +1,35 @@
+{
+    "title": "Frontend",
+    "description": "Пошаговое руководство, как стать современным фронтенд-разработчиком в 2022 году",
+    "roadmap": [
+        {
+            "mode": "theme",
+            "title": "5 семестр",
+            "children": [
+                {
+                    "mode": "module",
+                    "course": "kontur-frontend"
+                },
+                {
+                    "mode": "module",
+                    "course": "hackerdom-part1"
+                },
+                {
+                    "mode": "module",
+                    "course": "kontur-backend"
+                }
+            ]
+        },
+        {
+            "mode": "theme",
+            "title": "6 семестр",
+            "type": "right",
+            "children": [
+                {
+                    "mode": "module",
+                    "course": "hackerdom-part2"
+                }
+            ]
+        }
+    ]
+}

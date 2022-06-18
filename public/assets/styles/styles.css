@@ -1,0 +1,388 @@
+/* Reset styles start */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Reset styles end */
+
+/* Overall styles start */
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #110F2C;
+    color: white;
+    font-family: golos-bold;
+}
+
+.wrapper {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+/* Overall styles end */
+
+/* Header styles start */
+
+.header-container {
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.header-text {
+    margin-left: 30px;
+}
+
+.header-title {
+    font-size: 38.4px;
+    margin: 0px 10px;
+}
+
+.fiit-logo {
+    width: 160px;
+    height: 160px;
+}
+
+.header-tab-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-tab-link {
+    display: block;
+    font-size: 24px;
+    margin: 0px 10px;
+}
+
+.header-tab:hover {
+    text-decoration-line: underline;
+}
+
+.tab-chosen {
+    color: #FE25A7;
+    text-decoration-line: underline;
+}
+
+.header-tab-right-arrow {
+    width: 25px;
+    position: relative;
+    top: 2px;
+}
+
+.header-tab {
+    display: flex;
+}
+
+.header-description {
+    font-family: golos;
+    font-size: 24px;
+    margin: 0px 10px;
+}
+
+.header-back-button {
+    font-size: 24px;
+    margin: 0px 5px;
+    color: #FE25A7;
+}
+
+.header-back-button:hover {
+    text-decoration-line: underline;
+    /* border-bottom: 1px solid #FE25A7; */
+}
+
+.header-back-arrow {
+    width: 15px;
+}
+
+.header-back {
+    display: flex;
+    margin: 10px 10px;
+}
+
+/* Header styles end */
+
+/* Main styles start */
+
+main {
+    margin-bottom: 100px;
+}
+
+.blocks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 360px);
+    grid-column-gap: 20px;
+    grid-row-gap: 33px;
+    margin: 20px auto;
+    justify-content: center;
+}
+
+
+.block {
+    border: white solid 3px;
+    border-radius: 25px;
+    padding: 15px 20px;
+    width: 360px;
+    height: 145px;
+}
+
+.block:hover {
+    background-color: #1AB3D5;
+}
+
+.block-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.block-description {
+    font-family: golos;
+    font-size: 18px;
+}
+
+.roadmap {
+    background: linear-gradient(90deg, #0F1B47 0%, rgba(56, 22, 79, 0.958802) 49.79%, rgba(84, 18, 85, 0.93) 100%), #C4C4C4;
+}
+
+/* Main styles end */
+
+/* Description styles start */
+
+.description-container .title{
+    font-size: 36px;
+    padding-bottom: 10px;
+    color: #FE25A7;
+    text-decoration-line: underline;
+}
+
+.description-container .description{
+    font-family: golos;
+    font-size: 20px;
+}
+
+.description-container .section-title{
+    font-size: 30px;
+    padding-bottom: 10px;
+    color: #1AB3D5;
+    text-decoration: underline;
+}
+
+.description-container .section {
+    margin: 20px 0px;
+}
+
+.description-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.description-section {
+    display: none;
+    margin: auto;
+    background-color: #110F2C;
+    width: 70%;
+    height: 90%;
+    border: #1AB3D5 solid 3px;
+    border-radius: 25px;
+    padding: 5px 30px;
+    overflow-y: auto;
+    transform: translateY(5%);
+    animation-name: modalopen;
+    animation-duration: 500ms;
+    scrollbar-color: #FE25A7;
+}
+
+/* Scrollbar styles start */
+
+.description-container ::-webkit-scrollbar {
+    width: 3px;
+}
+
+.description-container ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    margin: 10px;
+
+}
+
+.description-container ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #1AB3D5;
+    opacity: 0.5;
+}
+
+/* Scrollbar styles end */
+
+@keyframes modalopen {
+    from{opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Description styles end */
+
+/* Footer styles start */
+
+footer {
+    text-align: center;
+    margin-top: auto;
+    min-height: 100px;
+}
+
+.footer-image {
+    width: 190px;
+    height: 60px;
+    position: relative;
+    bottom: 25px;
+    z-index: -1;
+}
+
+.footer-content {
+    font-family: golos;
+    font-size: 19px;
+}
+
+.footer-content-link {
+    display: block;
+    margin: 5px 5px;
+}
+
+/* Footer styles end */
+
+/* SVG styles start */
+
+.roadmap-module, .roadmap-theme {
+    fill: #1AB3D5;
+}
+
+.roadmap-text-course{
+    fill: white;
+}
+
+.roadmap-line-course, .roadmap-line-semester {
+    stroke: #1AB3D5;
+}
+
+/* SVG styles end */
+
+/* Fonts start */
+
+@font-face {
+    font-family: golos-bold;
+    src: url("../fonts/Golos Text_Bold.ttf");
+}
+
+@font-face {
+    font-family: golos;
+    src: url("../fonts/Golos Text_Regular.ttf");
+}
+
+/* Fonts end */
