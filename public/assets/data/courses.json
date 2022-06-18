@@ -1,11 +1,11 @@
 [
   {
     "id": "c1",
-    "name": "OS",
-    "zedCount": 4,
-    "semTime": "spring",
-    "category": "dev-ops",
-    "description": "Course about operation systems"
+    "name": "Фронтенд от Контура",
+    "zedCount": 3,
+    "semTime": "fall",
+    "category": "frontend",
+    "description": "OK"
   },
   {
     "id": "c2",
@@ -69,7 +69,7 @@
     "zedCount": 5,
     "semTime": "fall",
     "category": "prog",
-    "description": "<div><h1>Курс по алгоритмам</h1><ul><li>Полиномиальный хэш</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li></ul></div>"
+    "description": "<div><h1>Курс по алгоритмам</h1><ul><li>Полиномиальный хэш</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li><li>Бор</li></ul></div>"
   },
   {
     "id": "c10",
