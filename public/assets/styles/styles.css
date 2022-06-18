@@ -103,9 +103,9 @@ html {
 }
 
 :root{
-    --white-color: #FFFFFF;
-    --cyan-color: #1AB3D5;
-    --pink-color: #FE25A7;
+    --primary-color: #FFFFFF;
+    --secondary-color: #1AB3D5;
+    --highlighted-text-color: #FE25A7;
     --bg-color: #110F2C;
 }
 
@@ -120,7 +120,7 @@ body {
     flex-direction: column;
     height: 100vh;
     background-color: var(--bg-color);
-    color: var(--white-color);
+    color: var(--primary-color);
     font-family: golos-bold;
 }
 
@@ -169,7 +169,7 @@ body {
 }
 
 .tab-chosen {
-    color: var(--pink-color);
+    color: var(--highlighted-text-color);
     text-decoration-line: underline;
 }
 
@@ -188,7 +188,7 @@ body {
 .header-back-button {
     font-size: 24px;
     margin: 0px 5px;
-    color: var(--pink-color);
+    color: var(--highlighted-text-color);
 }
 
 .header-back-button:hover {
@@ -223,7 +223,7 @@ main {
 
 
 .block {
-    border: var(--white-color) solid 3px;
+    border: var(--primary-color) solid 3px;
     border-radius: 25px;
     padding: 15px 20px;
     width: 360px;
@@ -231,7 +231,7 @@ main {
 }
 
 .block:hover {
-    background-color: var(--cyan-color);
+    background-color: var(--secondary-color);
 }
 
 .block-title {
@@ -255,7 +255,7 @@ main {
 .description-container .title{
     font-size: 36px;
     padding-bottom: 10px;
-    color: var(--pink-color);
+    color: var(--highlighted-text-color);
     text-decoration-line: underline;
 }
 
@@ -267,7 +267,7 @@ main {
 .description-container .section-title{
     font-size: 30px;
     padding-bottom: 10px;
-    color: var(--cyan-color);
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
@@ -293,7 +293,7 @@ main {
     background-color: #110F2C;
     width: 70%;
     height: 90%;
-    border: var(--cyan-color) solid 3px;
+    border: var(--secondary-color) solid 3px;
     border-radius: 25px;
     padding: 5px 30px;
     overflow-y: auto;
@@ -323,7 +323,7 @@ main {
  
 .description-container ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: var(--cyan-color);
+    background-color: var(--secondary-color);
     opacity: 0.5;
 }
 
