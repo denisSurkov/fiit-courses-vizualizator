@@ -1,9 +1,9 @@
-#personal-path-body .header-container {
-    justify-content: center;
-}
-
 #personal-path-body {
     height: auto;
+}
+
+#personal-path-body .header-container {
+    justify-content: center;
 }
 
 #personal-path-body #personal-path-main {
@@ -20,6 +20,13 @@
     flex-direction: column;
     justify-content: flex-start;
     flex-shrink: 0;
+    height: 40%;
+    background-color: inherit;
+    border: solid rgb(21, 96, 128) 3px;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 25px;
+    padding: 10px;
 }
 
 #personal-path-body .semester-root.free-zone-root {
@@ -100,11 +107,6 @@
     align-items: center;
 }
 
-#personal-path-body .semester-root {
-    margin-bottom: 25px;
-    padding: 10px;
-}
-
 #personal-path-body .close-btn {
     text-align: center;
     cursor: pointer;
@@ -141,13 +143,6 @@
 #personal-path-body .filter-btn:hover {
     transition: 0.5s;
     opacity: 1;
-}
-
-#personal-path-body .semester-root {
-    height: 40%;
-    background-color: inherit;
-    border: solid rgb(21, 96, 128) 3px;
-    border-radius: 10px;
 }
 
 #personal-path-body .semester-root .courses-container {
@@ -190,11 +185,6 @@
 
 #personal-path-body .semester-root > .zed-counter > .zed-counter-text {
     color: rgb(245, 245, 245);
-}
-
-#personal-path-body .semester-root {
-    flex-shrink: 0;
-    position: relative;
 }
 
 #personal-path-body .sem-container {
