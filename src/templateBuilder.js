@@ -8,7 +8,7 @@ const PUBLIC_FOLDER = './public'
 
 const ROADMAPS_TEMPLATE = 'roadmap.template';
 const INDEX_TEMPLATE = 'index.template';
-const PERSONAL_PATH_TEMPLATE = 'personal_path.template';
+const OWN_PATH_TEMPLATE = 'own_path.template';
 
 
 export default class TemplateBuilder {
