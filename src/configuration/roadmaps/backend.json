@@ -1,5 +1,84 @@
 {
     "title": "Backend",
     "description": "Пошаговое руководство, как стать современным бэкенд-разработчиком в 2022 году",
-    "roadmap": []
+    "roadmap": [
+        {
+            "mode": "theme",
+            "title": "5 семестр",
+            "children": [
+                {
+                    "mode": "module",
+                    "course": "kontur-backend"
+                },
+                {
+                    "mode": "module",
+                    "course": "hackerdom-part1"
+                },
+                {
+                    "mode": "module",
+                    "course": "kontur-backend"
+                },
+                {
+                    "mode": "module",
+                    "course": "hackerdom-part1"
+                }
+            ]
+        },
+        {
+            "mode": "theme",
+            "title": "6 семестр",
+            "type": "left",
+            "children": [
+                {
+                    "mode": "module",
+                    "course": "backend-python-doubletapp"
+                },
+                {
+                    "mode": "module",
+                    "course": "hackerdom-part2"
+                }
+            ]
+        },
+        {
+            "mode": "theme",
+            "title": "7 семестр",
+            "children": [
+                {
+                    "mode": "module",
+                    "course": "qa-control"
+                },
+                {
+                    "mode": "module",
+                    "course": "unix-intro"
+                },
+                {
+                    "mode": "module",
+                    "course": "cpp-part1"
+                },
+                {
+                    "mode": "module",
+                    "course": "cpp-part2"
+                }
+            ]
+        },
+        {
+            "mode": "theme",
+            "title": "8 семестр",
+            "type": "right",
+            "children": [
+                {
+                    "mode": "module",
+                    "course": "qa-control"
+                },
+                {
+                    "mode": "module",
+                    "course": "unix-intro"
+                },
+                {
+                    "mode": "module",
+                    "course": "decenter-systems"
+                }
+            ]
+        }
+    ]
 }
