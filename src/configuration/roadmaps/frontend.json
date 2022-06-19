@@ -23,7 +23,7 @@
         {
             "mode": "theme",
             "title": "6 семестр",
-            "type": "right",
+            "type": "left",
             "children": [
                 {
                     "mode": "module",
@@ -33,11 +33,12 @@
         },
         {
             "mode": "theme",
+            "type": "left",
             "title": "7 семестр",
             "children": [
                 {
                     "mode": "module",
-                    "course": "html-academy2"
+                    "course": "product-anal-intro"
                 }
             ]
         },
