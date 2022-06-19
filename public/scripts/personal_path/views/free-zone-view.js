@@ -1,17 +1,18 @@
 import SemesterView from "./semester-view.js";
 import constants from "../constants.js";
+import {createDomElement} from "../utils.js";
 
 export default class FreeZoneView extends SemesterView {
-    _model;
+    #model;
+    #currentCategory;
+    #currentSemTime;
 
     /**
-     * @param {CourseContainer} courseContainer
      * @param {URL} url
      * @param {Array<string>} categories
-     * @param {string} eventId
      * **/
-    constructor(courseContainer, url, categories, eventId) {
-        super(courseContainer, url, eventId);
+    constructor(url, categories) {
+        super(url);
 
         this.root.classList.add('free-zone-root');
         this.hide();
@@ -22,72 +23,60 @@ export default class FreeZoneView extends SemesterView {
 
         this.zedCountElement.remove();
 
-        this.hideBtn = document.createElement('div');
-        this.hideBtn.classList.add('close-btn');
+        this.status = createDomElement('', this.root)
+
+        this.hideBtn = createDomElement('close-btn', this.root);
         this.hideBtn.innerText = 'закрыть';
         this.hideBtn.addEventListener('click', () => this.hide());
 
-        this.status = document.createElement('div');
-
-        this.navigationContainer = document.createElement('div');
-        this.navigationContainer.classList.add('navigation-container');
+        this.navigationContainer = createDomElement('navigation-container');
         this.root.insertBefore(this.navigationContainer, this.root.firstChild);
-
-
-        this.root.appendChild(this.status);
-        this.root.appendChild(this.hideBtn);
 
         this.categoryBtns = {};
         for (const category of this.categories) {
-            let btn = document.createElement('div');
-            this.categoryBtns[category] = btn;
-
-            btn.classList.add('filter-btn');
+            let btn = createDomElement('filter-btn', this.navigationContainer);
             btn.innerText = constants.courseCategoryAliases[category];
+            btn.addEventListener('click', () => this.currentCategory = category);
 
-            btn.addEventListener('click', () => {
-               this.currentCategory = category;
-            });
-
-            this.navigationContainer.appendChild(btn);
+            this.categoryBtns[category] = btn;
         }
 
         this.currentCategory = this.categories[0];
-        this._currentSemTime = constants.semTime.ANY;
+        this.#currentSemTime = constants.semTime.ANY;
     }
 
     get currentCategory() {
-        return this._currentCategory;
+        return this.#currentCategory;
     }
 
     set currentCategory(value) {
         if (this.currentCategory !== undefined)
             this.categoryBtns[this.currentCategory].style.removeProperty('opacity');
 
-        this._currentCategory = value;
+        this.#currentCategory = value;
 
         this.categoryBtns[this.currentCategory].style.opacity = '1';
 
-        if (this._model !== undefined)
-            this.fillContainer(this._model.selectCoursesWithFilter(item => this.#filterCourse(item)));
+        if (this.#model !== undefined)
+            this.fillContainer(this.#model.selectCoursesWithFilter(item => this.#filterCourse(item)));
 
         if (constants.DEBUG)
-            this.status.innerText = this._currentSemTime + ' ' + this._currentCategory;
+            this.status.innerText = this.#currentSemTime + ' ' + this.#currentCategory;
     }
 
     /**
      * @param {FreeZone} value
      * **/
     set model(value) {
-        this._model = value;
+        this.#model = value;
 
-        this.currentSemTime = this._currentSemTime;
+        this.currentSemTime = this.#currentSemTime;
     }
 
     set currentSemTime(value) {
-        this._currentSemTime = value;
+        this.#currentSemTime = value;
 
-        this.fillContainer(this._model.selectCoursesWithFilter(item => this.#filterCourse(item)));
+        this.fillContainer(this.#model.selectCoursesWithFilter(item => this.#filterCourse(item)));
 
         if (value === constants.semTime.SPRING) {
             this.root.style.removeProperty('right');
@@ -98,17 +87,17 @@ export default class FreeZoneView extends SemesterView {
         }
 
         if (constants.DEBUG)
-            this.status.innerText = this._currentSemTime + ' ' + this._currentCategory;
+            this.status.innerText = this.#currentSemTime + ' ' + this.#currentCategory;
     }
 
     /**
      * @param {Array<CourseInfo>} courses
      * **/
     fillContainer(courses) {
-        this.courseContainer.root.innerHTML = '';
+        this.courseContainer.innerHTML = '';
 
         courses.forEach(course => {
-            this.courseContainer.root.appendChild(course.view.coursePreview.root);
+            this.courseContainer.appendChild(course.view.root);
         });
     }
 
@@ -122,7 +111,7 @@ export default class FreeZoneView extends SemesterView {
 
     #filterCourse(course) {
         return course.category === this.currentCategory
-            && (course.semTime === this._currentSemTime
-                || this._currentSemTime === constants.semTime.ANY);
+            && (course.semTime === this.#currentSemTime
+                || this.#currentSemTime === constants.semTime.ANY);
     }
 }

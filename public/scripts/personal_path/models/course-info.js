@@ -5,16 +5,14 @@ export default class CourseInfo extends Model {
      * @param {string} id
      * @param {string} name
      * @param {number} zedCount
-     * @param {string} description
      * @param {string} semTime
      * @param {string} category
-     * @param {CourseView} view
+     * @param {CoursePreview} view
      * **/
     constructor(
         id,
         name,
         zedCount,
-        description,
         semTime,
         category,
         view
@@ -24,12 +22,13 @@ export default class CourseInfo extends Model {
         this.id = id;
         this.name = name;
         this.zedCount = zedCount;
-        this.description = description;
         this.semTime = semTime;
         this.category = category;
 
-        view.coursePreview.title.innerText = this.name;
-        view.coursePreview.zedCountElement.innerText = this.zedCount.toString();
-        view.descriptionWindow.descriptionElement.innerText = this.description;
+        [view.root, view.title, view.zedCountElement]
+            .concat(...view.root.children)
+            .forEach(item => item.setAttribute('data-course', this.id));
+        view.title.innerText = this.name;
+        view.zedCountElement.innerText = this.zedCount.toString();
     }
 }
