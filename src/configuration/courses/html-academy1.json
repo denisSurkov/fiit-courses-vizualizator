@@ -1,0 +1,14 @@
+{
+  "title": "HTML Academy 1: JavaScript. Архитектура клиентских приложений",
+  "description": "Научимся создавать современные веб-приложения. Узнаем, как писать код на ES2015 (ES6), тестировать его и применять паттерны проектирования.",
+  "zet": 6,
+  "other": [
+    {
+      "title": "Подробнее о курсе",
+      "description": "https://htmlacademy.ru/intensive/ecmascript"
+    }
+  ],
+  "id": "101",
+  "semester": "fall",
+  "theme": "frontend"
+}
