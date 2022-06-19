@@ -1,4 +1,4 @@
-import SemesterInfo from "./semester-info.js";
+import SemesterInfo from './semester-info.js';
 
 export default class FreeZone extends SemesterInfo {
     /**

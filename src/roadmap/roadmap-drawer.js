@@ -10,7 +10,6 @@ import {
     ZET_CIRCLE_STYLE_NAME,
     ZET_TEXT_STYLE_NAME,
 } from "./constants.js";
-import {convertCourseNameToId} from '../utils.js';
 
 const BLOCK_THEME_PARAMS = {
     'class': BLOCK_THEME_STYLE_NAME,

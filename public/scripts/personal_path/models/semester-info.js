@@ -1,5 +1,5 @@
-import Model from "./model.js";
-import constants from "../constants.js";
+import Model from './model.js';
+import constants from '../constants.js';
 
 export default class SemesterInfo extends Model {
     #courses = [];

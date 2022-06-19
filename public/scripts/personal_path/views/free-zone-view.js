@@ -1,6 +1,6 @@
-import SemesterView from "./semester-view.js";
-import constants from "../constants.js";
-import {createDomElement} from "../utils.js";
+import SemesterView from './semester-view.js';
+import constants from '../constants.js';
+import {createDomElement} from '../utils.js';
 
 export default class FreeZoneView extends SemesterView {
     #model;

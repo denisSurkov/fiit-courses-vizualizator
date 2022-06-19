@@ -43,7 +43,7 @@ function parseJsonToCourseFullInfo(jsonRecord, view) {
 function parseJsonToSemesterInfo(jsonRecord, courseFullInfoById, freeCourseIds, view) {
     let coursesArrayString = url.searchParams.get(jsonRecord['id']) || '';
 
-    let result =  new SemesterInfo(
+    let result = new SemesterInfo(
         jsonRecord['id'],
         jsonRecord['name'],
         [],

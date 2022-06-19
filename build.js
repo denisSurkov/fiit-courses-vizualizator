@@ -29,7 +29,9 @@ function loadJsonFilesWithContent(folder) {
 
 const roadmaps = loadJsonFilesWithContent(ROADMAPS_FOLDER);
 const courses = loadJsonFilesWithContent(COURSES_FOLDER);
-const semesters = JSON.parse(fs.readFileSync(SEMESTERS_FILE));
+
+const semestersFileContent = fs.readFileSync(SEMESTERS_FILE);
+const semesters = JSON.parse(semestersFileContent);
 
 const htmlBuilder = new TemplateBuilder(roadmaps, courses, semesters);
 htmlBuilder.build();

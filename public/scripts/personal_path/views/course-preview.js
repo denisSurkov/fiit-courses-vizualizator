@@ -1,5 +1,5 @@
-import View from "./view.js";
-import {createDomElement} from "../utils.js";
+import View from './view.js';
+import {createDomElement} from '../utils.js';
 
 export default class CoursePreview extends View {
     constructor() {

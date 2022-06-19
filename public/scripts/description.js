@@ -15,14 +15,14 @@ export function initModal(elements) {
         closeModal(event);
     });
 
-    function displayModalById(id){
+    function displayModalById(id) {
         container.style.display = 'inherit';
         section = document.getElementById(id);
         section.style.display = 'inherit';
     }
 
-    function closeModal(event){
-        if (event.target == container && section !== undefined){
+    function closeModal(event) {
+        if (event.target == container && section !== undefined) {
             container.style.display = 'none';
             section.style.display = 'none';
             section = undefined;
