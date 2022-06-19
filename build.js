@@ -7,7 +7,8 @@ import {createPersonalPathData} from "./src/utils.js";
 global.document = new JSDOM().window.document;
 
 const ROADMAPS_FOLDER = './src/configuration/roadmaps';
-const COURSES_FOLDER = './src/configuration/courses';
+const COURSES_FOLDER = path.join('src', 'configuration', 'courses');
+const SEMESTERS_FILE = path.join('src', 'configuration', 'semesters.json');
 
 function loadJsonFilesWithContent(folder) {
     const jsonFilenameToContent = {};
@@ -29,8 +30,9 @@ function loadJsonFilesWithContent(folder) {
 
 const roadmaps = loadJsonFilesWithContent(ROADMAPS_FOLDER);
 const courses = loadJsonFilesWithContent(COURSES_FOLDER);
+const semesters = JSON.parse(fs.readFileSync(SEMESTERS_FILE));
 
-const htmlBuilder = new TemplateBuilder(roadmaps, courses);
+const htmlBuilder = new TemplateBuilder(roadmaps, courses, semesters);
 htmlBuilder.build();
 
 console.log('Pages created successfully');

@@ -11,8 +11,8 @@ import SemesterView from "./views/semester-view.js";
 
 const url = new URL(window.location.href);
 
-async function loadModels(url, recordToModelParser, viewFactory) {
-    let recordsList = await (await fetch(url)).json();
+function loadModels(objects, recordToModelParser, viewFactory) {
+    let recordsList = objects;
 
     let models = [];
     for (const record of recordsList) {
@@ -22,7 +22,7 @@ async function loadModels(url, recordToModelParser, viewFactory) {
         models.push(model);
     }
 
-    return Promise.resolve(models);
+    return models;
 }
 
 /**
@@ -138,7 +138,7 @@ function initDragAndDropEvents(semesterInfos, courseInfos) {
 
 async function main() {
     let courseFullInfos = await loadModels(
-        'static/courses.json',
+        globalThis.COURSES,
         parseJsonToCourseFullInfo,
         () => new CoursePreview()
     );
@@ -154,8 +154,8 @@ async function main() {
 
     let freeCourseIds = new Set(courseFullInfos.map(item => item.id));
 
-    let semesterInfos = await loadModels(
-        'static/semesters.json',
+    let semesterInfos = loadModels(
+        globalThis.SEMESTERS,
         (jsonRecord, view) => parseJsonToSemesterInfo(
             jsonRecord,
             courseFullInfoById,
@@ -213,4 +213,4 @@ async function main() {
     }, []));
 }
 
-main().then();
+main();
