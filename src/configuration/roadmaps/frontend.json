@@ -27,7 +27,28 @@
             "children": [
                 {
                     "mode": "module",
-                    "course": "hackerdom-part2"
+                    "course": "product-anal-intro"
+                }
+            ]
+        },
+        {
+            "mode": "theme",
+            "title": "7 семестр",
+            "children": [
+                {
+                    "mode": "module",
+                    "course": "html-academy2"
+                }
+            ]
+        },
+        {
+            "mode": "theme",
+            "title": "8 семестр",
+            "type": "right",
+            "children": [
+                {
+                    "mode": "module",
+                    "course": "networks-part2"
                 }
             ]
         }
