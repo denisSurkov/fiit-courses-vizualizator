@@ -12,9 +12,10 @@ const OWN_PATH_TEMPLATE = 'own_path.template';
 
 
 export default class TemplateBuilder {
-    constructor(roadmaps, courses) {
+    constructor(roadmaps, courses, semesters) {
         this.roadmaps = roadmaps;
         this.courses = courses;
+        this.semesters = semesters;
         this.descriptionBuilder = new DescriptionBuilder(courses);
     };
 
@@ -54,7 +55,7 @@ export default class TemplateBuilder {
         }
 
         this.#buildIndex({roadmaps: indexInfo});
-        this.#buildOwnPath({coursesInfo: this.courses});
+        this.#buildOwnPath();
     };
 
     #buildIndex(indexInfo) {
@@ -65,11 +66,17 @@ export default class TemplateBuilder {
         this.#saveHtml(html, 'index');
     };
 
-    #buildOwnPath(coursesInfo) {
-
+    #buildOwnPath() {
         const ownPathTemplate = this.#openHtml(OWN_PATH_TEMPLATE);
         const roadmapsTemplateScript = Handlebars.compile(ownPathTemplate);
-        const html = roadmapsTemplateScript(coursesInfo);
+
+        const payload = {
+            coursesInfo: this.courses,
+            coursesJson: JSON.stringify(Object.values(this.courses)),
+            semestersJson: JSON.stringify(this.semesters),
+        }
+
+        const html = roadmapsTemplateScript(payload);
         this.#saveHtml(html, 'own_path');
     };
 

@@ -21,8 +21,8 @@ function setNextEventId(view) {
     eventIdsCount++;
 }
 
-async function loadModels(url, recordToModelParser, viewFactory) {
-    let recordsList = await (await fetch(url)).json();
+function loadModels(objects, recordToModelParser, viewFactory) {
+    let recordsList = objects;
 
     let models = [];
     for (const record of recordsList) {
@@ -32,7 +32,7 @@ async function loadModels(url, recordToModelParser, viewFactory) {
         models.push(model);
     }
 
-    return Promise.resolve(models);
+    return models;
 }
 
 /**
@@ -42,11 +42,11 @@ async function loadModels(url, recordToModelParser, viewFactory) {
 function parseJsonToCourseFullInfo(jsonRecord, view) {
     let result = new CourseInfo(
         jsonRecord['id'],
-        jsonRecord['name'],
-        jsonRecord['zedCount'],
+        jsonRecord['title'],
+        jsonRecord['zet'],
         jsonRecord['description'],
-        jsonRecord['semTime'],
-        jsonRecord['category'],
+        jsonRecord['semester'],
+        jsonRecord['theme'],
         view
     );
 
@@ -169,12 +169,12 @@ function createSemesterView(isNeedUrlUpdate=true) {
     return result;
 }
 
-async function main() {
+function main() {
     let descriptionWindow = new DescriptionWindow();
     setNextEventId(descriptionWindow);
 
-    let courseFullInfos = await loadModels(
-        'static/courses.json',
+    let courseFullInfos = loadModels(
+        globalThis.COURSES,
         parseJsonToCourseFullInfo,
         () => {
              let preview = new CoursePreview();
@@ -198,8 +198,8 @@ async function main() {
 
     let freeCourseIds = new Set(courseFullInfos.map(item => item.id));
 
-    let semesterInfos = await loadModels(
-        'static/semesters.json',
+    let semesterInfos = loadModels(
+        globalThis.SEMESTERS,
         (jsonRecord, view) => parseJsonToSemesterInfo(
             jsonRecord,
             courseFullInfoById,
@@ -266,4 +266,4 @@ async function main() {
     });
 }
 
-main().then();
+main();
