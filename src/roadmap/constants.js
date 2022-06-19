@@ -6,6 +6,9 @@ export const BLOCK_TEXT_SEMESTER_STYLE_NAME = 'roadmap-text-semester';
 export const LINE_COURSE_STYLE_NAME = 'roadmap-line-course';
 export const LINE_SEMESTER_STYLE_NAME = 'roadmap-line-semester';
 
+export const ZET_CIRCLE_STYLE_NAME = 'roadmap-zet-circle';
+export const ZET_TEXT_STYLE_NAME = 'roadmap-zet-text';
+
 export const MODULE_FONT = '1em Sans';
 export const THEME_FONT = '2em Sans';
 
