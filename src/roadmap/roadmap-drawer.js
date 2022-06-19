@@ -108,7 +108,7 @@ export class RoadmapDrawer {
             this.#drawCoursePath(semesterData.x, semesterData.y, child.x, child.y, semester);
 
             const courseName = this.courses[child.course].title;
-            const dataCourse = convertCourseNameToId(courseName);
+            const dataCourse = this.courses[child.course].id;
             const zet = this.courses[child.course].zet;
 
             this.#drawCourse(child.x, child.y, courseName, semester, dataCourse, zet);

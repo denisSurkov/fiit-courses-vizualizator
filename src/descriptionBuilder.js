@@ -9,7 +9,7 @@ export default class DescriptionBuilder {
     getDescriptions(roadmap){
         const coursesFromRoadmap = this.#extractCourses(roadmap);
         const resultDescriptions = coursesFromRoadmap.map(description => this.courses[description]);
-        resultDescriptions.forEach(description => description['id'] = convertCourseNameToId(description['title']));
+        // resultDescriptions.forEach(description => description['id'] = convertCourseNameToId(description['title']));
         return resultDescriptions;
     }
 
